@@ -150,7 +150,7 @@ bool MPI_Client::new_msg_come(ARGS *args) {
 //    cout << "[Client]: send finish, send thread sleep..." << endl;
 //}
 
-int MPI_Client::send_action(void *buf, int msgsize, int dest, MPI_Datatype datatype, int tag, MPI_Comm comm) {
+int MPI_Client::send_action(void *buf, int msgsize, MPI_Datatype datatype, int dest, int tag, MPI_Comm comm) {
 #ifdef DEBUG
         cout << "[Client]: send message...<" << buf <<","<<dest <<"," <<tag  << ">"<< endl;
 #endif
@@ -158,7 +158,7 @@ int MPI_Client::send_action(void *buf, int msgsize, int dest, MPI_Datatype datat
         int msglen = 0;
         char errmsg[MPI_MAX_ERROR_STRING];
 
-        merr = MPI_Send(buf, msgsize, dest, datatype, tag, comm);
+        merr = MPI_Send(buf, msgsize, datatype, dest,  tag, comm);
         if(merr){
             MPI_Error_string(merr, errmsg, &msglen);
             cout << "[Client-Error]: send fail...error: " << errmsg << endl;

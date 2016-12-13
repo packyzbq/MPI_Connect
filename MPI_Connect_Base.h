@@ -92,7 +92,7 @@ public:
     static void* recv_thread(void* ptr);
 //    static void* send_thread(void* ptr);
 
-    virtual int send_action(void *buf, int msgsize, int dest, MPI_Datatype datatype, int tag, MPI_Comm comm){};
+    virtual int send_action(void *buf, int msgsize,  MPI_Datatype datatype, int dest, int tag, MPI_Comm comm){};
 
     virtual bool new_msg_come(ARGS * args);
     virtual MPI_Datatype analyz_type(int tags);
