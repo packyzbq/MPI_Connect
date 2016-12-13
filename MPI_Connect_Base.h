@@ -49,8 +49,8 @@ struct ARGS{    //用于 new_msg_come 向 recv传递参数
 class MPI_Connect_Base {
 protected:
     IRecv_handler *Irecv_handler;
-    pthread_cond_t send_thread_cond;      //  用于挂起读/写线程时
-    pthread_mutex_t send_mtx, sendmsg_mtx;                     //  同上
+    //pthread_cond_t send_thread_cond;      //  用于挂起读/写线程时
+    //pthread_mutex_t send_mtx, sendmsg_mtx;                     //  同上
     pthread_t recv_t, send_t;
 
     int myrank;
@@ -70,9 +70,9 @@ public:
     MPI_Connect_Base(IRecv_handler* rh){
         Irecv_handler = rh;
 //      recv_thread_cond = PTHREAD_COND_INITIALIZER;
-        send_thread_cond = PTHREAD_COND_INITIALIZER;
+//        send_thread_cond = PTHREAD_COND_INITIALIZER;
 //      recv_mtx = PTHREAD_MUTEX_INITIALIZER;
-        send_mtx = PTHREAD_MUTEX_INITIALIZER;
+//        send_mtx = PTHREAD_MUTEX_INITIALIZER;
 
         //MPI_Init(0,0);
         //MPI_Comm_rank(MPI_COMM_WORLD, &myrank);
@@ -90,13 +90,14 @@ public:
     virtual int finalize(){ return 0;};
 
     static void* recv_thread(void* ptr);
-    static void* send_thread(void* ptr);
+//    static void* send_thread(void* ptr);
 
+    virtual int send_action(void *buf, int msgsize, int dest, MPI_Datatype datatype, int tag, MPI_Comm comm){};
 
     virtual bool new_msg_come(ARGS * args);
     virtual MPI_Datatype analyz_type(int tags);
 
-    virtual void send(void *buf, int msgsize, int dest, MPI_Datatype datatype, int tag, MPI_Comm comm);
+//    virtual void send(void *buf, int msgsize, int dest, MPI_Datatype datatype, int tag, MPI_Comm comm);
     //virtual void err_handler();
     void set_recv_stop();
     void set_send_stop();

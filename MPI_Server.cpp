@@ -47,9 +47,9 @@ int MPI_Server::initialize() {
     //recv_thread(this);
 
     //start send thread
-    pthread_create(&send_t, NULL, MPI_Connect_Base::send_thread, this);
-    while(send_flag);
-    cout << "[Server]: send thread start..." << endl;
+    //pthread_create(&send_t, NULL, MPI_Connect_Base::send_thread, this);
+    //while(send_flag);
+    //cout << "[Server]: send thread start..." << endl;
 
     //start accept thread
     pthread_create(&pth_accept, NULL, MPI_Server::accept_conn_thread, this);
@@ -82,14 +82,14 @@ int MPI_Server::stop() {
     //stop threads
     set_accept_t_stop();
     set_recv_stop();
-    set_send_stop();
+    //set_send_stop();
 
     int ret;
     ret = pthread_cancel(pth_accept);
     cout <<"[Server]: cancel accept thread, exit code=" << ret << endl;
 
-    ret = pthread_cancel(send_t);
-    cout <<"[Server]: cancel accept thread, exit code=" << ret << endl;
+    //ret = pthread_cancel(send_t);
+    //cout <<"[Server]: cancel accept thread, exit code=" << ret << endl;
 
     //map<int ,MPI_Comm>::iterator iter;
     //for(iter = client_comm_list.begin(); iter != client_comm_list.end(); iter++){
@@ -108,12 +108,12 @@ int MPI_Server::finalize() {
     cout << "[Server]: accept thread stop, exit code=" << ret << endl;
     ret = pthread_join(recv_t, NULL);
     cout << "[Server]: recv_thread stop, exit code=" << ret << endl;
-    ret = pthread_join(send_t, NULL);
-    cout << "[Server]: send_thread stop, exit code=" << ret << endl;
+    //ret = pthread_join(send_t, NULL);
+    //cout << "[Server]: send_thread stop, exit code=" << ret << endl;
 
-    pthread_mutex_destroy(&send_mtx);
-    pthread_mutex_destroy(&sendmsg_mtx);
-    pthread_cond_destroy(&send_thread_cond);
+    //pthread_mutex_destroy(&send_mtx);
+    //pthread_mutex_destroy(&sendmsg_mtx);
+    //pthread_cond_destroy(&send_thread_cond);
 
     MPI_Finalize();
     return MPI_ERR_CODE::SUCCESS;
@@ -219,10 +219,27 @@ void MPI_Server::recv_handle(int tag, void *buf, MPI_Comm comm) {
     }
 }
 
-void MPI_Server::send(void *buf, int msgsize, int dest, MPI_Datatype datatype, int tag, MPI_Comm comm) {
-    cout << "[Server]: send message..." << endl;
-    MPI_Connect_Base::send(buf, msgsize, dest, datatype, tag, comm);
-    cout << "[Server]: send finish, send thread sleep..." << endl;
+//void MPI_Server::send(void *buf, int msgsize, int dest, MPI_Datatype datatype, int tag, MPI_Comm comm) {
+//    cout << "[Server]: send message..." << endl;
+//    MPI_Connect_Base::send(buf, msgsize, dest, datatype, tag, comm);
+//    cout << "[Server]: send finish, send thread sleep..." << endl;
+//}
+
+int MPI_Server::send_action(void *buf, int msgsize, int dest, MPI_Datatype datatype, int tag, MPI_Comm comm) {
+#ifdef DEBUG
+    cout << "[Server]: send message...<" << buf <<","<<dest <<"," <<tag  << ">"<< endl;
+#endif
+    int merr = 0;
+    int msglen = 0;
+    char errmsg[MPI_MAX_ERROR_STRING];
+
+    merr = MPI_Send(buf, msgsize, dest, datatype, tag, comm);
+    if(merr){
+        MPI_Error_string(merr, errmsg, &msglen);
+        cout << "[Server-Error]: send fail...error: " << errmsg << endl;
+        return MPI_ERR_CODE::SEND_FAIL;
+    }
+    return MPI_ERR_CODE::SUCCESS;
 }
 
 void MPI_Server::run() {

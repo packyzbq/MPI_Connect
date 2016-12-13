@@ -19,7 +19,8 @@ public:
     int finalize();
 
     bool new_msg_come(ARGS *args);
-    void send(void *buf, int msgsize, int dest, MPI_Datatype datatype, int tag, MPI_Comm comm);
+//    void send(void *buf, int msgsize, int dest, MPI_Datatype datatype, int tag, MPI_Comm comm);
+    int send_action(void* buf, int msgsize, int dest, MPI_Datatype datatype, int tag, MPI_Comm comm);
     void recv_handle(int tag, void* buf, MPI_Comm comm);
     //TODO add recv_bcast()
     void set_wid(int wid);

@@ -33,6 +33,8 @@ public:
     const static int STOP_ERR               = 5;
     const static int LOOKUP_SVC_ERR         = 6;
     const static int CONNECT_ERR            = 7;
+    const static int SEND_FAIL              = 8;
+    const static int RECV_FAIL              = 9;
 };
 
 

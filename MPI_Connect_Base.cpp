@@ -72,6 +72,7 @@ void* MPI_Connect_Base::recv_thread(void *ptr) {
     return 0;
 }
 
+/*
 void* MPI_Connect_Base::send_thread(void *ptr) {
     //TODO add return code
 
@@ -116,7 +117,9 @@ void* MPI_Connect_Base::send_thread(void *ptr) {
 //    delete(&errmsg);
     return 0;
 }
+*/
 
+/*
 void MPI_Connect_Base::send(void *buf, int msgsize, int dest, MPI_Datatype datatype, int tag, MPI_Comm comm) {
     //唤醒send_thread， 发送信息
 
@@ -127,7 +130,7 @@ void MPI_Connect_Base::send(void *buf, int msgsize, int dest, MPI_Datatype datat
     pthread_cond_signal(&send_thread_cond);
     pthread_mutex_unlock(&send_mtx);
 }
-
+*/
 bool MPI_Connect_Base::new_msg_come(ARGS *args) {
     cout << "[Error]: father function, error to reach" << endl;
     return NULL;
