@@ -8,7 +8,7 @@
 #include "IRecv_handler.h"
 #include "mpi.h"
 #include "pthread.h"
-#include "MPI_util.h"
+#include "MPI_Util.h"
 #include <map>
 #include <iostream>
 

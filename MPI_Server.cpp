@@ -144,7 +144,7 @@ bool MPI_Server::new_msg_come(ARGS *args) {
 }
 
 void* MPI_Server::accept_conn_thread(void *ptr) {
-    pthread_t mypid = pthread_self();
+    //pthread_t mypid = pthread_self();
     ((MPI_Server*)ptr)->accept_conn_flag = false;
     cout << "[Server] host: "<< ((MPI_Server*)ptr)->hostname <<", accept connection thread start..." << endl;
 
