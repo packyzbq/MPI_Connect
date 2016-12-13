@@ -111,6 +111,8 @@ int MPI_Client::finalize() {
 }
 
 bool MPI_Client::new_msg_come(ARGS *args) {
+    if(sc_comm_ == 0x0)
+        return false;
     int merr = 0;
     int msglen = 0;
     char errmsg[MPI_MAX_ERROR_STRING];
@@ -121,6 +123,7 @@ bool MPI_Client::new_msg_come(ARGS *args) {
     if (merr) {
         MPI_Error_string(merr, errmsg, &msglen);
         cout << "[Client-Error]: Iprobe message error :" << errmsg << endl;
+        return false;
     }
     if (flag) {
         args = new ARGS();
