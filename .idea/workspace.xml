@@ -13,7 +13,6 @@
   <component name="ChangeListManager">
     <list default="true" id="6b800d41-e9d4-4b4a-99ba-de55217a667a" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MPI_Connect_Base.cpp" afterPath="$PROJECT_DIR$/MPI_Connect_Base.cpp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MPI_Connect_Base.h" afterPath="$PROJECT_DIR$/MPI_Connect_Base.h" />
     </list>
     <ignored path="MPI_Connect.iws" />
@@ -72,8 +71,8 @@
       <file leaf-file-name="MPI_Connect_Base.h" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/MPI_Connect_Base.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="529">
-              <caret line="83" column="27" selection-start-line="83" selection-start-column="27" selection-end-line="83" selection-end-column="27" />
+            <state relative-caret-position="253">
+              <caret line="44" column="0" selection-start-line="44" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
               <folding>
                 <element signature="e#122#148#0" expanded="true" />
               </folding>
@@ -401,7 +400,7 @@
       <option name="presentableId" value="Default" />
       <updated>1481533441110</updated>
       <workItem from="1481533442454" duration="2671000" />
-      <workItem from="1481593162503" duration="11985000" />
+      <workItem from="1481593162503" duration="12068000" />
     </task>
     <task id="LOCAL-00001" summary="Add Server operation">
       <created>1481608998603</created>
@@ -417,11 +416,18 @@
       <option name="project" value="LOCAL" />
       <updated>1481609907027</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="update free memorize">
+      <created>1481610867516</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1481610867516</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="14656000" />
+    <option name="totallyTimeSpent" value="14739000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1050" extended-state="6" />
@@ -460,7 +466,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Add Server operation" />
     <MESSAGE value="update include" />
-    <option name="LAST_COMMIT_MESSAGE" value="update include" />
+    <MESSAGE value="update free memorize" />
+    <option name="LAST_COMMIT_MESSAGE" value="update free memorize" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -599,8 +606,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/MPI_Connect_Base.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="529">
-          <caret line="83" column="27" selection-start-line="83" selection-start-column="27" selection-end-line="83" selection-end-column="27" />
+        <state relative-caret-position="253">
+          <caret line="44" column="0" selection-start-line="44" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
           <folding>
             <element signature="e#122#148#0" expanded="true" />
           </folding>
