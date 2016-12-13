@@ -132,14 +132,14 @@ bool MPI_Server::new_msg_come(ARGS *args) {
             args->datatype = analyz_type(stat->MPI_TAG);
             args->source_rank = stat->MPI_SOURCE;
             args->print();
-            free(stat);
-            free(flag);
+            delete(stat);
+            delete(flag);
             return true;
         }
         //free(flag);
-        free(stat);
+        delete(stat);
     }
-    free(flag);
+    delete(flag);
     return false;
 }
 
@@ -164,8 +164,8 @@ void* MPI_Server::accept_conn_thread(void *ptr) {
         cout << "[Server]:Host: " << ((MPI_Server*)ptr)->hostname << ", Proc: "<< ((MPI_Server*)ptr)->myrank << ", receive new connection...; MPI_COMM="<< newcomm << endl;
 #endif
         //TODO add to bcast_comm/group
-        free(&tmp_item);
-        free(&newcomm);
+        //delete(&tmp_item);
+        //free(&newcomm);
     }
     cout << "[Server] host: "<< ((MPI_Server*)ptr)->hostname << ", accept connection thread stop..." << endl;
     return 0;

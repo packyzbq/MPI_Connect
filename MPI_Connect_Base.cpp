@@ -64,10 +64,11 @@ void* MPI_Connect_Base::recv_thread(void *ptr) {
         }
     }
 
-    free(&merr);
-    free(&errmsg);
-    free(&msglen);
-    free(&msgsz);
+//    delete(&merr);
+//    delete(&errmsg);
+//    delete(&msglen);
+//    delete(&msgsz);
+    delete(rb);
     return 0;
 }
 
@@ -109,9 +110,10 @@ void* MPI_Connect_Base::send_thread(void *ptr) {
     }
     pthread_mutex_unlock(&(((MPI_Connect_Base*)ptr)->send_mtx));
 
-    free(&merr);
-    free(&msglen);
-    free(&errmsg);
+//    delete(smsg);
+//    delete(&merr);
+//    delete(&msglen);
+//    delete(&errmsg);
     return 0;
 }
 
