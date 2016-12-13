@@ -175,25 +175,27 @@ void MPI_Server::recv_handle(int tag, void *buf, MPI_Comm comm) {
     //TODO set different conditions
 
     switch(tag){
-        case MPI_Tags::MPI_REGISTEY:
+        case MPI_Tags::MPI_REGISTEY: {
 #ifdef DEBUG
-            cout << "get a registery from worker:" << (*(int*)buf) << endl;
+            cout << "get a registery from worker:" << (*(int *) buf) << endl;
 #endif
             list<List_Entry>::iterator iter;
-            for(iter = comm_list.begin(); iter !=comm_list.end(); iter++){
-                if(iter->comm == comm){
-                    iter->wid = (*(int*)buf);
+            for (iter = comm_list.begin(); iter != comm_list.end(); iter++) {
+                if (iter->comm == comm) {
+                    iter->wid = (*(int *) buf);
                 }
             }
-            if(iter == comm_list.end()){
+            if (iter == comm_list.end()) {
                 cout << "[Server-Error]: register error, no compatible MPI_COMM" << endl;
                 //TODO Add error handle
             }
+        }
             break;
-        case MPI_Tags::MPI_BCAST_ACK:
+        case MPI_Tags::MPI_BCAST_ACK:{}
             break;
-        default:
+        default: {
             Irecv_handler->handler_recv(tag, buf);
+        }
     }
 }
 
