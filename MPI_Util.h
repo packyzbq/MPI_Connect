@@ -23,5 +23,15 @@ public:
     const static int MPI_BCAST_ACK       = 21; //用于回复广播询问task
 };
 
+class MPI_ERR_CODE{
+public:
+    const static int SUCCESS                = 0;
+    const static int OPEN_PORT_ERR          = 1;
+    const static int PUBLISH_SVC_ERR        = 2;
+    const static int UNPUBLISH_ERR          = 3;
+    const static int DISCONN_ERR            = 4;
+    const static int STOP_ERR               = 5;
+};
+
 
 #endif //MPI_CONNECT_MPI_UTIL_H

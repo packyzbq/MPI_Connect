@@ -55,10 +55,10 @@ protected:
 
     int myrank;
     int w_size;
-    int merr;
-    int msglen;
-    char errmsg[MPI_MAX_ERROR_STRING];
-    char hostname[MPI_MAX_PROCESSOR_NAME];
+    static int merr = 0;
+    static int msglen = 0;
+    static char errmsg[MPI_MAX_ERROR_STRING];
+    static char hostname[MPI_MAX_PROCESSOR_NAME];
 
     bool recv_flag = true; //true = stop false = running
     bool send_flag = true;
@@ -74,23 +74,24 @@ public:
         recv_mtx = PTHREAD_MUTEX_INITIALIZER;
         send_mtx = PTHREAD_MUTEX_INITIALIZER;
 
-        MPI_Init(0,0);
-        MPI_Comm_rank(MPI_COMM_WORLD, &myrank);
-        MPI_Comm_size(MPI_COMM_WORLD, &w_size);
-        MPI_Comm_set_errhandler(MPI_COMM_WORLD, MPI_ERRORS_RETURN);
+        //MPI_Init(0,0);
+        //MPI_Comm_rank(MPI_COMM_WORLD, &myrank);
+        //MPI_Comm_size(MPI_COMM_WORLD, &w_size);
+        //MPI_Comm_set_errhandler(MPI_COMM_WORLD, MPI_ERRORS_RETURN);
     };
 
     virtual ~MPI_Connect_Base(){};
 
-    virtual void run();
-    virtual void stop();
-    virtual void finalize();
+    virtual int initialize(){cout << "[Error] father init..." << endl; return 0;};
+    virtual void run(){cout << "[Error] father run..." << endl;};
+    virtual int stop(){cout << "[Error] father stop..." << endl; return 0;};
+    virtual int finalize(){ return 0;};
 
     static void* recv_thread(void* ptr);
     static void* send_thread(void* ptr);
 
+
     virtual bool new_msg_come(ARGS * args);
-    virtual SendMSG* getSendmsg();
     virtual MPI_Datatype analyz_type(int tags);
 
     virtual void send(void *buf, int msgsize, int dest, MPI_Datatype datatype, int tag, MPI_Comm comm);
@@ -98,7 +99,7 @@ public:
     void set_recv_stop();
     void set_send_stop();
 
-    virtual void recv_handle(int tag, void* buf, MPI_Comm comm){}; //
+    virtual void recv_handle(int tag, void* buf, MPI_Comm comm){cout << "[Error] father recv handler" << endl;}; //
 
 
 };
