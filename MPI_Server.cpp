@@ -4,11 +4,16 @@
 
 #include "MPI_Server.h"
 #include <cstdlib>
+#include <iomanip>
 
 #define DEBUG
 
 int MPI_Server::initialize() {
-    cout << "--------------------------init start-----------------------" << endl;
+    cout << setfill('-') << setw(10) << "Server init start" << setfill('-') << setw(10) << endl;
+    int merr= 0;
+    int msglen = 0;
+    char errmsg[MPI_MAX_ERROR_STRING];
+
     int provided;
     MPI_Init_thread(0,0,MPI_THREAD_MULTIPLE, &provided);
     MPI_Comm_rank(MPI_COMM_WORLD, &myrank);
@@ -51,12 +56,15 @@ int MPI_Server::initialize() {
     while(accept_conn_flag);
     cout << "[Server]: accept thread start..." << endl;
 
-    cout << "---------------------  init finish ----------------------------" << endl;
+    cout << setfill('-') << setw(10) << "Server init finish" << setfill('-') << setw(10) << endl;
     return MPI_ERR_CODE::SUCCESS;
 }
 
 int MPI_Server::stop() {
-    cout << "-------------------stop start--------------------" << endl;
+    cout << setfill('-') << setw(10) << "Server stop start" << setfill('-') << setw(10) << endl;
+    int merr= 0;
+    int msglen = 0;
+    char errmsg[MPI_MAX_ERROR_STRING];
     cout << "[Server]: Ready to stop..." << endl;
     cout << "[Server]: Unpublish service name..." << endl;
     merr = MPI_Unpublish_name(svc_name_, MPI_INFO_NULL, port);
@@ -89,7 +97,7 @@ int MPI_Server::stop() {
     //}
 
     finalize();
-    cout << "--------------------stop finish--------------------" << endl;
+    cout << setfill('-') << setw(10) << "Server stop finish" << setfill('-') << setw(10) << endl;
 
     return MPI_ERR_CODE::SUCCESS;
 }
@@ -103,6 +111,10 @@ int MPI_Server::finalize() {
     ret = pthread_join(send_t, NULL);
     cout << "[Server]: send_thread stop, exit code=" << ret << endl;
 
+    pthread_mutex_destroy(&send_mtx);
+    pthread_mutex_destroy(&sendmsg_mtx);
+    pthread_cond_destroy(&send_thread_cond);
+
     MPI_Finalize();
     return MPI_ERR_CODE::SUCCESS;
 }
@@ -110,6 +122,10 @@ int MPI_Server::finalize() {
 bool MPI_Server::new_msg_come(ARGS *args) {
     if(comm_list.empty())
         return false;
+
+    int merr= 0;
+    int msglen = 0;
+    char errmsg[MPI_MAX_ERROR_STRING];
     MPI_Status *stat;
     int *flag = new int;
     *flag = 0;
@@ -145,15 +161,18 @@ bool MPI_Server::new_msg_come(ARGS *args) {
 
 void* MPI_Server::accept_conn_thread(void *ptr) {
     //pthread_t mypid = pthread_self();
+    int merr= 0;
+    int msglen = 0;
+    char errmsg[MPI_MAX_ERROR_STRING];
     ((MPI_Server*)ptr)->accept_conn_flag = false;
     cout << "[Server] host: "<< ((MPI_Server*)ptr)->hostname <<", accept connection thread start..." << endl;
 
     while(!((MPI_Server*)ptr)->accept_conn_flag) {
         MPI_Comm newcomm;
-        ((MPI_Server*)ptr)->merr = MPI_Comm_accept(((MPI_Server*)ptr)->port, MPI_INFO_NULL, 0, MPI_COMM_SELF, &newcomm);
-        if(((MPI_Server*)ptr)->merr){
-            MPI_Error_string(((MPI_Server*)ptr)->merr, ((MPI_Server*)ptr)->errmsg, &(((MPI_Server*)ptr)->msglen));
-            cout << "[Server-Error]: accept client error, msg: " << ((MPI_Server*)ptr)->errmsg << endl;
+        merr = MPI_Comm_accept(((MPI_Server*)ptr)->port, MPI_INFO_NULL, 0, MPI_COMM_SELF, &newcomm);
+        if(merr){
+            MPI_Error_string(merr, errmsg, &msglen);
+            cout << "[Server-Error]: accept client error, msg: " << errmsg << endl;
         }
         //MPI_Barrier(newcomm);
         List_Entry tmp_item;
@@ -180,12 +199,13 @@ void MPI_Server::recv_handle(int tag, void *buf, MPI_Comm comm) {
             cout << "get a registery from worker:" << (*(int *) buf) << endl;
 #endif
             list<List_Entry>::iterator iter;
-            for (iter = comm_list.begin(); iter != comm_list.end(); iter++) {
+            int size = 0;
+            for (iter = comm_list.begin(); iter != comm_list.end(); iter++, size++) {
                 if (iter->comm == comm) {
                     iter->wid = (*(int *) buf);
                 }
             }
-            if (iter == comm_list.end()) {
+            if (size >= comm_list.size()-1) {
                 cout << "[Server-Error]: register error, no compatible MPI_COMM" << endl;
                 //TODO Add error handle
             }

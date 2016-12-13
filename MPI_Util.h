@@ -31,6 +31,8 @@ public:
     const static int UNPUBLISH_ERR          = 3;
     const static int DISCONN_ERR            = 4;
     const static int STOP_ERR               = 5;
+    const static int LOOKUP_SVC_ERR         = 6;
+    const static int CONNECT_ERR            = 7;
 };
 
 

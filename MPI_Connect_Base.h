@@ -50,14 +50,14 @@ class MPI_Connect_Base {
 protected:
     IRecv_handler *Irecv_handler;
     pthread_cond_t send_thread_cond;      //  用于挂起读/写线程时
-    pthread_mutex_t recv_mtx, send_mtx, sendmsg_mtx;                     //  同上
+    pthread_mutex_t send_mtx, sendmsg_mtx;                     //  同上
     pthread_t recv_t, send_t;
 
     int myrank;
     int w_size;
-    int merr = 0;
-    int msglen = 0;
-    char errmsg[MPI_MAX_ERROR_STRING];
+    //int merr = 0;
+    //int msglen = 0;
+    //char errmsg[MPI_MAX_ERROR_STRING];
     char hostname[MPI_MAX_PROCESSOR_NAME];
 
     bool recv_flag = true; //true = stop false = running
@@ -71,7 +71,7 @@ public:
         Irecv_handler = rh;
 //      recv_thread_cond = PTHREAD_COND_INITIALIZER;
         send_thread_cond = PTHREAD_COND_INITIALIZER;
-        recv_mtx = PTHREAD_MUTEX_INITIALIZER;
+//      recv_mtx = PTHREAD_MUTEX_INITIALIZER;
         send_mtx = PTHREAD_MUTEX_INITIALIZER;
 
         //MPI_Init(0,0);
