@@ -7,11 +7,11 @@
 #include <iomanip>
 
 MPI_Client::MPI_Client(IRecv_handler *mh, char* svc_name, char* port):MPI_Connect_Base(mh){
-    if((svc_name == NULL && port != NULL) || (svc_name != NULL && port != NULL)) {
+    if((svc_name == NULL && port != NULL) ) {
         strcpy(portname, port);
         svc_name_ = "";
     }
-    else if(svc_name != NULL && port == NULL) {
+    else if((svc_name != NULL && port == NULL) || (svc_name != NULL && port != NULL)) {
         svc_name_= svc_name;
         strcpy(portname, "");
     }
