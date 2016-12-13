@@ -55,10 +55,10 @@ protected:
 
     int myrank;
     int w_size;
-    static int merr = 0;
-    static int msglen = 0;
-    static char errmsg[MPI_MAX_ERROR_STRING];
-    static char hostname[MPI_MAX_PROCESSOR_NAME];
+    int merr = 0;
+    int msglen = 0;
+    char errmsg[MPI_MAX_ERROR_STRING];
+    char hostname[MPI_MAX_PROCESSOR_NAME];
 
     bool recv_flag = true; //true = stop false = running
     bool send_flag = true;
@@ -80,7 +80,9 @@ public:
         //MPI_Comm_set_errhandler(MPI_COMM_WORLD, MPI_ERRORS_RETURN);
     };
 
-    virtual ~MPI_Connect_Base(){};
+    virtual ~MPI_Connect_Base(){
+        //TODO free memrize
+    };
 
     virtual int initialize(){cout << "[Error] father init..." << endl; return 0;};
     virtual void run(){cout << "[Error] father run..." << endl;};

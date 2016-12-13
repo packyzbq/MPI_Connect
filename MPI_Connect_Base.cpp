@@ -64,6 +64,10 @@ void* MPI_Connect_Base::recv_thread(void *ptr) {
         }
     }
 
+    free(&merr);
+    free(&errmsg);
+    free(&msglen);
+    free(&msgsz);
     return 0;
 }
 
@@ -73,6 +77,10 @@ void* MPI_Connect_Base::send_thread(void *ptr) {
     //发送函数，在平时挂起，使用 send唤醒 来发送信息
     pthread_t pid = pthread_self();
     SendMSG* smsg;
+
+    int merr = 0;
+    int msglen = 0;
+    char errmsg[MPI_MAX_ERROR_STRING];
 
 #ifdef DEBUG
     cout<< "<send_thread>: Proc: " << ((MPI_Connect_Base*)ptr)->myrank << ", Send thread start..., pid = " << pid << endl;
@@ -101,6 +109,9 @@ void* MPI_Connect_Base::send_thread(void *ptr) {
     }
     pthread_mutex_unlock(&(((MPI_Connect_Base*)ptr)->send_mtx));
 
+    free(&merr);
+    free(&msglen);
+    free(&errmsg);
     return 0;
 }
 
