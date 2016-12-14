@@ -112,7 +112,7 @@ int MPI_Client::finalize() {
 //    pthread_mutex_destroy(&send_mtx);
 //    pthread_mutex_destroy(&sendmsg_mtx);
 //    pthread_cond_destroy(&send_thread_cond);
-//    MPI_Finalize();
+    MPI_Finalize();
     return 0;
 }
 
