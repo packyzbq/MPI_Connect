@@ -14,8 +14,6 @@
     <list default="true" id="6b800d41-e9d4-4b4a-99ba-de55217a667a" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MPI_Client.cpp" afterPath="$PROJECT_DIR$/MPI_Client.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MPI_Client.h" afterPath="$PROJECT_DIR$/MPI_Client.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MPI_Connect_Base.h" afterPath="$PROJECT_DIR$/MPI_Connect_Base.h" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MPI_Server.cpp" afterPath="$PROJECT_DIR$/MPI_Server.cpp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MPI_Server.h" afterPath="$PROJECT_DIR$/MPI_Server.h" />
     </list>
@@ -86,14 +84,14 @@
       <file leaf-file-name="MPI_Server.cpp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/MPI_Server.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="467">
-              <caret line="235" column="61" selection-start-line="235" selection-start-column="61" selection-end-line="235" selection-end-column="61" />
+            <state relative-caret-position="295">
+              <caret line="181" column="9" selection-start-line="181" selection-start-column="9" selection-end-line="181" selection-end-column="9" />
               <folding>
                 <element signature="e#43#66#0" expanded="true" />
-                <element signature="e#4079#5285#0" expanded="false" />
-                <element signature="e#5287#6650#0" expanded="false" />
-                <element signature="e#6652#7553#0" expanded="false" />
-                <element signature="e#8436#8559#0" expanded="false" />
+                <element signature="e#240#2235#0" expanded="false" />
+                <element signature="e#2237#3634#0" expanded="false" />
+                <element signature="e#4198#5404#0" expanded="false" />
+                <element signature="e#9728#9789#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -102,8 +100,8 @@
       <file leaf-file-name="MPI_Server.h" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/MPI_Server.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="441">
-              <caret line="42" column="77" selection-start-line="42" selection-start-column="77" selection-end-line="42" selection-end-column="77" />
+            <state relative-caret-position="368">
+              <caret line="31" column="18" selection-start-line="31" selection-start-column="18" selection-end-line="31" selection-end-column="18" />
               <folding>
                 <element signature="e#110#125#0" expanded="true" />
               </folding>
@@ -111,20 +109,19 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MPI_Client.cpp" pinned="false" current-in-tab="false">
+      <file leaf-file-name="MPI_Client.cpp" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/MPI_Client.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="469">
-              <caret line="160" column="66" selection-start-line="160" selection-start-column="66" selection-end-line="160" selection-end-column="66" />
+            <state relative-caret-position="602">
+              <caret line="195" column="39" selection-start-line="195" selection-start-column="39" selection-end-line="195" selection-end-column="39" />
               <folding>
                 <element signature="e#43#66#0" expanded="true" />
-                <element signature="e#625#681#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MPI_Client.h" pinned="false" current-in-tab="true">
+      <file leaf-file-name="MPI_Client.h" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/MPI_Client.h">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="349">
@@ -137,8 +134,8 @@
       <file leaf-file-name="MPI_Util.h" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/MPI_Util.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="717">
-              <caret line="36" column="48" selection-start-line="36" selection-start-column="48" selection-end-line="36" selection-end-column="48" />
+            <state relative-caret-position="326">
+              <caret line="19" column="28" selection-start-line="19" selection-start-column="28" selection-end-line="19" selection-end-column="28" />
               <folding />
             </state>
           </provider>
@@ -167,10 +164,10 @@
         <option value="$PROJECT_DIR$/MPI_Util.h" />
         <option value="$PROJECT_DIR$/MPI_Connect_Base.cpp" />
         <option value="$PROJECT_DIR$/MPI_Connect_Base.h" />
+        <option value="$PROJECT_DIR$/MPI_Client.h" />
         <option value="$PROJECT_DIR$/MPI_Server.h" />
         <option value="$PROJECT_DIR$/MPI_Server.cpp" />
         <option value="$PROJECT_DIR$/MPI_Client.cpp" />
-        <option value="$PROJECT_DIR$/MPI_Client.h" />
       </list>
     </option>
   </component>
@@ -425,7 +422,7 @@
       <option name="presentableId" value="Default" />
       <updated>1481533441110</updated>
       <workItem from="1481533442454" duration="2671000" />
-      <workItem from="1481593162503" duration="25776000" />
+      <workItem from="1481593162503" duration="29342000" />
     </task>
     <task id="LOCAL-00001" summary="Add Server operation">
       <created>1481608998603</created>
@@ -497,11 +494,18 @@
       <option name="project" value="LOCAL" />
       <updated>1481631830354</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="fix send_action error">
+      <created>1481632127108</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1481632127108</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="28447000" />
+    <option name="totallyTimeSpent" value="32013000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1050" extended-state="6" />
@@ -544,7 +548,8 @@
     <MESSAGE value="add Client" />
     <MESSAGE value="update for debug" />
     <MESSAGE value="discard send thread , add send action" />
-    <option name="LAST_COMMIT_MESSAGE" value="discard send thread , add send action" />
+    <MESSAGE value="fix send_action error" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix send_action error" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -623,14 +628,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/MPI_Util.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="717">
-          <caret line="36" column="48" selection-start-line="36" selection-start-column="48" selection-end-line="36" selection-end-column="48" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/IRecv_handler.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="161">
@@ -649,30 +646,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/MPI_Server.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="467">
-          <caret line="235" column="61" selection-start-line="235" selection-start-column="61" selection-end-line="235" selection-end-column="61" />
-          <folding>
-            <element signature="e#43#66#0" expanded="true" />
-            <element signature="e#4079#5285#0" expanded="false" />
-            <element signature="e#5287#6650#0" expanded="false" />
-            <element signature="e#6652#7553#0" expanded="false" />
-            <element signature="e#8436#8559#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MPI_Server.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="441">
-          <caret line="42" column="77" selection-start-line="42" selection-start-column="77" selection-end-line="42" selection-end-column="77" />
-          <folding>
-            <element signature="e#110#125#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/MPI_Connect_Base.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="326">
@@ -685,14 +658,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/MPI_Client.cpp">
+    <entry file="file://$PROJECT_DIR$/MPI_Util.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="469">
-          <caret line="160" column="66" selection-start-line="160" selection-start-column="66" selection-end-line="160" selection-end-column="66" />
-          <folding>
-            <element signature="e#43#66#0" expanded="true" />
-            <element signature="e#625#681#0" expanded="false" />
-          </folding>
+        <state relative-caret-position="326">
+          <caret line="19" column="28" selection-start-line="19" selection-start-column="28" selection-end-line="19" selection-end-column="28" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -701,6 +671,40 @@
         <state relative-caret-position="349">
           <caret line="22" column="44" selection-start-line="22" selection-start-column="44" selection-end-line="22" selection-end-column="44" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MPI_Server.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="368">
+          <caret line="31" column="18" selection-start-line="31" selection-start-column="18" selection-end-line="31" selection-end-column="18" />
+          <folding>
+            <element signature="e#110#125#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MPI_Server.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="295">
+          <caret line="181" column="9" selection-start-line="181" selection-start-column="9" selection-end-line="181" selection-end-column="9" />
+          <folding>
+            <element signature="e#43#66#0" expanded="true" />
+            <element signature="e#240#2235#0" expanded="false" />
+            <element signature="e#2237#3634#0" expanded="false" />
+            <element signature="e#4198#5404#0" expanded="false" />
+            <element signature="e#9728#9789#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MPI_Client.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="602">
+          <caret line="195" column="39" selection-start-line="195" selection-start-column="39" selection-end-line="195" selection-end-column="39" />
+          <folding>
+            <element signature="e#43#66#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

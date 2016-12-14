@@ -25,6 +25,8 @@ MPI_Client::MPI_Client(IRecv_handler *mh, char* svc_name, char* port):MPI_Connec
 
 MPI_Client::~MPI_Client() {
     //TODO delete someting
+    if(!recv_flag && !send_flag)
+        stop();
 }
 
 int MPI_Client::initialize() {
@@ -71,7 +73,7 @@ int MPI_Client::initialize() {
     MPI_Comm_rank(sc_comm_,&rank);
     cout << setfill('-') << setw(10) << "Client init finish" << setfill('-') << setw(10) << endl;
     //send(&wid_, 1, 0, MPI_INT, MPI_Tags::MPI_REGISTEY, sc_comm_);
-    send_action(&wid_, 1, 0, MPI_INT, MPI_Tags::MPI_REGISTEY, sc_comm_);
+    send_action(&wid_, 1, MPI_INT, 0, MPI_Tags::MPI_REGISTEY, sc_comm_);
 
     return MPI_ERR_CODE::SUCCESS;
 }
@@ -174,9 +176,26 @@ void MPI_Client::run() {
 
 void MPI_Client::recv_handle(int tag, void *buf, MPI_Comm comm) {
     // TODO add conditions
+    int merr, msglen;
+    char errmsg[MPI_MAX_ERROR_STRING];
     switch (tag){
         case MPI_Tags::MPI_BCAST_REQ:{}
             break;
+        case MPI_Tags::MPI_DISCONNECT:{
+            MPI_Barrier(comm);
+            if(comm != sc_comm_) {
+#ifdef DEBUG
+                cout << "[Client-Error]: disconnect error: MPI_Comm is not matching" << endl;
+#endif
+                //TODO error handle
+            }
+            merr = MPI_Comm_disconnect(&sc_comm_);
+            if(merr){
+                MPI_Error_string(merr, errmsg, &msglen);
+                cout << "[Client-Error]: disconnect error: " << errmsg << endl;
+                //TODO Add error handle
+            }
+        }
         default:
             Irecv_handler->handler_recv(tag, buf);
     }

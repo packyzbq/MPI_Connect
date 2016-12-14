@@ -29,7 +29,7 @@ public:
         svc_name_ = svc_name;
     };
 
-    ~MPI_Server(){cout<< "[Server]: ended..." << endl;}
+    ~MPI_Server();
 
     void run();
     int initialize();

@@ -8,6 +8,12 @@
 
 #define DEBUG
 
+MPI_Server::~MPI_Server() {
+    if(!recv_flag && !send_flag)
+        stop();
+    cout << "[Server] end..." << endl;
+}
+
 int MPI_Server::initialize() {
     cout << setfill('-') << setw(10) << "Server init start" << setfill('-') << setw(10) << endl;
     int merr= 0;
@@ -192,6 +198,8 @@ void* MPI_Server::accept_conn_thread(void *ptr) {
 
 void MPI_Server::recv_handle(int tag, void *buf, MPI_Comm comm) {
     //TODO set different conditions
+    int merr, msglen;
+    char errmsg[MPI_MAX_ERROR_STRING];
 
     switch(tag){
         case MPI_Tags::MPI_REGISTEY: {
@@ -205,10 +213,33 @@ void MPI_Server::recv_handle(int tag, void *buf, MPI_Comm comm) {
                     iter->wid = (*(int *) buf);
                 }
             }
-            if (size >= comm_list.size()-1) {
+            if (size >= comm_list.size()) {
                 cout << "[Server-Error]: register error, no compatible MPI_COMM" << endl;
                 //TODO Add error handle
             }
+        }
+            break;
+        case MPI_Tags::MPI_DISCONNECT:{
+            cout << "[Server] worker :" << (*(int *) buf)<< "require disconnect" << endl;
+            list<List_Entry>::iterator iter;
+            int size = 0;
+            for(iter = comm_list.begin(); iter != comm_list.end(); iter++, size++){
+                if(iter->comm == comm && iter->wid == (*(int *) buf)){
+                    merr = MPI_Comm_disconnect(&(iter->comm));
+                    if(merr){
+                        MPI_Error_string(merr, errmsg, &msglen);
+                        cout <<"[Server-Error]: disconnect error: " << errmsg << endl;
+                    }
+#ifdef DEBUG
+                    cout << "[Server]: find MPI_Comm and wid, removing worker..." << endl;
+#endif
+                    comm_list.erase(iter);
+                }
+            }
+            if(size == comm_list.size())
+#ifdef DEBUG
+                cout << "[Server-Error]: can't find correspond MPI_Comm and wid" << endl;
+#endif
         }
             break;
         case MPI_Tags::MPI_BCAST_ACK:{}
