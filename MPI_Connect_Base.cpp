@@ -30,8 +30,8 @@ void* MPI_Connect_Base::recv_thread(void *ptr) {
     while(!((MPI_Connect_Base*)ptr)->recv_flag){
         if(((MPI_Connect_Base*)ptr)->new_msg_come(args)){
 #ifdef DEBUG
-            cout <<"<recv thread>: detect a new message" << endl;
-            args->print();
+            //cout <<"<recv thread>: detect a new message" << endl;
+            //args->print();
 #endif
             MPI_Get_count(&(args->arg_stat), args->datatype, &msgsz);
             switch (args->datatype)

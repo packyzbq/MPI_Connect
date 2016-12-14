@@ -15,7 +15,7 @@ MPI_Server::~MPI_Server() {
 }
 
 int MPI_Server::initialize() {
-    cout << setfill('-') << setw(10) << "Server init start" << setfill('-') << setw(10) << endl;
+    cout << "--------------------Server init start-------------------" << endl;
     int merr= 0;
     int msglen = 0;
     char errmsg[MPI_MAX_ERROR_STRING];
@@ -62,12 +62,12 @@ int MPI_Server::initialize() {
     while(accept_conn_flag);
     cout << "[Server]: accept thread start..." << endl;
 
-    cout << setfill('-') << setw(10) << "Server init finish" << setfill('-') << setw(10) << endl;
+    cout << "--------------------Server init finish--------------------" << endl;
     return MPI_ERR_CODE::SUCCESS;
 }
 
 int MPI_Server::stop() {
-    cout << setfill('-') << setw(10) << "Server stop start" << setfill('-') << setw(10) << endl;
+    cout << "--------------------Server stop start--------------------"<< endl;
     int merr= 0;
     int msglen = 0;
     char errmsg[MPI_MAX_ERROR_STRING];
@@ -103,7 +103,7 @@ int MPI_Server::stop() {
     //}
 
     finalize();
-    cout << setfill('-') << setw(10) << "Server stop finish" << setfill('-') << setw(10) << endl;
+    cout << "--------------------Server stop finish--------------------"  << endl;
 
     return MPI_ERR_CODE::SUCCESS;
 }
@@ -243,8 +243,10 @@ void MPI_Server::recv_handle(int tag, void *buf, MPI_Comm comm) {
             break;
         default: {
             Irecv_handler->handler_recv(tag, buf);
+            break;
         }
     }
+    Irecv_handler->handler_recv(tag, buf);
 }
 
 //void MPI_Server::send(void *buf, int msgsize, int dest, MPI_Datatype datatype, int tag, MPI_Comm comm) {

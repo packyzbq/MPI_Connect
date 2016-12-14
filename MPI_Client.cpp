@@ -30,7 +30,7 @@ MPI_Client::~MPI_Client() {
 }
 
 int MPI_Client::initialize() {
-    cout << setfill('-') << setw(10) << "Client init start" << setfill('-') << setw(10) << endl;
+    cout << "--------------------Client init start--------------------" << endl;
     cout << "[Client]: client initail..." << endl;
     int merr= 0;
     int msglen = 0;
@@ -71,7 +71,7 @@ int MPI_Client::initialize() {
     cout << "[Client]: client connect to server, comm = " << sc_comm_ << endl;
     int rank;
     MPI_Comm_rank(sc_comm_,&rank);
-    cout << setfill('-') << setw(10) << "Client init finish" << setfill('-') << setw(10) << endl;
+    cout << "--------------------Client init finish--------------------" << endl;
     //send(&wid_, 1, 0, MPI_INT, MPI_Tags::MPI_REGISTEY, sc_comm_);
     send_action(&wid_, 1, MPI_INT, 0, MPI_Tags::MPI_REGISTEY, sc_comm_);
 
@@ -79,7 +79,7 @@ int MPI_Client::initialize() {
 }
 
 int MPI_Client::stop() {
-    cout << setfill('-') << setw(10) << "stop Client" << setfill('-') << setw(10) << endl;
+    cout << "--------------------stop Client--------------------" << endl;
     cout << "[Client]: stop Client..." << endl;
     int merr= 0;
     int msglen = 0;
@@ -99,7 +99,7 @@ int MPI_Client::stop() {
     }
     cout << "[Client]: disconnected..." << endl;
     finalize();
-    cout << setfill('-') << setw(10) << "Client stop finish" << setfill('-') << setw(10) << endl;
+    cout << "--------------------Client stop finish--------------------" << endl;
     return MPI_ERR_CODE::SUCCESS;
 }
 
