@@ -166,6 +166,7 @@ int MPI_Client::send_action(void *buf, int msgsize, MPI_Datatype datatype, int d
             cout << "[Client-Error]: send fail...error: " << errmsg << endl;
             return MPI_ERR_CODE::SEND_FAIL;
         }
+    MPI_Barrier(comm);
         return MPI_ERR_CODE::SUCCESS;
 }
 

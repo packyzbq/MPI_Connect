@@ -133,18 +133,17 @@ bool MPI_Server::new_msg_come(ARGS *args) {
     int msglen = 0;
     char errmsg[MPI_MAX_ERROR_STRING];
     MPI_Status *stat;
-    int *flag = new int;
-    *flag = 0;
+    int flag;
     list<List_Entry>::iterator iter;
     for(iter = comm_list.begin(); iter != comm_list.end(); iter++){
         stat = new MPI_Status();
-        merr = MPI_Iprobe(MPI_ANY_SOURCE, MPI_ANY_TAG, iter->comm , flag, stat);
+        merr = MPI_Iprobe(MPI_ANY_SOURCE, MPI_ANY_TAG, iter->comm , &flag, stat);
         if(merr){
             MPI_Error_string(merr, errmsg, &msglen);
             cout << "[Server-Error]: " << errmsg << endl;
             //TODO Add error handle
         }
-        if(*flag) {
+        if(flag) {
 #ifdef DEBUG
             cout << "[Server]: dectect a new msg <source=" << stat->MPI_SOURCE << ";tag=" << stat->MPI_TAG << ">" <<endl;
 #endif
@@ -155,13 +154,11 @@ bool MPI_Server::new_msg_come(ARGS *args) {
             args->source_rank = stat->MPI_SOURCE;
             args->print();
             delete(stat);
-            delete(flag);
             return true;
         }
         //free(flag);
         delete(stat);
     }
-    delete(flag);
     return false;
 }
 
@@ -213,14 +210,14 @@ void MPI_Server::recv_handle(int tag, void *buf, MPI_Comm comm) {
                     iter->wid = (*(int *) buf);
                 }
             }
-            if (size >= comm_list.size()) {
+            if (size > comm_list.size()) {
                 cout << "[Server-Error]: register error, no compatible MPI_COMM" << endl;
                 //TODO Add error handle
             }
         }
             break;
         case MPI_Tags::MPI_DISCONNECT:{
-            cout << "[Server] worker :" << (*(int *) buf)<< "require disconnect" << endl;
+            cout << "[Server] worker :" << (*(int *) buf)<< " require disconnect" << endl;
             list<List_Entry>::iterator iter;
             int size = 0;
             for(iter = comm_list.begin(); iter != comm_list.end(); iter++, size++){
@@ -236,7 +233,7 @@ void MPI_Server::recv_handle(int tag, void *buf, MPI_Comm comm) {
                     comm_list.erase(iter);
                 }
             }
-            if(size == comm_list.size())
+            if(size > comm_list.size())
 #ifdef DEBUG
                 cout << "[Server-Error]: can't find correspond MPI_Comm and wid" << endl;
 #endif
@@ -270,6 +267,7 @@ int MPI_Server::send_action(void *buf, int msgsize, MPI_Datatype datatype, int d
         cout << "[Server-Error]: send fail...error: " << errmsg << endl;
         return MPI_ERR_CODE::SEND_FAIL;
     }
+    MPI_Barrier(comm);
     return MPI_ERR_CODE::SUCCESS;
 }
 
