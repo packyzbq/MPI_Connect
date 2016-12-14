@@ -35,6 +35,7 @@ public:
     const static int CONNECT_ERR            = 7;
     const static int SEND_FAIL              = 8;
     const static int RECV_FAIL              = 9;
+    const static int BARRIER_FAIL           =10;
 };
 
 

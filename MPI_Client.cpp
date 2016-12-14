@@ -156,18 +156,29 @@ int MPI_Client::send_action(void *buf, int msgsize, MPI_Datatype datatype, int d
 #ifdef DEBUG
         cout << "[Client]: send message...<" << buf <<","<<dest <<"," <<tag  << ">"<< endl;
 #endif
-        int merr = 0;
-        int msglen = 0;
-        char errmsg[MPI_MAX_ERROR_STRING];
+    int merr = 0;
+    int msglen = 0;
+    char errmsg[MPI_MAX_ERROR_STRING];
 
-        merr = MPI_Send(buf, msgsize, datatype, dest,  tag, comm);
-        if(merr){
-            MPI_Error_string(merr, errmsg, &msglen);
-            cout << "[Client-Error]: send fail...error: " << errmsg << endl;
-            return MPI_ERR_CODE::SEND_FAIL;
-        }
-    MPI_Barrier(comm);
-        return MPI_ERR_CODE::SUCCESS;
+    merr = MPI_Send(buf, msgsize, datatype, dest,  tag, comm);
+    if(merr){
+        MPI_Error_string(merr, errmsg, &msglen);
+        cout << "[Client-Error]: send fail...error: " << errmsg << endl;
+        return MPI_ERR_CODE::SEND_FAIL;
+    }
+#ifdef DEBUG
+    cout << "[Client]: start barrier..." << endl;
+#endif
+    merr = MPI_Barrier(comm);
+    if(merr){
+        MPI_Error_string(merr, errmsg, &msglen);
+        cout << "[Client-Error]: barrier fail...error: " << errmsg << endl;
+        return MPI_ERR_CODE::BARRIER_FAIL;
+    }
+#ifdef DEBUG
+    cout << "[Client]: end barrier..." << endl;
+#endif
+    return MPI_ERR_CODE::SUCCESS;
 }
 
 void MPI_Client::run() {

@@ -4,7 +4,7 @@
 
 #include "MPI_Connect_Base.h"
 #include <cstdlib>
-#include <iostream>
+
 
 #define DEBUG
 using namespace std;
@@ -55,7 +55,12 @@ void* MPI_Connect_Base::recv_thread(void *ptr) {
 #ifdef DEBUG
             cout << "<recv thread>: receive a message <-- <" << rb << ">" << endl;
 #endif
-            MPI_Barrier(args->newcomm);
+            merr = MPI_Barrier(args->newcomm);
+            if(merr){
+                MPI_Error_string(merr, errmsg, &msglen);
+                cout << "<recv thread>: barrier fail...error: " << errmsg << endl;
+                //TODO Add error handle
+            }
 #ifdef DEBUG
             cout << "<recv thread>: handled by recv_handler" << endl;
 #endif

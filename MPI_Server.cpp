@@ -267,7 +267,18 @@ int MPI_Server::send_action(void *buf, int msgsize, MPI_Datatype datatype, int d
         cout << "[Server-Error]: send fail...error: " << errmsg << endl;
         return MPI_ERR_CODE::SEND_FAIL;
     }
-    MPI_Barrier(comm);
+#ifdef DEBUG
+    cout << "[Server]: start barrier..." << endl;
+#endif
+    merr = MPI_Barrier(comm);
+    if(merr){
+        MPI_Error_string(merr, errmsg, &msglen);
+        cout << "[Server-Error]: barrier fail...error: " << errmsg << endl;
+        return MPI_ERR_CODE::BARRIER_FAIL;
+    }
+#ifdef DEBUG
+    cout << "[Server]: start barrier..." << endl;
+#endif
     return MPI_ERR_CODE::SUCCESS;
 }
 
