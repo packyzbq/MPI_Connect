@@ -231,6 +231,7 @@ void MPI_Server::recv_handle(int tag, void *buf, MPI_Comm comm) {
                     cout << "[Server]: find MPI_Comm and wid, removing worker..." << endl;
 #endif
                     comm_list.erase(iter);
+                    break;
                 }
             }
             if(size > comm_list.size())
