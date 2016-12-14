@@ -89,7 +89,7 @@ int MPI_Client::stop() {
     //TODO add disconnect send
     int tmp = 0;
     //send(&tmp, 1, 0, MPI_INT, MPI_Tags::MPI_DISCONNECT, sc_comm_);
-    send_action(&tmp, 1, 0, MPI_INT, MPI_Tags::MPI_DISCONNECT, sc_comm_);
+    send_action(&tmp, 1, MPI_INT, 0, MPI_Tags::MPI_DISCONNECT, sc_comm_);
     //pthread_cancel(send_t);
     merr = MPI_Comm_disconnect(&sc_comm_);
     if(merr){
