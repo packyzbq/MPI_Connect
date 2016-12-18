@@ -194,7 +194,7 @@ void MPI_Client::recv_handle(int tag, void *buf, MPI_Comm comm) {
         case MPI_Tags::MPI_BCAST_REQ:{}
             break;
         case MPI_Tags::MPI_DISCONNECT:{
-            MPI_Barrier(comm);
+            //MPI_Barrier(comm);
             if(comm != sc_comm_) {
 #ifdef DEBUG
                 cout << "[Client-Error]: disconnect error: MPI_Comm is not matching" << endl;
@@ -208,6 +208,7 @@ void MPI_Client::recv_handle(int tag, void *buf, MPI_Comm comm) {
                 //TODO Add error handle
             }
         }
+            break;
         default:
             Irecv_handler->handler_recv(tag, buf);
     }
