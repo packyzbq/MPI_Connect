@@ -40,9 +40,6 @@ int MPI_Client::initialize() {
     MPI_Init_thread(0,0, MPI_THREAD_MULTIPLE, &provide);
     MPI_Comm_set_errhandler(MPI_COMM_WORLD, MPI_ERRORS_RETURN);
 
-    pthread_create(&recv_t, NULL, MPI_Connect_Base::recv_thread, this);
-    while(recv_flag);
-    cout << "[Client]: recv thread start...." << endl;
     //recv_thread(this);
     //pthread_create(&send_t, NULL, MPI_Connect_Base::send_thread, this);
     //while(send_flag);
@@ -69,6 +66,11 @@ int MPI_Client::initialize() {
         //TODO Add error handle
     }
     cout << "[Client]: client connect to server, comm = " << sc_comm_ << endl;
+
+    pthread_create(&recv_t, NULL, MPI_Connect_Base::recv_thread, this);
+    while(recv_flag);
+    cout << "[Client]: recv thread start...." << endl;
+
     int rank;
     MPI_Comm_rank(sc_comm_,&rank);
     cout << "--------------------Client init finish--------------------" << endl;
