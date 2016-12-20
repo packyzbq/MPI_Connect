@@ -7,15 +7,8 @@
 
 #endif //MPI_CONNECT_IRECV_HANDLER_H
 
-
 #include <string>
 using namespace std;
-
-struct IRecv_handler
-{
-    virtual void handler_recv(int mpi_tags, Recv_Pack pack)=0;
-};
-
 
 struct Recv_Pack{
     int ibuf;
@@ -28,3 +21,9 @@ struct Recv_Pack{
             ibuf = i;
     }
 };
+
+struct IRecv_handler
+{
+    virtual void handler_recv(int mpi_tags, Recv_Pack pack)=0;
+};
+
