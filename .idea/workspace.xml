@@ -14,7 +14,6 @@
     <list default="true" id="6b800d41-e9d4-4b4a-99ba-de55217a667a" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Client_Module.cpp" afterPath="$PROJECT_DIR$/Client_Module.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Server_Module.cpp" afterPath="$PROJECT_DIR$/Server_Module.cpp" />
     </list>
     <ignored path="MPI_Connect.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -92,21 +91,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Server_Module.cpp" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Server_Module.cpp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Server_Module.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="115">
-              <caret line="5" column="30" selection-start-line="5" selection-start-column="30" selection-end-line="5" selection-end-column="30" />
+            <state relative-caret-position="713">
+              <caret line="31" column="1" selection-start-line="31" selection-start-column="1" selection-end-line="31" selection-end-column="1" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Client_Module.cpp" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Client_Module.cpp" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Client_Module.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="161">
-              <caret line="7" column="36" selection-start-line="7" selection-start-column="36" selection-end-line="7" selection-end-column="36" />
+            <state relative-caret-position="460">
+              <caret line="20" column="85" selection-start-line="20" selection-start-column="85" selection-end-line="20" selection-end-column="85" />
               <folding />
             </state>
           </provider>
@@ -436,7 +435,7 @@
       <workItem from="1482117748146" duration="2107000" />
       <workItem from="1482133008333" duration="465000" />
       <workItem from="1482136227411" duration="1379000" />
-      <workItem from="1482198895828" duration="11495000" />
+      <workItem from="1482198895828" duration="11668000" />
     </task>
     <task id="LOCAL-00001" summary="Add Server operation">
       <created>1481608998603</created>
@@ -627,11 +626,18 @@
       <option name="project" value="LOCAL" />
       <updated>1482236015922</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="update c++2py for compile&#10;">
+      <created>1482236100614</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1482236100614</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="59519000" />
+    <option name="totallyTimeSpent" value="59692000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1050" extended-state="6" />
@@ -1124,18 +1130,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Client_Module.cpp">
+    <entry file="file://$PROJECT_DIR$/Server_Module.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="161">
-          <caret line="7" column="36" selection-start-line="7" selection-start-column="36" selection-end-line="7" selection-end-column="36" />
+        <state relative-caret-position="713">
+          <caret line="31" column="1" selection-start-line="31" selection-start-column="1" selection-end-line="31" selection-end-column="1" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Server_Module.cpp">
+    <entry file="file://$PROJECT_DIR$/Client_Module.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="115">
-          <caret line="5" column="30" selection-start-line="5" selection-start-column="30" selection-end-line="5" selection-end-column="30" />
+        <state relative-caret-position="460">
+          <caret line="20" column="85" selection-start-line="20" selection-start-column="85" selection-end-line="20" selection-end-column="85" />
           <folding />
         </state>
       </provider>

@@ -1,7 +1,6 @@
 //
 // Created by zhaobq on 2016/12/20.
 //
-
 #include <boost/python.hpp>
 #include "MPI_Client.cpp"
 #include "MPI_Connect_Base.cpp"
@@ -10,7 +9,7 @@ using namespace boost::python;
 
 BOOST_PYTHON_MODULE(Client_Module)
         {
-                class_<Recv_Pack>("Recv_Pack", init<int, char*>)
+                class_<Recv_Pack>("Recv_Pack", init<int, char*>())
                         .def_readonly("ibuf", &Recv_Pack::ibuf)
                         .def_readonly("sbuf", &Recv_Pack::sbuf)
                 ;
@@ -19,7 +18,7 @@ BOOST_PYTHON_MODULE(Client_Module)
                 .def("handler_recv", pure_virtual(&IRecv_handler::handler_recv))
                 ;
 
-                class_<MPI_Client>("MPI_Client", init<IRecv_handler*, char* ,char*>)
+                class_<MPI_Client>("MPI_Client", init<IRecv_handler*, char* ,char*>())
                     .def("initialize", &MPI_Client::initialize)
                     .def("run", &MPI_Client::run)
                     .def("stop", &MPI_Client::stop)
