@@ -7,7 +7,7 @@
 #include "IRecv_handler_Wrapper.cpp"
 using namespace boost::python;
 
-BOOST_PYTHON_MODULE(MPI_Client)
+BOOST_PYTHON_MODULE(Client_Module)
         {
                 class_<Recv_Pack>("Recv_Pack", init<int, char*>)
                         .def_readonly("ibuf", &Recv_Pack::ibuf)
