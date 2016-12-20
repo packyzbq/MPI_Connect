@@ -3,10 +3,11 @@
 //
 #include <boost/python.hpp>
 #include "MPI_Server.cpp"
+#include "MPI_Connect_Base.cpp"
 #include "IRecv_handler_Wrapper.cpp"
 using namespace boost::python;
 
-BOOST_PYTHON_MODULE(MPI_Server)
+BOOST_PYTHON_MODULE(Server_Module)
 {
     class_<Recv_Pack>("Recv_Pack", init<int, char*>())
         .def_readonly("ibuf", &Recv_Pack::ibuf)
