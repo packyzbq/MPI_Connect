@@ -104,8 +104,8 @@
       <file leaf-file-name="Client_Module.cpp" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Client_Module.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="460">
-              <caret line="20" column="85" selection-start-line="20" selection-start-column="85" selection-end-line="20" selection-end-column="85" />
+            <state relative-caret-position="598">
+              <caret line="26" column="57" selection-start-line="26" selection-start-column="57" selection-end-line="26" selection-end-column="57" />
               <folding />
             </state>
           </provider>
@@ -435,7 +435,7 @@
       <workItem from="1482117748146" duration="2107000" />
       <workItem from="1482133008333" duration="465000" />
       <workItem from="1482136227411" duration="1379000" />
-      <workItem from="1482198895828" duration="11668000" />
+      <workItem from="1482198895828" duration="12382000" />
     </task>
     <task id="LOCAL-00001" summary="Add Server operation">
       <created>1481608998603</created>
@@ -633,11 +633,18 @@
       <option name="project" value="LOCAL" />
       <updated>1482236100614</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="fix error&#10;">
+      <created>1482236278948</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1482236278948</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="59692000" />
+    <option name="totallyTimeSpent" value="60406000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1050" extended-state="6" />
@@ -685,7 +692,8 @@
     <MESSAGE value="fix bug" />
     <MESSAGE value="add c++2py interface" />
     <MESSAGE value="update c++2py for compile&#10;" />
-    <option name="LAST_COMMIT_MESSAGE" value="update c++2py for compile&#10;" />
+    <MESSAGE value="fix error&#10;" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix error&#10;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1140,8 +1148,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Client_Module.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="460">
-          <caret line="20" column="85" selection-start-line="20" selection-start-column="85" selection-end-line="20" selection-end-column="85" />
+        <state relative-caret-position="598">
+          <caret line="26" column="57" selection-start-line="26" selection-start-column="57" selection-end-line="26" selection-end-column="57" />
           <folding />
         </state>
       </provider>

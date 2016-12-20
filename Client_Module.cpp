@@ -22,8 +22,7 @@ BOOST_PYTHON_MODULE(Client_Module)
                     .def("initialize", &MPI_Client::initialize)
                     .def("run", &MPI_Client::run)
                     .def("stop", &MPI_Client::stop)
-                    .def("finalize", &&MPI_Client::finalize)
+                    .def("finalize", &MPI_Client::finalize)
                     .def("send_action", &MPI_Client::send_action)
                     .def("set_wid", &MPI_Client::set_wid)
-
         }
