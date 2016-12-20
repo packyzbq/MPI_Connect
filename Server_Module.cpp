@@ -8,7 +8,7 @@ using namespace boost::python;
 
 BOOST_PYTHON_MODULE(MPI_Server)
 {
-    class_<Recv_Pack>("Recv_Pack", init<int, char*>)
+    class_<Recv_Pack>("Recv_Pack", init<int, char*>())
         .def_readonly("ibuf", &Recv_Pack::ibuf)
         .def_readonly("sbuf", &Recv_Pack::sbuf)
         ;
@@ -16,7 +16,7 @@ BOOST_PYTHON_MODULE(MPI_Server)
     class_<IRecv_handler_Wrapper, boost::noncopyable>("IRecv_handler")
         .def("handler_recv", pure_virtual(&IRecv_handler::handler_recv))
         ;
-    class_<MPI_Server>("MPI_Server", init<IRecv_handler*, char*>)
+    class_<MPI_Server>("MPI_Server", init<IRecv_handler*, char*>())
         .def("run", &MPI_Server::run)
         .def("initialize", &MPI_Server::initialize)
         .def("stop", &MPI_Server::stop)

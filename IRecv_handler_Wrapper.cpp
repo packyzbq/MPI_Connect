@@ -3,6 +3,7 @@
 //
 #include "IRecv_handler.h"
 #include <boost/python.hpp>
+using namespace boost::python;
 
 struct IRecv_handler_Wrapper : IRecv_handler, wrapper<IRecv_handler>
 {
