@@ -5,8 +5,6 @@
 #ifndef MPI_CONNECT_IRECV_HANDLER_H
 #define MPI_CONNECT_IRECV_HANDLER_H
 
-#endif //MPI_CONNECT_IRECV_HANDLER_H
-
 #include <string>
 using namespace std;
 
@@ -26,4 +24,8 @@ struct IRecv_handler
 {
     virtual void handler_recv(int mpi_tags, Recv_Pack pack)=0;
 };
+
+#endif //MPI_CONNECT_IRECV_HANDLER_H
+
+
 
