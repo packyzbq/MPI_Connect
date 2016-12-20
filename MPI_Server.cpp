@@ -8,6 +8,10 @@
 
 #define DEBUG
 
+MPI_Server::MPI_Server(IRecv_handler *rh, char *svc_name) : MPI_Connect_Base(rh) {
+    svc_name_ = svc_name;
+};
+
 MPI_Server::~MPI_Server() {
     if(!recv_flag && !send_flag)
         stop();
@@ -197,12 +201,14 @@ void MPI_Server::recv_handle(int tag, void *buf, MPI_Comm comm) {
     //TODO set different conditions
     int merr, msglen;
     char errmsg[MPI_MAX_ERROR_STRING];
+    Recv_Pack *pack;
 
     switch(tag){
-        case MPI_Tags::MPI_REGISTEY: {
+        case MPI_REGISTEY: {
 #ifdef DEBUG
             cout << "get a registery from worker:" << (*(int *) buf) << endl;
 #endif
+            pack = new Recv_Pack((*(int *) buf), NULL);
             list<List_Entry>::iterator iter;
             int size = 0;
             for (iter = comm_list.begin(); iter != comm_list.end(); iter++, size++) {
@@ -216,8 +222,9 @@ void MPI_Server::recv_handle(int tag, void *buf, MPI_Comm comm) {
             }
         }
             break;
-        case MPI_Tags::MPI_DISCONNECT:{
+        case MPI_DISCONNECT:{
             cout << "[Server] worker :" << (*(int *) buf)<< " require disconnect" << endl;
+            pack = new Recv_Pack((*(int *) buf), NULL);
             list<List_Entry>::iterator iter;
             int size = 0;
             for(iter = comm_list.begin(); iter != comm_list.end(); iter++, size++){
@@ -240,14 +247,16 @@ void MPI_Server::recv_handle(int tag, void *buf, MPI_Comm comm) {
 #endif
         }
             break;
-        case MPI_Tags::MPI_BCAST_ACK:{}
+        case MPI_BCAST_ACK:{}
             break;
         default: {
-            Irecv_handler->handler_recv(tag, buf);
+            //Irecv_handler->handler_recv(tag, buf);
+            cout << "[Server-Error]: unrecorgnized type" << endl;
             break;
         }
     }
-    Irecv_handler->handler_recv(tag, buf);
+    Irecv_handler->handler_recv(tag, *pack);
+    delete(pack);
 }
 
 //void MPI_Server::send(void *buf, int msgsize, int dest, MPI_Datatype datatype, int tag, MPI_Comm comm) {

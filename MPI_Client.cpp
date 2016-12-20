@@ -73,7 +73,7 @@ int MPI_Client::initialize() {
     MPI_Comm_rank(sc_comm_,&rank);
     cout << "--------------------Client init finish--------------------" << endl;
     //send(&wid_, 1, 0, MPI_INT, MPI_Tags::MPI_REGISTEY, sc_comm_);
-    send_action(&wid_, 1, MPI_INT, 0, MPI_Tags::MPI_REGISTEY, sc_comm_);
+    send_action(&wid_, 1, MPI_INT, 0, MPI_REGISTEY, sc_comm_);
 
     return MPI_ERR_CODE::SUCCESS;
 }
@@ -89,7 +89,7 @@ int MPI_Client::stop() {
     //TODO add disconnect send
     int tmp = 0;
     //send(&tmp, 1, 0, MPI_INT, MPI_Tags::MPI_DISCONNECT, sc_comm_);
-    send_action(&tmp, 1, MPI_INT, 0, MPI_Tags::MPI_DISCONNECT, sc_comm_);
+    send_action(&tmp, 1, MPI_INT, 0, MPI_DISCONNECT, sc_comm_);
     //pthread_cancel(send_t);
     merr = MPI_Comm_disconnect(&sc_comm_);
     if(merr){
@@ -190,10 +190,11 @@ void MPI_Client::recv_handle(int tag, void *buf, MPI_Comm comm) {
     // TODO add conditions
     int merr, msglen;
     char errmsg[MPI_MAX_ERROR_STRING];
+    Recv_Pack *pack;
     switch (tag){
-        case MPI_Tags::MPI_BCAST_REQ:{}
+        case MPI_BCAST_REQ:{}
             break;
-        case MPI_Tags::MPI_DISCONNECT:{
+        case MPI_DISCONNECT:{
             //MPI_Barrier(comm);
             if(comm != sc_comm_) {
 #ifdef DEBUG
@@ -210,9 +211,13 @@ void MPI_Client::recv_handle(int tag, void *buf, MPI_Comm comm) {
         }
             break;
         default:
-            Irecv_handler->handler_recv(tag, buf);
+            //Irecv_handler->handler_recv(tag, buf);
+            cout << "[Client-Error]: Unrecognized type" << endl;
+            break;
     }
+    Irecv_handler->handler_recv(tag, *pack);
 
+    delete(pack);
 }
 
 void MPI_Client::set_wid(int wid) {
