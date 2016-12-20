@@ -7,22 +7,15 @@
 
 #endif //MPI_CONNECT_IRECV_HANDLER_H
 
-#include <boost/python.hpp>
+
 #include <string>
-using namespace boost::python;
+using namespace std;
 
 struct IRecv_handler
 {
     virtual void handler_recv(int mpi_tags, Recv_Pack pack)=0;
 };
 
-struct IRecv_handler_Wrapper : IRecv_handler, wrapper<IRecv_handler>
-{
-    void handler_recv(int mpi_tags, Recv_Pack pack)
-    {
-        this->get_override("handler_recv")();
-    };
-};
 
 struct Recv_Pack{
     int ibuf;

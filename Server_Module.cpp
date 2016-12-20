@@ -3,7 +3,7 @@
 //
 #include <boost/python.hpp>
 #include "MPI_Server.cpp"
-#include "IRecv_handler.h"
+#include "IRecv_handler_Wrapper.cpp"
 using namespace boost::python;
 
 BOOST_PYTHON_MODULE(MPI_Server)
