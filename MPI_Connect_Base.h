@@ -92,7 +92,8 @@ public:
     static void* recv_thread(void* ptr);
 //    static void* send_thread(void* ptr);
 
-    virtual int send_action(void *buf, int msgsize,  MPI_Datatype datatype, int dest, int tag, MPI_Comm comm){};
+    virtual int send_int(int buf, int msgsize, int dest, int tag, MPI_Comm comm){};
+    virtual int send_string(char* buf, int msgsize, int dest, int tag, MPI_Comm comm){};
 
     virtual bool new_msg_come(ARGS * args);
     virtual MPI_Datatype analyz_type(int tags);
@@ -102,7 +103,7 @@ public:
     void set_recv_stop();
     void set_send_stop();
 
-    virtual void recv_handle(int tag, void* buf, MPI_Comm comm){cout << "[Error] father recv handler" << endl;}; //
+    virtual void recv_handle(int tag, void* buf, MPI_Datatype type,MPI_Comm comm){cout << "[Error] father recv handler" << endl;}; //
 
 
 };

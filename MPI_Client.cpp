@@ -3,7 +3,6 @@
 //
 
 #include "MPI_Client.h"
-#include <cstring>
 #include <iomanip>
 
 #define DEBUG
@@ -90,7 +89,7 @@ int MPI_Client::stop() {
     //TODO add disconnect send
     int tmp = 0;
     //send(&tmp, 1, 0, MPI_INT, MPI_Tags::MPI_DISCONNECT, sc_comm_);
-    send_action(&tmp, 1, MPI_INT, 0, MPI_DISCONNECT, sc_comm_);
+    send_int(tmp, 1, 0, MPI_DISCONNECT, sc_comm_);
     //pthread_cancel(send_t);
     merr = MPI_Comm_disconnect(&sc_comm_);
     if(merr){
@@ -182,7 +181,7 @@ int MPI_Client::send_int(int buf, int msgsize, int dest, int tag, MPI_Comm comm)
     return MPI_ERR_CODE::SUCCESS;
 }
 
-int send_string(char* buf, int msgsize, int dest, int tag, MPI_Comm comm){
+int MPI_Client::send_string(char* buf, int msgsize, int dest, int tag, MPI_Comm comm){
 #ifdef DEBUG
     cout << "[Client]: send message...<" << buf <<","<<dest <<"," <<tag  << ">"<< endl;
 #endif
@@ -216,7 +215,7 @@ void MPI_Client::run() {
     initialize();
 }
 
-void MPI_Client::recv_handle(int tag, void *buf, MPI_Comm comm) {
+void MPI_Client::recv_handle(int tag, void *buf, MPI_Datatype type,MPI_Comm comm) {
     // TODO add conditions
     int merr, msglen;
     char errmsg[MPI_MAX_ERROR_STRING];
@@ -244,6 +243,16 @@ void MPI_Client::recv_handle(int tag, void *buf, MPI_Comm comm) {
             //Irecv_handler->handler_recv(tag, buf);
             cout << "[Client-Error]: Unrecognized type" << endl;
             break;
+    }
+    if(type == MPI_INT)
+        pack = new Recv_Pack((*(int*)buf), NULL);
+    else if(type == MPI_CHAR)
+        pack = new Recv_Pack(NULL, (char*)buf);
+    else {
+#ifdef DEBUG
+        cout << "[Client-Error]: Recv datatype error" << endl;
+#endif
+        //TODO add error handler
     }
     Irecv_handler->handler_recv(tag, *pack);
 

@@ -197,7 +197,7 @@ void* MPI_Server::accept_conn_thread(void *ptr) {
     return 0;
 }
 
-void MPI_Server::recv_handle(int tag, void *buf, MPI_Comm comm) {
+void MPI_Server::recv_handle(int tag, void *buf, MPI_Datatype type,MPI_Comm comm) {
     //TODO set different conditions
     int merr, msglen;
     char errmsg[MPI_MAX_ERROR_STRING];
@@ -255,6 +255,16 @@ void MPI_Server::recv_handle(int tag, void *buf, MPI_Comm comm) {
             break;
         }
     }
+    if(type == MPI_INT)
+        pack = new Recv_Pack((*(int*)buf), NULL);
+    else if(type == MPI_CHAR)
+        pack = new Recv_Pack(NULL, (char*)buf);
+    else {
+#ifdef DEBUG
+        cout << "[Server-Error]: Recv datatype error" << endl;
+#endif
+        //TODO add error handler
+    }
     Irecv_handler->handler_recv(tag, *pack);
     delete(pack);
 }
@@ -294,7 +304,7 @@ int MPI_Server::send_string(char *buf, int msgsize, int dest, int tag, MPI_Comm 
     return MPI_ERR_CODE::SUCCESS;
 }
 
-int send_int(int buf, int msgsize, int dest, int tag, MPI_Comm comm){
+int MPI_Server::send_int(int buf, int msgsize, int dest, int tag, MPI_Comm comm){
 #ifdef DEBUG
     cout << "[Server]: send message...<" << buf <<","<<dest <<"," <<tag  << ">"<< endl;
 #endif

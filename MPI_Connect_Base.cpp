@@ -64,7 +64,7 @@ void* MPI_Connect_Base::recv_thread(void *ptr) {
 #ifdef DEBUG
             cout << "<recv thread>: handled by recv_handler" << endl;
 #endif
-            ((MPI_Connect_Base*)ptr)->recv_handle(args->arg_stat.MPI_TAG, rb, args->newcomm);
+            ((MPI_Connect_Base*)ptr)->recv_handle(args->arg_stat.MPI_TAG, rb, args->datatype,args->newcomm);
 
         }
         if(!rb)
