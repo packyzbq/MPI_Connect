@@ -20,8 +20,8 @@ public:
 
     bool new_msg_come(ARGS *args);
 //    void send(void *buf, int msgsize, int dest, MPI_Datatype datatype, int tag, MPI_Comm comm);
-    int send_int(int buf, int msgsize, int dest, int tag, MPI_Comm comm);
-    int send_string(char* buf, int msgsize, int dest, int tag, MPI_Comm comm);
+    int send_int(int buf, int msgsize, int dest, int tag);
+    int send_string(char* buf, int msgsize, int dest, int tag);
     void recv_handle(int tag, void* buf, MPI_Datatype type, MPI_Comm comm);
     //TODO add recv_bcast()
     void set_wid(int wid);
