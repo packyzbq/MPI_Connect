@@ -15,7 +15,8 @@
 
 #define MPI_HEART_BEAT        10
 #define MPI_REGISTEY          11
-#define MPI_DISCONNECT        12
+#define MPI_REGISTY_ACK       12
+#define MPI_DISCONNECT        13
 
 #define MPI_BCAST_REQ         20 //用于广播询问task剩余情况
 #define MPI_BCAST_ACK 21 //用于回复广播询问task

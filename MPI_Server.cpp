@@ -265,7 +265,7 @@ void MPI_Server::recv_handle(int tag, void *buf, MPI_Comm comm) {
 //    cout << "[Server]: send finish, send thread sleep..." << endl;
 //}
 
-int MPI_Server::send_action(void *buf, int msgsize, MPI_Datatype datatype, int dest, int tag, MPI_Comm comm) {
+int MPI_Server::send_string(char *buf, int msgsize, int dest, int tag, MPI_Comm comm) {
 #ifdef DEBUG
     cout << "[Server]: send message...<" << buf <<","<<dest <<"," <<tag  << ">"<< endl;
 #endif
@@ -273,7 +273,36 @@ int MPI_Server::send_action(void *buf, int msgsize, MPI_Datatype datatype, int d
     int msglen = 0;
     char errmsg[MPI_MAX_ERROR_STRING];
 
-    merr = MPI_Send(buf, msgsize, datatype, dest, tag, comm);
+    merr = MPI_Send(buf, msgsize, MPI_CHAR, dest, tag, comm);
+    if(merr){
+        MPI_Error_string(merr, errmsg, &msglen);
+        cout << "[Server-Error]: send fail...error: " << errmsg << endl;
+        return MPI_ERR_CODE::SEND_FAIL;
+    }
+#ifdef DEBUG
+    cout << "[Server]: start barrier..." << endl;
+#endif
+    merr = MPI_Barrier(comm);
+    if(merr){
+        MPI_Error_string(merr, errmsg, &msglen);
+        cout << "[Server-Error]: barrier fail...error: " << errmsg << endl;
+        return MPI_ERR_CODE::BARRIER_FAIL;
+    }
+#ifdef DEBUG
+    cout << "[Server]: start barrier..." << endl;
+#endif
+    return MPI_ERR_CODE::SUCCESS;
+}
+
+int send_int(int buf, int msgsize, int dest, int tag, MPI_Comm comm){
+#ifdef DEBUG
+    cout << "[Server]: send message...<" << buf <<","<<dest <<"," <<tag  << ">"<< endl;
+#endif
+    int merr = 0;
+    int msglen = 0;
+    char errmsg[MPI_MAX_ERROR_STRING];
+
+    merr = MPI_Send(&buf, msgsize, MPI_INT, dest, tag, comm);
     if(merr){
         MPI_Error_string(merr, errmsg, &msglen);
         cout << "[Server-Error]: send fail...error: " << errmsg << endl;

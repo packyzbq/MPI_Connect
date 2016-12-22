@@ -38,7 +38,8 @@ public:
     void recv_handle(int tag, void* buf, MPI_Comm comm);
 
 //    void send(void *buf, int msgsize, int dest, MPI_Datatype datatype, int tag, MPI_Comm comm);
-    int send_action(void *buf, int msgsize,  MPI_Datatype datatype, int dest, int tag, MPI_Comm comm);
+    int send_string(char *buf, int msgsize, int dest, int tag, MPI_Comm comm);
+    int send_int(int buf, int msgsize, int dest, int tag, MPI_Comm comm);
     static void* accept_conn_thread(void* ptr);
 
     bool gen_client();
