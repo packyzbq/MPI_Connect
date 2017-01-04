@@ -22,10 +22,10 @@ void* MPI_Connect_Base::recv_thread(void *ptr) {
     MPI_Comm_rank(MPI_COMM_WORLD, &(((MPI_Connect_Base*)ptr)->myrank));
     MPI_Comm_size(MPI_COMM_WORLD, &(((MPI_Connect_Base*)ptr)->w_size));
 
+    ((MPI_Connect_Base*)ptr)->recv_flag = false;
 #ifdef DEBUG
     cout<<"<recv thread>: Proc: "<< ((MPI_Connect_Base*)ptr)->myrank << ", Pid: " << pid << ", receive thread start...  "<<endl;
 #endif
-    ((MPI_Connect_Base*)ptr)->recv_flag = false;
     // TODO add exception handler -> OR add return code
     while(!((MPI_Connect_Base*)ptr)->recv_flag){
         if(((MPI_Connect_Base*)ptr)->new_msg_come(args)){
