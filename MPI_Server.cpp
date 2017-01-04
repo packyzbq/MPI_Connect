@@ -33,7 +33,7 @@ int MPI_Server::initialize() {
     merr = MPI_Open_port(MPI_INFO_NULL, port);
     if(merr){
         MPI_Error_string(merr, errmsg, &msglen);
-        cout << "[Server]: Error in publish_name :" << errmsg<<endl;
+        cout << "[Server]: Error in Open port :" << errmsg<<endl;
         //TODO ERROR HANDLE
         return MPI_ERR_CODE::OPEN_PORT_ERR;
     }

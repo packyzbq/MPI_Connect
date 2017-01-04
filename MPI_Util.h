@@ -12,6 +12,7 @@
 #define MPI_SEND_CHAR         3
 #define MPI_BCAST_INT         4
 #define MPI_BCAST_CHAR        5
+#define MPI_PING              6
 
 #define MPI_HEART_BEAT        10
 #define MPI_REGISTEY          11
