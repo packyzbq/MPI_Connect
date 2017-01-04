@@ -11,7 +11,7 @@ using namespace std;
 
 void* MPI_Connect_Base::recv_thread(void *ptr) {
     int msgsz, merr, msglen;
-    void *rb = nullptr;
+    void *rb = NULL;
     char errmsg[MPI_MAX_ERROR_STRING];
 
     pthread_t pid;
