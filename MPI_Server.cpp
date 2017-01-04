@@ -3,7 +3,7 @@
 //
 
 #include "MPI_Server.h"
-#include <cstdlib>
+#include <cstring>
 #include <iomanip>
 
 #define DEBUG
