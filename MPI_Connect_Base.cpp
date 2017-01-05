@@ -24,12 +24,13 @@ void* MPI_Connect_Base::recv_thread(void *ptr) {
 
     pthread_mutex_lock(&(((MPI_Connect_Base*)ptr)->recv_flag_mutex));
     ((MPI_Connect_Base*)ptr)->recv_flag = false;
+    bool recv_f_dup = ((MPI_Connect_Base*)ptr)->recv_flag;
     pthread_mutex_unlock(&(((MPI_Connect_Base*)ptr)->recv_flag_mutex));
 #ifdef DEBUG
     cout<<"<recv thread>: Proc: "<< ((MPI_Connect_Base*)ptr)->myrank << ", Pid: " << pid << ", receive thread start...  "<<endl;
 #endif
     // TODO add exception handler -> OR add return code
-    while(!((MPI_Connect_Base*)ptr)->recv_flag){
+    while(!recv_f_dup){
         if(((MPI_Connect_Base*)ptr)->new_msg_come(args)){
 #ifdef DEBUG
             //cout <<"<recv thread>: detect a new message" << endl;
@@ -71,6 +72,10 @@ void* MPI_Connect_Base::recv_thread(void *ptr) {
         }
         if(!rb)
             delete(rb);
+
+        pthread_mutex_lock(&(((MPI_Connect_Base*)ptr)->recv_flag_mutex));
+        recv_f_dup = ((MPI_Connect_Base*)ptr)->recv_flag;
+        pthread_mutex_unlock(&(((MPI_Connect_Base*)ptr)->recv_flag_mutex));
     }
 
 
@@ -156,7 +161,9 @@ MPI_Datatype MPI_Connect_Base::analyz_type(int tags) {
 }
 
 void MPI_Connect_Base::set_recv_stop() {
+    pthread_mutex_lock(&recv_flag_mutex);
     recv_flag = true;
+    pthread_mutex_unlock(&recv_flag_mutex);
 }
 
 void MPI_Connect_Base::set_send_stop() {

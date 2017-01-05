@@ -47,7 +47,11 @@ public:
     bool disconnect_client(int w_uuid);
     void bcast(void *buf, int msgsz, MPI_Datatype datatype, int tags);
 
-    void set_accept_t_stop(){accept_conn_flag = true;};
+    void set_accept_t_stop(){
+        pthread_mutex_lock(&accept_flag_mutex);
+        accept_conn_flag = true;
+        pthread_mutex_unlock(&accept_flag_mutex);
+    };
 };
 
 

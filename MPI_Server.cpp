@@ -188,17 +188,21 @@ void* MPI_Server::accept_conn_thread(void *ptr) {
     int merr= 0;
     int msglen = 0;
     char errmsg[MPI_MAX_ERROR_STRING];
+    pthread_mutex_lock(&(((MPI_Server*)ptr)->accept_flag_mutex));
     ((MPI_Server*)ptr)->accept_conn_flag = false;
+    bool acc_flag = ((MPI_Server*)ptr)->accept_conn_flag;
+    pthread_mutex_unlock(&(((MPI_Server*)ptr)->accept_flag_mutex));
     cout << "[Server] host: "<< ((MPI_Server*)ptr)->hostname <<", accept connection thread start..." << endl;
 
-    while(!((MPI_Server*)ptr)->accept_conn_flag) {
+    while(!acc_flag) {
+        merr = 0;
         MPI_Comm newcomm;
         merr = MPI_Comm_accept(((MPI_Server*)ptr)->port, MPI_INFO_NULL, 0, MPI_COMM_SELF, &newcomm);
         if(merr){
             MPI_Error_string(merr, errmsg, &msglen);
             cout << "[Server-Error]: accept client error, msg: " << errmsg << endl;
         }
-        //MPI_Barrier(newcomm);
+        MPI_Barrier(newcomm);
         List_Entry tmp_item;
         tmp_item.comm = newcomm;
         ((MPI_Server*)ptr)->comm_list.push_back(tmp_item);
@@ -209,6 +213,10 @@ void* MPI_Server::accept_conn_thread(void *ptr) {
         //TODO add to bcast_comm/group
         //delete(&tmp_item);
         //free(&newcomm);
+
+        pthread_mutex_lock(&(((MPI_Server*)ptr)->accept_flag_mutex));
+        acc_flag = ((MPI_Server*)ptr)->accept_conn_flag;
+        pthread_mutex_unlock(&(((MPI_Server*)ptr)->accept_flag_mutex));
     }
     cout << "[Server] host: "<< ((MPI_Server*)ptr)->hostname << ", accept connection thread stop..." << endl;
     return 0;
@@ -242,10 +250,11 @@ void MPI_Server::recv_handle(int tag, void *buf, MPI_Datatype type,MPI_Comm comm
         case MPI_DISCONNECT:{
             cout << "[Server] worker :" << (*(int *) buf)<< " require disconnect" << endl;
             pack = new Recv_Pack((*(int *) buf), NULL);
+            bool found = false;
             list<List_Entry>::iterator iter;
-            int size = 0;
-            for(iter = comm_list.begin(); iter != comm_list.end(); iter++, size++){
+            for(iter = comm_list.begin(); iter != comm_list.end(); iter++){
                 if(iter->comm == comm && iter->wid == (*(int *) buf)){
+                    found = true;
                     merr = MPI_Comm_disconnect(&(iter->comm));
                     if(merr){
                         MPI_Error_string(merr, errmsg, &msglen);
@@ -258,13 +267,12 @@ void MPI_Server::recv_handle(int tag, void *buf, MPI_Datatype type,MPI_Comm comm
                     break;
                 }
             }
-            if(size > comm_list.size())
+            if(!found) {
 #ifdef DEBUG
                 cout << "[Server-Error]: can't find correspond MPI_Comm and wid" << endl;
 #endif
+            }
         }
-            break;
-        case MPI_BCAST_ACK:{}
             break;
         default: {
             //Irecv_handler->handler_recv(tag, buf);

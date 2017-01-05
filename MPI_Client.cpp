@@ -90,17 +90,19 @@ int MPI_Client::initialize() {
 
 int MPI_Client::stop() {
     cout << "--------------------stop Client--------------------" << endl;
-    cout << "[Client]: stop Client..." << endl;
+    //cout << "[Client]: stop Client..." << endl;
     int merr= 0;
     int msglen = 0;
     char errmsg[MPI_MAX_ERROR_STRING];
-    recv_flag = true;
-    send_flag = true;
+    //recv_flag = true;
+    set_recv_stop();
+    //send_flag = true;
     //TODO add disconnect send
     int tmp = 0;
     //send(&tmp, 1, 0, MPI_INT, MPI_Tags::MPI_DISCONNECT, sc_comm_);
     send_int(tmp, 1, 0, MPI_DISCONNECT);
     //pthread_cancel(send_t);
+    MPI_Barrier(sc_comm_);
     merr = MPI_Comm_disconnect(&sc_comm_);
     if(merr){
         MPI_Error_string(merr, errmsg, &msglen);
