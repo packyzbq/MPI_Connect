@@ -57,8 +57,12 @@ void* MPI_Connect_Base::recv_thread(void *ptr) {
             }
 #ifdef DEBUG
             cout << "<recv thread>: receive a message <-- <" << rb << ">" << endl;
+            cout << "<recv thread>: start recv Barrier" << endl;
 #endif
             merr = MPI_Barrier(args->newcomm);
+#ifdef DEBUG
+            cout << "<recv thread>: end recv Barrier" << endl;
+#endif
             if(merr){
                 MPI_Error_string(merr, errmsg, &msglen);
                 cout << "<recv thread>: barrier fail...error: " << errmsg << endl;
@@ -152,9 +156,7 @@ bool MPI_Connect_Base::new_msg_come(ARGS *args) {
 }
 
 MPI_Datatype MPI_Connect_Base::analyz_type(int tags) {
-    if (tags >= 10)
-        return MPI_PACKED;
-    else if(tags == 0 || tags % 2 == 0)
+    if(tags == MPI_REGISTEY || tags == MPI_DISCONNECT)
         return MPI_INT;
     else
         return MPI_CHAR;
