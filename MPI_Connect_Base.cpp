@@ -22,7 +22,9 @@ void* MPI_Connect_Base::recv_thread(void *ptr) {
     MPI_Comm_rank(MPI_COMM_WORLD, &(((MPI_Connect_Base*)ptr)->myrank));
     MPI_Comm_size(MPI_COMM_WORLD, &(((MPI_Connect_Base*)ptr)->w_size));
 
+    pthread_mutex_lock(&(((MPI_Connect_Base*)ptr)->recv_flag_mutex));
     ((MPI_Connect_Base*)ptr)->recv_flag = false;
+    pthread_mutex_unlock(&(((MPI_Connect_Base*)ptr)->recv_flag_mutex));
 #ifdef DEBUG
     cout<<"<recv thread>: Proc: "<< ((MPI_Connect_Base*)ptr)->myrank << ", Pid: " << pid << ", receive thread start...  "<<endl;
 #endif

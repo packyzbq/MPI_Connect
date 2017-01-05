@@ -22,6 +22,7 @@ private:
     char port[MPI_MAX_PORT_NAME];
 
     pthread_t pth_accept;
+    pthread_mutex_t accept_flag_mutex;
     bool accept_conn_flag = true;
 
 public:

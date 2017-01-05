@@ -21,6 +21,8 @@ MPI_Client::MPI_Client(IRecv_handler *mh, char* svc_name, char* port):MPI_Connec
         cout << "[Client-Error]: client construct error, no service name either portname" << endl;
         //TODO add error handle
     }
+
+    recv_flag_mutex = PTHREAD_MUTEX_INITIALIZER;
 }
 
 MPI_Client::~MPI_Client() {
@@ -68,7 +70,14 @@ int MPI_Client::initialize() {
     cout << "[Client]: client connect to server, comm = " << sc_comm_ << endl;
 
     pthread_create(&recv_t, NULL, MPI_Connect_Base::recv_thread, this);
-    while(recv_flag);
+    while(true){
+        pthread_mutex_lock(&recv_flag_mutex);
+        if(!recv_flag) {
+            pthread_mutex_unlock(&recv_flag_mutex);
+            break;
+        }
+        pthread_mutex_unlock(&recv_flag_mutex);
+    }
     cout << "[Client]: recv thread start...." << endl;
 
     //int rank;

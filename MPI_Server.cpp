@@ -10,6 +10,9 @@
 
 MPI_Server::MPI_Server(IRecv_handler *rh, char *svc_name) : MPI_Connect_Base(rh) {
     svc_name_ = svc_name;
+    recv_flag_mutex = PTHREAD_MUTEX_INITIALIZER;
+    //send_flag_mutex = PTHREAD_MUTEX_INITIALIZER;
+    accept_flag_mutex = PTHREAD_MUTEX_INITIALIZER;
 };
 
 MPI_Server::~MPI_Server() {
@@ -52,7 +55,14 @@ int MPI_Server::initialize() {
 
     //start recv thread
     pthread_create(&recv_t ,NULL, MPI_Connect_Base::recv_thread, this);
-    while(recv_flag);
+    while(true){
+        pthread_mutex_lock(&recv_flag_mutex);
+        if(!recv_flag) {
+            pthread_mutex_unlock(&recv_flag_mutex);
+            break;
+        }
+        pthread_mutex_unlock(&recv_flag_mutex);
+    }
     cout << "[Server]: receive thread start..." << endl;
     //recv_thread(this);
 
@@ -63,7 +73,14 @@ int MPI_Server::initialize() {
 
     //start accept thread
     pthread_create(&pth_accept, NULL, MPI_Server::accept_conn_thread, this);
-    while(accept_conn_flag);
+    while(true){
+        pthread_mutex_lock(&accept_flag_mutex);
+        if(!accept_conn_flag){
+            pthread_mutex_unlock(&accept_flag_mutex);
+            break;
+        }
+        pthread_mutex_unlock(&accept_flag_mutex);
+    }
     cout << "[Server]: accept thread start..." << endl;
 
     cout << "--------------------Server init finish--------------------" << endl;

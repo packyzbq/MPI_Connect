@@ -60,6 +60,9 @@ protected:
     //char errmsg[MPI_MAX_ERROR_STRING];
     char hostname[MPI_MAX_PROCESSOR_NAME];
 
+    pthread_mutex_t recv_flag_mutex;
+    pthread_mutex_t send_flag_mutex;
+
     bool recv_flag = true; //true = stop false = running
     bool send_flag = true;
 
