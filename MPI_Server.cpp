@@ -229,7 +229,6 @@ void MPI_Server::recv_handle(int tag, void *buf, MPI_Datatype type,MPI_Comm comm
     //TODO set different conditions
     int merr, msglen;
     char errmsg[MPI_MAX_ERROR_STRING];
-    Recv_Pack *pack;
 
     switch(tag){
         case MPI_REGISTEY: {
@@ -238,7 +237,7 @@ void MPI_Server::recv_handle(int tag, void *buf, MPI_Datatype type,MPI_Comm comm
 #endif
             if(comm_list.size() == 0)
                 cout << "[Server-Error]: comm_list has no MPI_Comm" << endl;
-            pack = new Recv_Pack((*(int *) buf), NULL);
+            //pack = new Recv_Pack((*(int *) buf), NULL);
             list<List_Entry>::iterator iter;
             int size = 0;
             pthread_mutex_lock(&comm_list_mutex);
@@ -259,7 +258,7 @@ void MPI_Server::recv_handle(int tag, void *buf, MPI_Datatype type,MPI_Comm comm
             break;
         case MPI_DISCONNECT:{
             cout << "[Server] worker :" << (*(int *) buf)<< " require disconnect" << endl;
-            pack = new Recv_Pack((*(int *) buf), NULL);
+            //pack = new Recv_Pack((*(int *) buf), NULL);
             bool found = false;
             list<List_Entry>::iterator iter;
             pthread_mutex_lock(&comm_list_mutex);
@@ -292,18 +291,22 @@ void MPI_Server::recv_handle(int tag, void *buf, MPI_Datatype type,MPI_Comm comm
             break;
         }
     }
-    if(type == MPI_INT)
-        pack = new Recv_Pack((*(int*)buf), NULL);
-    else if(type == MPI_CHAR)
-        pack = new Recv_Pack(NULL, (char*)buf);
+    if(type == MPI_INT) {
+        Pack_Int pack = Pack_Int((*(int *) buf));
+        Irecv_handler->handler_recv(tag, pack);
+    }
+    else if(type == MPI_CHAR) {
+        Pack_Str pack = Pack_Str((char *) buf);
+        Irecv_handler->handler_recv(tag, pack);
+    }
     else {
 #ifdef DEBUG
         cout << "[Server-Error]: Recv datatype error" << endl;
 #endif
         //TODO add error handler
     }
-    Irecv_handler->handler_recv(tag, *pack);
-    delete(pack);
+
+    //delete(pack);
 }
 
 //void MPI_Server::send(void *buf, int msgsize, int dest, MPI_Datatype datatype, int tag, MPI_Comm comm) {
