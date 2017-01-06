@@ -13,6 +13,7 @@ MPI_Server::MPI_Server(IRecv_handler *rh, char *svc_name) : MPI_Connect_Base(rh)
     recv_flag_mutex = PTHREAD_MUTEX_INITIALIZER;
     //send_flag_mutex = PTHREAD_MUTEX_INITIALIZER;
     accept_flag_mutex = PTHREAD_MUTEX_INITIALIZER;
+    comm_list_mutex = PTHREAD_MUTEX_INITIALIZER;
 };
 
 MPI_Server::~MPI_Server() {
@@ -205,7 +206,9 @@ void* MPI_Server::accept_conn_thread(void *ptr) {
         MPI_Barrier(newcomm);
         List_Entry tmp_item;
         tmp_item.comm = newcomm;
+        pthread_mutex_lock(&(((MPI_Server*)ptr)->comm_list_mutex));
         ((MPI_Server*)ptr)->comm_list.push_back(tmp_item);
+        pthread_mutex_unlock(&(((MPI_Server*)ptr)->comm_list_mutex));
         //TODO receive worker MPI_REGISTEY tags and add to master, in recv_thread() function or ABC recv_commit() function
 #ifdef DEBUG
         cout << "[Server]:Host: " << ((MPI_Server*)ptr)->hostname << ", Proc: "<< ((MPI_Server*)ptr)->myrank << ", receive new connection...; MPI_COMM="<< newcomm << endl;
@@ -233,18 +236,25 @@ void MPI_Server::recv_handle(int tag, void *buf, MPI_Datatype type,MPI_Comm comm
 #ifdef DEBUG
             cout << "get a registery from worker:" << (*(int *) buf) << endl;
 #endif
+            if(comm_list.size() == 0)
+                cout << "[Server-Error]: comm_list has no MPI_Comm" << endl;
             pack = new Recv_Pack((*(int *) buf), NULL);
             list<List_Entry>::iterator iter;
             int size = 0;
+            pthread_mutex_lock(&comm_list_mutex);
             for (iter = comm_list.begin(); iter != comm_list.end(); iter++, size++) {
                 if (iter->comm == comm) {
                     iter->wid = (*(int *) buf);
+#ifdef DEBUG
+                    cout << "[Server]: register worker " << (*(int*)buf) << "success" << endl;
+#endif
                 }
             }
             if (size > comm_list.size()) {
                 cout << "[Server-Error]: register error, no compatible MPI_COMM" << endl;
                 //TODO Add error handle
             }
+            pthread_mutex_unlock(&comm_list_mutex);
         }
             break;
         case MPI_DISCONNECT:{
@@ -252,6 +262,7 @@ void MPI_Server::recv_handle(int tag, void *buf, MPI_Datatype type,MPI_Comm comm
             pack = new Recv_Pack((*(int *) buf), NULL);
             bool found = false;
             list<List_Entry>::iterator iter;
+            pthread_mutex_lock(&comm_list_mutex);
             for(iter = comm_list.begin(); iter != comm_list.end(); iter++){
                 if(iter->comm == comm && iter->wid == (*(int *) buf)){
                     found = true;
@@ -267,6 +278,7 @@ void MPI_Server::recv_handle(int tag, void *buf, MPI_Datatype type,MPI_Comm comm
                     break;
                 }
             }
+            pthread_mutex_unlock(&comm_list_mutex);
             if(!found) {
 #ifdef DEBUG
                 cout << "[Server-Error]: can't find correspond MPI_Comm and wid" << endl;

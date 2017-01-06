@@ -19,6 +19,7 @@ class MPI_Server : public  MPI_Connect_Base{
 private:
     char* svc_name_;
     list<List_Entry> comm_list;
+    pthread_mutex_t comm_list_mutex;
     char port[MPI_MAX_PORT_NAME];
 
     pthread_t pth_accept;
