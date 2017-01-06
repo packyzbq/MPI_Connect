@@ -13,7 +13,7 @@ BOOST_PYTHON_MODULE(Client_Module)
         .def_readonly("buf", &Pack_Int::buf)
     ;
 
-    class_<Pack_Str>("Pack_Str", init<char*>)
+    class_<Pack_Str>("Pack_Str", init<char*>())
         .def_readonly("buf", &Pack_Str::buf)
     ;
 

@@ -7,13 +7,16 @@
 #include "IRecv_handler_Wrapper.cpp"
 using namespace boost::python;
 
+void (IRecv_handler_Wrapper::handler_recvx1)(int ,Pack_Int) = &IRecv_handler_Wrapper::handler_recv;
+void (IRecv_handler_Wrapper::handler_recvx2)(int ,Pack_Str) = &IRecv_handler_Wrapper::handler_recv;
+
 BOOST_PYTHON_MODULE(Server_Module)
 {
     class_<Pack_Int>("Pack_Int", init<int>())
         .def_readonly("buf", &Pack_Int::buf)
         ;
 
-    class_<Pack_Str>("Pack_Str", init<char*>)
+    class_<Pack_Str>("Pack_Str", init<char*>())
         .def_readonly("buf", &Pack_Str::buf)
         ;
 

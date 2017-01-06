@@ -18,6 +18,3 @@ struct IRecv_handler_Wrapper : IRecv_handler, wrapper<IRecv_handler>
     };
 };
 
-
-void (IRecv_handler_Wrapper::handler_recvx1)(int ,Pack_Int) = &IRecv_handler_Wrapper::handler_recv;
-void (IRecv_handler_Wrapper::handler_recvx2)(int ,Pack_Str) = &IRecv_handler_Wrapper::handler_recv;

@@ -23,7 +23,6 @@ public:
 
 struct IRecv_handler
 {
-    //TODO need remove
     virtual void handler_recv(int mpi_tags, Pack_Int pack)=0;
     virtual void handler_recv(int mpi_tags, Pack_Str pack)=0;
 };
