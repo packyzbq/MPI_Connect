@@ -233,7 +233,6 @@ void MPI_Client::recv_handle(int tag, void *buf, MPI_Datatype type,MPI_Comm comm
     // TODO add conditions
     int merr, msglen;
     char errmsg[MPI_MAX_ERROR_STRING];
-    Recv_Pack *pack;
     switch (tag){
         case MPI_BCAST_REQ:{}
             break;
@@ -258,19 +257,20 @@ void MPI_Client::recv_handle(int tag, void *buf, MPI_Datatype type,MPI_Comm comm
             cout << "[Client-Error]: Unrecognized type" << endl;
             break;
     }
-    if(type == MPI_INT)
-        pack = new Recv_Pack((*(int*)buf), NULL);
-    else if(type == MPI_CHAR)
-        pack = new Recv_Pack(NULL, (char*)buf);
+    if(type == MPI_INT) {
+        Pack_Int pack = Pack_Int((*(int *) buf));
+        Irecv_handler->handler_recv(tag, pack);
+    }
+    else if(type == MPI_CHAR) {
+        Pack_Str pack = Pack_Str((char *) buf);
+        Irecv_handler->handler_recv(tag, pack);
+    }
     else {
 #ifdef DEBUG
         cout << "[Client-Error]: Recv datatype error" << endl;
 #endif
         //TODO add error handler
     }
-    Irecv_handler->handler_recv(tag, *pack);
-
-    delete(pack);
 }
 
 void MPI_Client::set_wid(int wid) {

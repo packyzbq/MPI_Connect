@@ -9,13 +9,18 @@ using namespace boost::python;
 
 BOOST_PYTHON_MODULE(Server_Module)
 {
-    class_<Recv_Pack>("Recv_Pack", init<int, char*>())
-        .def_readonly("ibuf", &Recv_Pack::ibuf)
-        .def_readonly("sbuf", &Recv_Pack::sbuf)
+    class_<Pack_Int>("Pack_Int", init<int>())
+        .def_readonly("buf", &Pack_Int::buf)
+        ;
+
+    class_<Pack_Str>("Pack_Str", init<char*>)
+        .def_readonly("buf", &Pack_Str::buf)
         ;
 
     class_<IRecv_handler_Wrapper, boost::noncopyable>("IRecv_handler")
-        .def("handler_recv", pure_virtual(&IRecv_handler::handler_recv))
+        //.def("handler_recv", pure_virtual(&IRecv_handler::handler_recv))
+        .def("handler_recv", handler_recvx1)
+        .def("handler_recv", handler_recvx2)
         ;
     class_<MPI_Server>("MPI_Server", init<IRecv_handler*, char*>())
         .def("run", &MPI_Server::run)
