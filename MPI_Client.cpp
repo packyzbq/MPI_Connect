@@ -68,6 +68,7 @@ int MPI_Client::initialize() {
         //TODO Add error handle
     }
     cout << "[Client]: client connect to server, comm = " << sc_comm_ << endl;
+    MPI_Barrier(sc_comm_);
 
     pthread_create(&recv_t, NULL, MPI_Connect_Base::recv_thread, this);
     while(true){
@@ -103,7 +104,7 @@ int MPI_Client::stop() {
     if(send_int(tmp, 1, 0, MPI_DISCONNECT) == MPI_ERR_CODE::SUCCESS)
         cout <<"[Client]: send complete..." << endl;
     //pthread_cancel(send_t);
-    MPI_Barrier(sc_comm_);
+    //MPI_Barrier(sc_comm_);
     merr = MPI_Comm_disconnect(&sc_comm_);
     if(merr){
         MPI_Error_string(merr, errmsg, &msglen);
@@ -180,7 +181,7 @@ int MPI_Client::send_int(int buf, int msgsize, int dest, int tag) {
         return MPI_ERR_CODE::SEND_FAIL;
     }
 
-    //cout << "[Client]: start barrier..." << endl;
+    cout << "[Client]: start barrier..." << endl;
 
     merr = MPI_Barrier(sc_comm_);
     if(merr){
@@ -189,7 +190,7 @@ int MPI_Client::send_int(int buf, int msgsize, int dest, int tag) {
         return MPI_ERR_CODE::BARRIER_FAIL;
     }
 
-    //cout << "[Client]: end barrier..." << endl;
+    cout << "[Client]: end barrier..." << endl;
 
     return MPI_ERR_CODE::SUCCESS;
 }

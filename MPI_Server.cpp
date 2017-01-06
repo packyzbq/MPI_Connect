@@ -51,7 +51,7 @@ int MPI_Server::initialize() {
         return MPI_ERR_CODE::PUBLISH_SVC_ERR;
     }
     cout << "[Server]: publish service <" << svc_name_ << ">" << endl;
-    MPI_Barrier(MPI_COMM_WORLD);
+    //MPI_Barrier(MPI_COMM_WORLD);
 
     //start recv thread
     pthread_create(&recv_t ,NULL, MPI_Connect_Base::recv_thread, this);
