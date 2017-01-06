@@ -19,8 +19,8 @@ BOOST_PYTHON_MODULE(Client_Module)
 
     class_<IRecv_handler_Wrapper, boost::noncopyable>("IRecv_handler")
         //.def("handler_recv", pure_virtual(&IRecv_handler::handler_recv))
-        .def("handler_recv", handler_recvx1)
-        .def("handler_recv", handler_recvx2)
+        .def("handler_recv", pure_virtual(handler_recvx1))
+        .def("handler_recv", pure_virtual(handler_recvx2))
     ;
 
     class_<MPI_Client>("MPI_Client", init<IRecv_handler*, char* ,char*>())
