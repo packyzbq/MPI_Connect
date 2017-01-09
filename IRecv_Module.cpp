@@ -18,8 +18,8 @@ BOOST_PYTHON_MODULE(IRecv_Module){
 
     class_<IRecv_handler_Wrapper, boost::noncopyable>("IRecv_handler")
         //.def("handler_recv", pure_virtual(&IRecv_handler::handler_recv))
-        .def("handler_recv_int", pure_virtual(handler_recv_int))
-        .def("handler_recv_str", pure_virtual(handler_recv_str))
+        .def("handler_recv_int", pure_virtual(&IRecv_handler::handler_recv_int))
+        .def("handler_recv_str", pure_virtual(&IRecv_handler::handler_recv_str))
     ;
 
 }
