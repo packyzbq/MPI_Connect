@@ -14,6 +14,7 @@ MPI_Server::MPI_Server(IRecv_handler *rh, char *svc_name) : MPI_Connect_Base(rh)
     //send_flag_mutex = PTHREAD_MUTEX_INITIALIZER;
     accept_flag_mutex = PTHREAD_MUTEX_INITIALIZER;
     comm_list_mutex = PTHREAD_MUTEX_INITIALIZER;
+    cout << "Irecv_handler ptr= " << Irecv_handler << endl;
 };
 
 MPI_Server::~MPI_Server() {
@@ -293,6 +294,8 @@ void MPI_Server::recv_handle(int tag, void *buf, MPI_Datatype type,MPI_Comm comm
     }
     if(type == MPI_INT) {
         Pack_Int pack = Pack_Int((*(int *) buf));
+#ifdef DEBUG
+        cout << "irecv_handler ptr=" << Irecv_handler << endl;
         Irecv_handler->handler_recv_int(tag, pack);
     }
     else if(type == MPI_CHAR) {
