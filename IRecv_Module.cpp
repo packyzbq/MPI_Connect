@@ -6,7 +6,7 @@
 #include "IRecv_handler_Wrapper.cpp"
 using namespace boost::python;
 
-BOOST_PYTHON_MODULE("IRecv_Module"){
+BOOST_PYTHON_MODULE(IRecv_Module){
 
     class_<Pack_Int>("Pack_Int", init<int>())
         .def_readonly("buf", &Pack_Int::buf)
