@@ -293,11 +293,11 @@ void MPI_Server::recv_handle(int tag, void *buf, MPI_Datatype type,MPI_Comm comm
     }
     if(type == MPI_INT) {
         Pack_Int pack = Pack_Int((*(int *) buf));
-        Irecv_handler->handler_recv(tag, pack);
+        Irecv_handler->handler_recv_int(tag, pack);
     }
     else if(type == MPI_CHAR) {
         Pack_Str pack = Pack_Str((char *) buf);
-        Irecv_handler->handler_recv(tag, pack);
+        Irecv_handler->handler_recv_str(tag, pack);
     }
     else {
 #ifdef DEBUG
