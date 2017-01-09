@@ -7,8 +7,6 @@
 #include "IRecv_handler_Wrapper.cpp"
 using namespace boost::python;
 
-void (IRecv_handler_Wrapper::*handler_recvx1)(int ,Pack_Int) = &IRecv_handler_Wrapper::handler_recv;
-void (IRecv_handler_Wrapper::*handler_recvx2)(int ,Pack_Str) = &IRecv_handler_Wrapper::handler_recv;
 
 BOOST_PYTHON_MODULE(Client_Module)
 {
@@ -22,8 +20,8 @@ BOOST_PYTHON_MODULE(Client_Module)
 
     class_<IRecv_handler_Wrapper, boost::noncopyable>("IRecv_handler")
         //.def("handler_recv", pure_virtual(&IRecv_handler::handler_recv))
-        .def("handler_recv", pure_virtual(handler_recvx1))
-        .def("handler_recv", pure_virtual(handler_recvx2))
+        .def("handler_recv_int", pure_virtual(handler_recv_int))
+        .def("handler_recv_str", pure_virtual(handler_recv_str))
     ;
 
     class_<MPI_Client>("MPI_Client", init<IRecv_handler*, char* ,char*>())

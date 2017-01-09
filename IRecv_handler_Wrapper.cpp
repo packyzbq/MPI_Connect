@@ -7,14 +7,14 @@ using namespace boost::python;
 
 struct IRecv_handler_Wrapper : IRecv_handler, wrapper<IRecv_handler>
 {
-    void handler_recv(int mpi_tags, Pack_Int pack)
+    void handler_recv_int(int mpi_tags, Pack_Int pack)
     {
-        this->get_override("handler_recv")();
+        this->get_override("handler_recv_int")();
     };
 
-    void handler_recv(int mpi_tags, Pack_Str pack)
+    void handler_recv_str(int mpi_tags, Pack_Str pack)
     {
-        this->get_override("handler_recv")();
+        this->get_override("handler_recv_str")();
     };
 };
 

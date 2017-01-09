@@ -2,20 +2,19 @@
 <module type="CPP_MODULE" version="4">
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$">
-      <sourceFolder url="file://$MODULE_DIR$/Barrier_test.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/MPI_Client.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/MPI_Client.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/main.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Client_Module.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/IRecv_handler.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/MPI_Connect_Base.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/IRecv_handler_Wrapper.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/MPI_Server.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Server_Module.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/MPI_Util.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/MPI_Connect_Base.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/MPI_Server.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/CMakeLists.txt" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/MPI_Server.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Client_Module.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/MPI_Connect_Base.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/MPI_Client.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/MPI_Util.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/MPI_Client.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Server_Module.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/IRecv_handler_Wrapper.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/main.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/MPI_Connect_Base.cpp" isTestSource="false" />
     </content>
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module-library">

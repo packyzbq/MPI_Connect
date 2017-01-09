@@ -23,8 +23,8 @@ public:
 
 struct IRecv_handler
 {
-    virtual void handler_recv(int mpi_tags, Pack_Int pack)=0;
-    virtual void handler_recv(int mpi_tags, Pack_Str pack)=0;
+    virtual void handler_recv_int(int mpi_tags, Pack_Int pack)=0;
+    virtual void handler_recv_str(int mpi_tags, Pack_Str pack)=0;
 };
 
 #endif //MPI_CONNECT_IRECV_HANDLER_H
