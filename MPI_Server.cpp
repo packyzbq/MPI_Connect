@@ -234,7 +234,7 @@ void MPI_Server::recv_handle(int tag, void *buf, MPI_Datatype type,MPI_Comm comm
     switch(tag){
         case MPI_REGISTEY: {
 #ifdef DEBUG
-            cout << "get a registery from worker:" << (char *) buf << endl;
+            cout << "get a registery from worker:" << (char *)buf << endl;
 #endif
             if(comm_list.size() == 0)
                 cout << "[Server-Error]: comm_list has no MPI_Comm" << endl;
@@ -244,7 +244,7 @@ void MPI_Server::recv_handle(int tag, void *buf, MPI_Datatype type,MPI_Comm comm
             pthread_mutex_lock(&comm_list_mutex);
             for (iter = comm_list.begin(); iter != comm_list.end(); iter++, size++) {
                 if (iter->comm == comm) {
-                    iter->uuid = (char *) buf;
+                    iter->uuid = (char *)buf;
 #ifdef DEBUG
                     cout << "[Server]: register worker " << (char*)buf << "success" << endl;
 #endif
@@ -258,13 +258,13 @@ void MPI_Server::recv_handle(int tag, void *buf, MPI_Datatype type,MPI_Comm comm
         }
             break;
         case MPI_DISCONNECT:{
-            cout << "[Server] worker :" << (char *) buf<< " require disconnect" << endl;
+            cout << "[Server] worker :" << (char *)buf<< " require disconnect" << endl;
             //pack = new Recv_Pack((*(int *) buf), NULL);
             bool found = false;
             list<List_Entry>::iterator iter;
             pthread_mutex_lock(&comm_list_mutex);
             for(iter = comm_list.begin(); iter != comm_list.end(); iter++){
-                if(iter->comm == comm && iter->uuid == (char *) buf){
+                if(iter->comm == comm && iter->uuid == (char *)buf){
                     found = true;
                     merr = MPI_Comm_disconnect(&(iter->comm));
                     if(merr){

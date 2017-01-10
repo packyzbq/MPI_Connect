@@ -14,8 +14,8 @@ using namespace std;
 
 struct Pack{
     int tag;
-    int ibuf;
-    string sbuf;
+    int ibuf=0;
+    string sbuf="";
 };
 
 struct IRecv_buffer{

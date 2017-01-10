@@ -76,9 +76,15 @@ void* MPI_Connect_Base::recv_thread(void *ptr) {
             p.tag = args->arg_stat.MPI_TAG;
             if(args->datatype == MPI_INT){
                 p.ibuf = (*(int*)rb);
+#ifdef DEBUG
+                cout << "pack creat, ibuf = " << p.ibuf << endl;
+#endif
             }
             if(args->datatype == MPI_CHAR){
                 p.sbuf = (char*)rb;
+#ifdef DEBUG
+                cout << "pack creat, sbuf = " << p.sbuf << endl;
+#endif
             }
             ((MPI_Connect_Base*)ptr)->rv_buf->put(p);
         }
