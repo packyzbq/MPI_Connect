@@ -13,6 +13,7 @@
   <component name="ChangeListManager">
     <list default="true" id="6b800d41-e9d4-4b4a-99ba-de55217a667a" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MPI_Util.h" afterPath="$PROJECT_DIR$/MPI_Util.h" />
     </list>
     <ignored path="MPI_Connect.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -83,7 +84,9 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="506">
               <caret line="25" column="27" selection-start-line="25" selection-start-column="27" selection-end-line="25" selection-end-column="27" />
-              <folding />
+              <folding>
+                <marker date="1484016002452" expanded="true" signature="184:826" ph="{...}" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -94,22 +97,36 @@
             <state relative-caret-position="717">
               <caret line="277" column="0" selection-start-line="277" selection-start-column="0" selection-end-line="277" selection-end-column="0" />
               <folding>
-                <element signature="e#7388#8753#0" expanded="false" />
+                <marker date="1484015794954" expanded="true" signature="209:719" ph="{...}" />
+                <marker date="1484015794954" expanded="true" signature="747:826" ph="{...}" />
                 <marker date="1484015794954" expanded="false" signature="857:2949" ph="{...}" />
                 <marker date="1484015794954" expanded="false" signature="2974:3952" ph="{...}" />
                 <marker date="1484015794954" expanded="false" signature="3981:4377" ph="{...}" />
                 <marker date="1484015794954" expanded="false" signature="4421:5182" ph="{...}" />
+                <marker date="1484015794954" expanded="true" signature="5607:6404" ph="{...}" />
+                <marker date="1484015794954" expanded="true" signature="6476:7305" ph="{...}" />
                 <marker date="1484015794954" expanded="false" signature="7330:7386" ph="{...}" />
+                <marker date="1484015794954" expanded="false" signature="7470:8753" ph="{...}" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="IRecv_Module.cpp" pinned="false" current-in-tab="true">
+      <file leaf-file-name="IRecv_Module.cpp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/IRecv_Module.cpp">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="96">
               <caret line="21" column="42" selection-start-line="21" selection-start-column="42" selection-end-line="21" selection-end-column="42" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MPI_Util.h" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/MPI_Util.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="322">
+              <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -130,17 +147,20 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="1441">
               <caret line="405" column="1" selection-start-line="405" selection-start-column="1" selection-end-line="405" selection-end-column="1" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MPI_Server.h" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/MPI_Server.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="345">
-              <caret line="43" column="55" selection-start-line="43" selection-start-column="55" selection-end-line="43" selection-end-column="55" />
-              <folding />
+              <folding>
+                <marker date="1484015795027" expanded="true" signature="200:491" ph="{...}" />
+                <marker date="1484015795027" expanded="true" signature="520:611" ph="{...}" />
+                <marker date="1484015795027" expanded="true" signature="642:2981" ph="{...}" />
+                <marker date="1484015795027" expanded="true" signature="3006:4348" ph="{...}" />
+                <marker date="1484015795027" expanded="true" signature="4377:4910" ph="{...}" />
+                <marker date="1484015795027" expanded="true" signature="4954:6048" ph="{...}" />
+                <marker date="1484015795027" expanded="true" signature="6098:7931" ph="{...}" />
+                <marker date="1484015795027" expanded="true" signature="8015:11013" ph="{...}" />
+                <marker date="1484015795027" expanded="true" signature="11397:12600" ph="{...}" />
+                <marker date="1484015795027" expanded="true" signature="12675:13726" ph="{...}" />
+                <marker date="1484015795027" expanded="true" signature="13751:13851" ph="{...}" />
+                <marker date="1484015795027" expanded="true" signature="13900:13914" ph="{...}" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -159,7 +179,6 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/CMakeLists.txt" />
-        <option value="$PROJECT_DIR$/MPI_Util.h" />
         <option value="$PROJECT_DIR$/Barrier_test.cpp" />
         <option value="$PROJECT_DIR$/IRecv_handler.h" />
         <option value="$PROJECT_DIR$/IRecv_module.cpp" />
@@ -174,6 +193,7 @@
         <option value="$PROJECT_DIR$/Client_Module.cpp" />
         <option value="$PROJECT_DIR$/MPI_Client.h" />
         <option value="$PROJECT_DIR$/IRecv_buffer.h" />
+        <option value="$PROJECT_DIR$/MPI_Util.h" />
       </list>
     </option>
   </component>
@@ -312,14 +332,7 @@
       <workItem from="1483925900234" duration="14507000" />
       <workItem from="1483965961537" duration="3745000" />
       <workItem from="1484012917099" duration="645000" />
-      <workItem from="1484015148807" duration="1660000" />
-    </task>
-    <task id="LOCAL-00013" summary="fix error">
-      <created>1481682734277</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1481682734277</updated>
+      <workItem from="1484015148807" duration="1738000" />
     </task>
     <task id="LOCAL-00014" summary="fix bug">
       <created>1481684079858</created>
@@ -657,11 +670,18 @@
       <option name="project" value="LOCAL" />
       <updated>1484016795871</updated>
     </task>
-    <option name="localTasksCounter" value="62" />
+    <task id="LOCAL-00062" summary="fix error">
+      <created>1484016812038</created>
+      <option name="number" value="00062" />
+      <option name="presentableId" value="LOCAL-00062" />
+      <option name="project" value="LOCAL" />
+      <updated>1484016812038</updated>
+    </task>
+    <option name="localTasksCounter" value="63" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="129814000" />
+    <option name="totallyTimeSpent" value="129892000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1050" extended-state="6" />
@@ -764,7 +784,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="161">
           <caret line="7" column="29" selection-start-line="7" selection-start-column="29" selection-end-line="7" selection-end-column="29" />
-          <folding />
+          <folding>
+            <marker date="1484016002452" expanded="true" signature="184:826" ph="{...}" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -821,12 +843,16 @@
         <state relative-caret-position="1725">
           <caret line="75" column="57" selection-start-line="75" selection-start-column="57" selection-end-line="75" selection-end-column="57" />
           <folding>
-            <element signature="e#7388#8753#0" expanded="false" />
+            <marker date="1484015794954" expanded="true" signature="209:719" ph="{...}" />
+            <marker date="1484015794954" expanded="true" signature="747:826" ph="{...}" />
             <marker date="1484015794954" expanded="false" signature="857:2949" ph="{...}" />
             <marker date="1484015794954" expanded="false" signature="2974:3952" ph="{...}" />
             <marker date="1484015794954" expanded="false" signature="3981:4377" ph="{...}" />
             <marker date="1484015794954" expanded="false" signature="4421:5182" ph="{...}" />
+            <marker date="1484015794954" expanded="true" signature="5607:6404" ph="{...}" />
+            <marker date="1484015794954" expanded="true" signature="6476:7305" ph="{...}" />
             <marker date="1484015794954" expanded="false" signature="7330:7386" ph="{...}" />
+            <marker date="1484015794954" expanded="false" signature="7470:8753" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -877,12 +903,16 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#7388#8753#0" expanded="false" />
+            <marker date="1484015794954" expanded="true" signature="209:719" ph="{...}" />
+            <marker date="1484015794954" expanded="true" signature="747:826" ph="{...}" />
             <marker date="1484015794954" expanded="false" signature="857:2949" ph="{...}" />
             <marker date="1484015794954" expanded="false" signature="2974:3952" ph="{...}" />
             <marker date="1484015794954" expanded="false" signature="3981:4377" ph="{...}" />
             <marker date="1484015794954" expanded="false" signature="4421:5182" ph="{...}" />
+            <marker date="1484015794954" expanded="true" signature="5607:6404" ph="{...}" />
+            <marker date="1484015794954" expanded="true" signature="6476:7305" ph="{...}" />
             <marker date="1484015794954" expanded="false" signature="7330:7386" ph="{...}" />
+            <marker date="1484015794954" expanded="false" signature="7470:8753" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -891,7 +921,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="161">
           <caret line="7" column="29" selection-start-line="7" selection-start-column="29" selection-end-line="7" selection-end-column="29" />
-          <folding />
+          <folding>
+            <marker date="1484016002452" expanded="true" signature="184:826" ph="{...}" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -955,12 +987,16 @@
         <state relative-caret-position="4002">
           <caret line="174" column="17" selection-start-line="174" selection-start-column="17" selection-end-line="174" selection-end-column="17" />
           <folding>
-            <element signature="e#7388#8753#0" expanded="false" />
+            <marker date="1484015794954" expanded="true" signature="209:719" ph="{...}" />
+            <marker date="1484015794954" expanded="true" signature="747:826" ph="{...}" />
             <marker date="1484015794954" expanded="false" signature="857:2949" ph="{...}" />
             <marker date="1484015794954" expanded="false" signature="2974:3952" ph="{...}" />
             <marker date="1484015794954" expanded="false" signature="3981:4377" ph="{...}" />
             <marker date="1484015794954" expanded="false" signature="4421:5182" ph="{...}" />
+            <marker date="1484015794954" expanded="true" signature="5607:6404" ph="{...}" />
+            <marker date="1484015794954" expanded="true" signature="6476:7305" ph="{...}" />
             <marker date="1484015794954" expanded="false" signature="7330:7386" ph="{...}" />
+            <marker date="1484015794954" expanded="false" signature="7470:8753" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -969,7 +1005,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="506">
           <caret line="22" column="44" selection-start-line="22" selection-start-column="44" selection-end-line="22" selection-end-column="44" />
-          <folding />
+          <folding>
+            <marker date="1484016002452" expanded="true" signature="184:826" ph="{...}" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1056,13 +1094,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Barrier_test.cpp" />
-    <entry file="file://$PROJECT_DIR$/MPI_Util.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="437">
-          <caret line="19" column="32" selection-start-line="19" selection-start-column="32" selection-end-line="19" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/IRecv_handler_Wrapper.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="368">
@@ -1116,12 +1147,16 @@
         <state relative-caret-position="717">
           <caret line="277" column="0" selection-start-line="277" selection-start-column="0" selection-end-line="277" selection-end-column="0" />
           <folding>
-            <element signature="e#7388#8753#0" expanded="false" />
+            <marker date="1484015794954" expanded="true" signature="209:719" ph="{...}" />
+            <marker date="1484015794954" expanded="true" signature="747:826" ph="{...}" />
             <marker date="1484015794954" expanded="false" signature="857:2949" ph="{...}" />
             <marker date="1484015794954" expanded="false" signature="2974:3952" ph="{...}" />
             <marker date="1484015794954" expanded="false" signature="3981:4377" ph="{...}" />
             <marker date="1484015794954" expanded="false" signature="4421:5182" ph="{...}" />
+            <marker date="1484015794954" expanded="true" signature="5607:6404" ph="{...}" />
+            <marker date="1484015794954" expanded="true" signature="6476:7305" ph="{...}" />
             <marker date="1484015794954" expanded="false" signature="7330:7386" ph="{...}" />
+            <marker date="1484015794954" expanded="false" signature="7470:8753" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -1130,7 +1165,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="506">
           <caret line="25" column="27" selection-start-line="25" selection-start-column="27" selection-end-line="25" selection-end-column="27" />
-          <folding />
+          <folding>
+            <marker date="1484016002452" expanded="true" signature="184:826" ph="{...}" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1138,7 +1175,20 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1441">
           <caret line="405" column="1" selection-start-line="405" selection-start-column="1" selection-end-line="405" selection-end-column="1" />
-          <folding />
+          <folding>
+            <marker date="1484015795027" expanded="true" signature="200:491" ph="{...}" />
+            <marker date="1484015795027" expanded="true" signature="520:611" ph="{...}" />
+            <marker date="1484015795027" expanded="true" signature="642:2981" ph="{...}" />
+            <marker date="1484015795027" expanded="true" signature="3006:4348" ph="{...}" />
+            <marker date="1484015795027" expanded="true" signature="4377:4910" ph="{...}" />
+            <marker date="1484015795027" expanded="true" signature="4954:6048" ph="{...}" />
+            <marker date="1484015795027" expanded="true" signature="6098:7931" ph="{...}" />
+            <marker date="1484015795027" expanded="true" signature="8015:11013" ph="{...}" />
+            <marker date="1484015795027" expanded="true" signature="11397:12600" ph="{...}" />
+            <marker date="1484015795027" expanded="true" signature="12675:13726" ph="{...}" />
+            <marker date="1484015795027" expanded="true" signature="13751:13851" ph="{...}" />
+            <marker date="1484015795027" expanded="true" signature="13900:13914" ph="{...}" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1172,6 +1222,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="96">
           <caret line="21" column="42" selection-start-line="21" selection-start-column="42" selection-end-line="21" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MPI_Util.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="322">
+          <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
           <folding />
         </state>
       </provider>

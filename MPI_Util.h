@@ -19,8 +19,6 @@
 #define MPI_REGISTY_ACK       12
 #define MPI_DISCONNECT        13
 
-#define MPI_BCAST_REQ         20 //用于广播询问task剩余情况
-#define MPI_BCAST_ACK 21 //用于回复广播询问task
 
 class MPI_ERR_CODE{
 public:
@@ -36,6 +34,5 @@ public:
     const static int RECV_FAIL              = 9;
     const static int BARRIER_FAIL           =10;
 };
-
 
 #endif //MPI_CONNECT_MPI_UTIL_H
