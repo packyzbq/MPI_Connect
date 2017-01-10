@@ -234,7 +234,7 @@ void MPI_Server::recv_handle(int tag, void *buf, MPI_Datatype type,MPI_Comm comm
     switch(tag){
         case MPI_REGISTEY: {
 #ifdef DEBUG
-            cout << "get a registery from worker:" << (*(int *) buf) << endl;
+            cout << "get a registery from worker:" << (char *) buf << endl;
 #endif
             if(comm_list.size() == 0)
                 cout << "[Server-Error]: comm_list has no MPI_Comm" << endl;
@@ -244,9 +244,9 @@ void MPI_Server::recv_handle(int tag, void *buf, MPI_Datatype type,MPI_Comm comm
             pthread_mutex_lock(&comm_list_mutex);
             for (iter = comm_list.begin(); iter != comm_list.end(); iter++, size++) {
                 if (iter->comm == comm) {
-                    iter->wid = (*(int *) buf);
+                    iter->uuid = (char *) buf;
 #ifdef DEBUG
-                    cout << "[Server]: register worker " << (*(int*)buf) << "success" << endl;
+                    cout << "[Server]: register worker " << (char*)buf << "success" << endl;
 #endif
                 }
             }
@@ -258,13 +258,13 @@ void MPI_Server::recv_handle(int tag, void *buf, MPI_Datatype type,MPI_Comm comm
         }
             break;
         case MPI_DISCONNECT:{
-            cout << "[Server] worker :" << (*(int *) buf)<< " require disconnect" << endl;
+            cout << "[Server] worker :" << (char *) buf<< " require disconnect" << endl;
             //pack = new Recv_Pack((*(int *) buf), NULL);
             bool found = false;
             list<List_Entry>::iterator iter;
             pthread_mutex_lock(&comm_list_mutex);
             for(iter = comm_list.begin(); iter != comm_list.end(); iter++){
-                if(iter->comm == comm && iter->wid == (*(int *) buf)){
+                if(iter->comm == comm && iter->uuid == (char *) buf){
                     found = true;
                     merr = MPI_Comm_disconnect(&(iter->comm));
                     if(merr){
@@ -318,9 +318,9 @@ void MPI_Server::recv_handle(int tag, void *buf, MPI_Datatype type,MPI_Comm comm
 //    cout << "[Server]: send finish, send thread sleep..." << endl;
 //}
 
-int MPI_Server::send_string(char *buf, int msgsize, int dest, int tag) {
+int MPI_Server::send_string(char *buf, int msgsize, string dest_uuid, int tag) {
 #ifdef DEBUG
-    cout << "[Server]: send message...<" << buf <<","<<dest <<"," <<tag  << ">"<< endl;
+    cout << "[Server]: send message...<" << buf <<","<<dest_uuid <<"," <<tag  << ">"<< endl;
 #endif
     int merr = 0;
     int msglen = 0;
@@ -328,7 +328,7 @@ int MPI_Server::send_string(char *buf, int msgsize, int dest, int tag) {
     MPI_Comm send_comm = NULL;
     list<List_Entry>::iterator iter;
     for (iter = comm_list.begin(); iter != comm_list.end(); iter++){
-        if(iter->wid == dest)
+        if(iter->uuid == dest_uuid)
             send_comm = iter->comm;
     }
     if(send_comm == NULL) {
@@ -358,9 +358,9 @@ int MPI_Server::send_string(char *buf, int msgsize, int dest, int tag) {
     return MPI_ERR_CODE::SUCCESS;
 }
 
-int MPI_Server::send_int(int buf, int msgsize, int dest, int tag){
+int MPI_Server::send_int(int buf, int msgsize, string dest_uuid, int tag){
 #ifdef DEBUG
-    cout << "[Server]: send message...<" << buf <<","<<dest <<"," <<tag  << ">"<< endl;
+    cout << "[Server]: send message...<" << buf <<","<<dest_uuid <<"," <<tag  << ">"<< endl;
 #endif
     int merr = 0;
     int msglen = 0;
@@ -368,10 +368,10 @@ int MPI_Server::send_int(int buf, int msgsize, int dest, int tag){
     MPI_Comm send_comm = NULL;
     list<List_Entry>::iterator iter;
     for (iter = comm_list.begin(); iter != comm_list.end(); iter++){
-        if(iter->wid == dest)
+        if(iter->uuid == dest_uuid)
             send_comm = iter->comm;
     }
-    merr = MPI_Send(&buf, msgsize, MPI_INT, dest, tag, send_comm);
+    merr = MPI_Send(&buf, msgsize, MPI_INT, 0, tag, send_comm);
     if(merr){
         MPI_Error_string(merr, errmsg, &msglen);
         cout << "[Server-Error]: send fail...error: " << errmsg << endl;

@@ -11,7 +11,7 @@
 
 struct List_Entry{
     MPI_Comm comm;
-    int wid = -1;
+    string uuid = "-1";
 
 };
 
@@ -27,7 +27,7 @@ private:
     bool accept_conn_flag = true;
 
 public:
-    MPI_Server(IRecv_handler *rh, char* svc_name);
+    MPI_Server(IRecv_buffer rh, char* svc_name);
 
     ~MPI_Server();
 
@@ -40,8 +40,8 @@ public:
     void recv_handle(int tag, void* buf, MPI_Datatype type,MPI_Comm comm);
 
 //    void send(void *buf, int msgsize, int dest, MPI_Datatype datatype, int tag, MPI_Comm comm);
-    int send_string(char *buf, int msgsize, int dest, int tag);
-    int send_int(int buf, int msgsize, int dest, int tag);
+    int send_string(char *buf, int msgsize, string dest_uuid, int tag);
+    int send_int(int buf, int msgsize, string dest_uuid, int tag);
     static void* accept_conn_thread(void* ptr);
 
     bool gen_client();

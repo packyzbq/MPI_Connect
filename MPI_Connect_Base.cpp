@@ -72,7 +72,15 @@ void* MPI_Connect_Base::recv_thread(void *ptr) {
             cout << "<recv thread>: handled by recv_handler" << endl;
 #endif
             ((MPI_Connect_Base*)ptr)->recv_handle(args->arg_stat.MPI_TAG, rb, args->datatype,args->newcomm);
-
+            Pack p = Pack();
+            p.tag = args->arg_stat.MPI_TAG;
+            if(args->datatype == MPI_INT){
+                p.ibuf = (*(int*)rb);
+            }
+            if(args->datatype == MPI_CHAR){
+                p.sbuf = (char*)rb;
+            }
+            ((MPI_Connect_Base*)ptr)->rv_buf.put(p);
         }
         if(!rb)
             delete(rb);

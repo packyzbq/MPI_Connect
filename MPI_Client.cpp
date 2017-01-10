@@ -8,8 +8,8 @@
 
 #define DEBUG
 
-MPI_Client::MPI_Client(IRecv_handler *mh, char* svc_name, char* port):MPI_Connect_Base(mh){
-    if((svc_name == NULL && port != NULL) ) {
+MPI_Client::MPI_Client(IRecv_buffer mh, char* svc_name, char* uuid):MPI_Connect_Base(mh){
+/*    if((svc_name == NULL && port != NULL) ) {
         strcpy(portname, port);
         svc_name_ = "";
     }
@@ -21,7 +21,9 @@ MPI_Client::MPI_Client(IRecv_handler *mh, char* svc_name, char* port):MPI_Connec
         cout << "[Client-Error]: client construct error, no service name either portname" << endl;
         //TODO add error handle
     }
-
+*/
+    svc_name_ = svc_name;
+    uuid_ = uuid;
     recv_flag_mutex = PTHREAD_MUTEX_INITIALIZER;
 }
 
@@ -257,7 +259,7 @@ void MPI_Client::recv_handle(int tag, void *buf, MPI_Datatype type,MPI_Comm comm
             cout << "[Client-Error]: Unrecognized type" << endl;
             break;
     }
-    if(type == MPI_INT) {
+/*    if(type == MPI_INT) {
         Pack_Int pack = Pack_Int((*(int *) buf));
         Irecv_handler->handler_recv_int(tag, pack);
     }
@@ -271,8 +273,5 @@ void MPI_Client::recv_handle(int tag, void *buf, MPI_Datatype type,MPI_Comm comm
 #endif
         //TODO add error handler
     }
-}
-
-void MPI_Client::set_wid(int wid) {
-    wid_ = wid;
+*/
 }

@@ -10,7 +10,7 @@
 
 class MPI_Client : public MPI_Connect_Base{
 public:
-    MPI_Client(IRecv_handler *mh, char* svc_name, char* port);
+    MPI_Client(IRecv_buffer mh, char* svc_name, char* uuid);
     ~MPI_Client();
 
     int initialize();
@@ -24,15 +24,13 @@ public:
     int send_string(char* buf, int msgsize, int dest, int tag);
     void recv_handle(int tag, void* buf, MPI_Datatype type, MPI_Comm comm);
     //TODO add recv_bcast()
-    void set_wid(int wid);
 
 private:
     char* svc_name_;
     char portname[MPI_MAX_PORT_NAME];
 
-    int wid_= 0;
-
     MPI_Comm sc_comm_;
+    string uuid_= "";
 };
 
 

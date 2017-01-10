@@ -4,6 +4,7 @@
 
 #include <boost/python.hpp>
 #include "IRecv_handler_Wrapper.cpp"
+#include "IRecv_buffer.h"
 using namespace boost::python;
 
 BOOST_PYTHON_MODULE(IRecv_Module){
@@ -22,4 +23,15 @@ BOOST_PYTHON_MODULE(IRecv_Module){
         .def("handler_recv_str", pure_virtual(&IRecv_handler::handler_recv_str))
     ;
 
+    class_<Pack>("Pack")
+        .def_readonly("tag", &Pack::tag)
+        .def_readonly("ibuf", &Pack::ibuf)
+        .def_readonly("sbuf", &Pack::sbuf)
+    ;
+
+    class_<IRecv_buffer>("IRecv_buffer")
+        .def("get", &IRecv_buffer::get)
+        .def("put", &IRecv_buffer::put)
+        .def("empty", &IRecv_buffer::empty)
+    ;
 }

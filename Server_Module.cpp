@@ -10,7 +10,7 @@ using namespace boost::python;
 
 BOOST_PYTHON_MODULE(Server_Module)
 {
-    class_<MPI_Server>("MPI_Server", init<IRecv_handler*, char*>())
+    class_<MPI_Server>("MPI_Server", init<IRecv_buffer*, char*>())
         .def("run", &MPI_Server::run)
         .def("initialize", &MPI_Server::initialize)
         .def("stop", &MPI_Server::stop)

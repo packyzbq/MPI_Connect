@@ -8,6 +8,7 @@
       <sourceFolder url="file://$MODULE_DIR$/CMakeLists.txt" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/MPI_Server.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Client_Module.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/IRecv_buffer.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/MPI_Connect_Base.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/MPI_Client.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/MPI_Util.h" isTestSource="false" />
