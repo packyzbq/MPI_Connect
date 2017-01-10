@@ -11,20 +11,9 @@
     </ADDITIONAL_GENERATION_ENVIRONMENT>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6b800d41-e9d4-4b4a-99ba-de55217a667a" name="Default" comment="update client constructor">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/IRecv_buffer.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/MPI_Connect.iml" afterPath="$PROJECT_DIR$/.idea/MPI_Connect.iml" />
+    <list default="true" id="6b800d41-e9d4-4b4a-99ba-de55217a667a" name="Default" comment="fix error">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMakeLists.txt" afterPath="$PROJECT_DIR$/CMakeLists.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Client_Module.cpp" afterPath="$PROJECT_DIR$/Client_Module.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/IRecv_Module.cpp" afterPath="$PROJECT_DIR$/IRecv_Module.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MPI_Client.cpp" afterPath="$PROJECT_DIR$/MPI_Client.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MPI_Client.h" afterPath="$PROJECT_DIR$/MPI_Client.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MPI_Connect_Base.cpp" afterPath="$PROJECT_DIR$/MPI_Connect_Base.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MPI_Connect_Base.h" afterPath="$PROJECT_DIR$/MPI_Connect_Base.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MPI_Server.cpp" afterPath="$PROJECT_DIR$/MPI_Server.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MPI_Server.h" afterPath="$PROJECT_DIR$/MPI_Server.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Server_Module.cpp" afterPath="$PROJECT_DIR$/Server_Module.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/IRecv_buffer.h" afterPath="$PROJECT_DIR$/IRecv_buffer.h" />
     </list>
     <ignored path="MPI_Connect.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -58,11 +47,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="IRecv_buffer.h" pinned="false" current-in-tab="false">
+      <file leaf-file-name="IRecv_handler.h" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/IRecv_handler.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="506">
+              <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="IRecv_buffer.h" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/IRecv_buffer.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1219">
-              <caret line="53" column="6" selection-start-line="48" selection-start-column="4" selection-end-line="53" selection-end-column="6" />
+            <state relative-caret-position="326">
+              <caret line="40" column="20" selection-start-line="40" selection-start-column="20" selection-end-line="40" selection-end-column="20" />
               <folding>
                 <element signature="e#113#130#0" expanded="true" />
               </folding>
@@ -70,7 +69,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Server_Module.cpp" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Server_Module.cpp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Server_Module.cpp">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="69">
@@ -147,20 +146,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MPI_Connect_Base.cpp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/MPI_Connect_Base.cpp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1886">
-              <caret line="82" column="44" selection-start-line="82" selection-start-column="38" selection-end-line="82" selection-end-column="44" />
-              <folding>
-                <element signature="e#43#72#0" expanded="true" />
-                <element signature="e#3359#4929#0" expanded="false" />
-                <element signature="e#4931#5329#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
     </leaf>
   </component>
   <component name="Git.Settings">
@@ -183,13 +168,13 @@
         <option value="$PROJECT_DIR$/MPI_Connect_Base.cpp" />
         <option value="$PROJECT_DIR$/MPI_Connect_Base.h" />
         <option value="$PROJECT_DIR$/Server_Module.cpp" />
-        <option value="$PROJECT_DIR$/IRecv_buffer.h" />
         <option value="$PROJECT_DIR$/IRecv_Module.cpp" />
         <option value="$PROJECT_DIR$/MPI_Server.cpp" />
         <option value="$PROJECT_DIR$/MPI_Server.h" />
         <option value="$PROJECT_DIR$/MPI_Client.cpp" />
         <option value="$PROJECT_DIR$/Client_Module.cpp" />
         <option value="$PROJECT_DIR$/MPI_Client.h" />
+        <option value="$PROJECT_DIR$/IRecv_buffer.h" />
       </list>
     </option>
   </component>
@@ -328,14 +313,7 @@
       <workItem from="1483925900234" duration="14507000" />
       <workItem from="1483965961537" duration="3745000" />
       <workItem from="1484012917099" duration="645000" />
-      <workItem from="1484015148807" duration="1011000" />
-    </task>
-    <task id="LOCAL-00011" summary="fix send_action error">
-      <created>1481632127108</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1481632127108</updated>
+      <workItem from="1484015148807" duration="1640000" />
     </task>
     <task id="LOCAL-00012" summary="fix error">
       <created>1481681998146</created>
@@ -673,11 +651,18 @@
       <option name="project" value="LOCAL" />
       <updated>1483952310894</updated>
     </task>
-    <option name="localTasksCounter" value="60" />
+    <task id="LOCAL-00060" summary="update client constructor">
+      <created>1484016433330</created>
+      <option name="number" value="00060" />
+      <option name="presentableId" value="LOCAL-00060" />
+      <option name="project" value="LOCAL" />
+      <updated>1484016433331</updated>
+    </task>
+    <option name="localTasksCounter" value="61" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="129165000" />
+    <option name="totallyTimeSpent" value="129794000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1050" extended-state="6" />
@@ -685,7 +670,7 @@
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.12103594" sideWeight="0.4960541" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32919955" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32919955" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="CMake" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32919955" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32919955" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.38331455" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
@@ -737,7 +722,6 @@
     <MESSAGE value="update for debug" />
     <MESSAGE value="discard send thread , add send action" />
     <MESSAGE value="fix send_action error" />
-    <MESSAGE value="fix error" />
     <MESSAGE value="add c++2py interface" />
     <MESSAGE value="update c++2py for compile&#10;" />
     <MESSAGE value="fix error&#10;" />
@@ -759,7 +743,8 @@
     <MESSAGE value="add new API for python" />
     <MESSAGE value="add debug info out" />
     <MESSAGE value="update client constructor" />
-    <option name="LAST_COMMIT_MESSAGE" value="update client constructor" />
+    <MESSAGE value="fix error" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix error" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1087,24 +1072,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/IRecv_buffer.cpp" />
-    <entry file="file://$PROJECT_DIR$/IRecv_handler.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="506">
-          <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/IRecv_buffer.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1219">
-          <caret line="53" column="6" selection-start-line="48" selection-start-column="4" selection-end-line="53" selection-end-column="6" />
-          <folding>
-            <element signature="e#113#130#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/MPI_Connect_Base.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1886">
@@ -1145,14 +1112,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/IRecv_Module.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="533">
-          <caret line="28" column="41" selection-start-line="28" selection-start-column="41" selection-end-line="28" selection-end-column="41" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/MPI_Client.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="717">
@@ -1189,6 +1148,32 @@
         <state relative-caret-position="69">
           <caret line="3" column="10" selection-start-line="3" selection-start-column="10" selection-end-line="3" selection-end-column="10" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/IRecv_handler.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="506">
+          <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/IRecv_Module.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="533">
+          <caret line="28" column="41" selection-start-line="28" selection-start-column="41" selection-end-line="28" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/IRecv_buffer.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="326">
+          <caret line="40" column="20" selection-start-line="40" selection-start-column="20" selection-end-line="40" selection-end-column="20" />
+          <folding>
+            <element signature="e#113#130#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

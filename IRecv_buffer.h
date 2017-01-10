@@ -36,7 +36,9 @@ struct IRecv_buffer{
         pthread_mutex_lock(&mutex);
         if(buffer.empty()){
             pthread_mutex_unlock(&mutex);
-            return NULL;
+            Pack p = Pack();
+            p.tag = -1;
+            return p;
         }
         else {
             Pack p = buffer.front();
