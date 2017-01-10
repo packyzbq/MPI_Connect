@@ -27,7 +27,7 @@ private:
     bool accept_conn_flag = true;
 
 public:
-    MPI_Server(IRecv_buffer rh, char* svc_name);
+    MPI_Server(IRecv_buffer* rh, char* svc_name);
 
     ~MPI_Server();
 

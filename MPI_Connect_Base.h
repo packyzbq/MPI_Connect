@@ -50,7 +50,7 @@ struct ARGS{    //用于 new_msg_come 向 recv传递参数
 class MPI_Connect_Base {
 protected:
     //IRecv_handler *Irecv_handler;
-    IRecv_buffer rv_buf;
+    IRecv_buffer* rv_buf;
     //pthread_cond_t send_thread_cond;      //  用于挂起读/写线程时
     //pthread_mutex_t send_mtx, sendmsg_mtx;                     //  同上
     pthread_t recv_t, send_t;
@@ -72,7 +72,7 @@ protected:
 
 public:
 
-    MPI_Connect_Base(IRecv_buffer rbuf){
+    MPI_Connect_Base(IRecv_buffer* rbuf){
         rv_buf = rbuf;
 //      recv_thread_cond = PTHREAD_COND_INITIALIZER;
 //        send_thread_cond = PTHREAD_COND_INITIALIZER;

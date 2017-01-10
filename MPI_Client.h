@@ -10,7 +10,7 @@
 
 class MPI_Client : public MPI_Connect_Base{
 public:
-    MPI_Client(IRecv_buffer mh, char* svc_name, char* uuid);
+    MPI_Client(IRecv_buffer* mh, char* svc_name, char* uuid);
     ~MPI_Client();
 
     int initialize();

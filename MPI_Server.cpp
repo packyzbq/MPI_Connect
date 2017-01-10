@@ -8,7 +8,7 @@
 
 #define DEBUG
 
-MPI_Server::MPI_Server(IRecv_buffer rh, char *svc_name) : MPI_Connect_Base(rh) {
+MPI_Server::MPI_Server(IRecv_buffer* rh, char *svc_name) : MPI_Connect_Base(rh) {
     svc_name_ = svc_name;
     recv_flag_mutex = PTHREAD_MUTEX_INITIALIZER;
     //send_flag_mutex = PTHREAD_MUTEX_INITIALIZER;

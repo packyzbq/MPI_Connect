@@ -80,7 +80,7 @@ void* MPI_Connect_Base::recv_thread(void *ptr) {
             if(args->datatype == MPI_CHAR){
                 p.sbuf = (char*)rb;
             }
-            ((MPI_Connect_Base*)ptr)->rv_buf.put(p);
+            ((MPI_Connect_Base*)ptr)->rv_buf->put(p);
         }
         if(!rb)
             delete(rb);

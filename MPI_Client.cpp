@@ -8,7 +8,7 @@
 
 #define DEBUG
 
-MPI_Client::MPI_Client(IRecv_buffer mh, char* svc_name, char* uuid):MPI_Connect_Base(mh){
+MPI_Client::MPI_Client(IRecv_buffer* mh, char* svc_name, char* uuid):MPI_Connect_Base(mh){
 /*    if((svc_name == NULL && port != NULL) ) {
         strcpy(portname, port);
         svc_name_ = "";
@@ -236,8 +236,6 @@ void MPI_Client::recv_handle(int tag, void *buf, MPI_Datatype type,MPI_Comm comm
     int merr, msglen;
     char errmsg[MPI_MAX_ERROR_STRING];
     switch (tag){
-        case MPI_BCAST_REQ:{}
-            break;
         case MPI_DISCONNECT:{
             //MPI_Barrier(comm);
             if(comm != sc_comm_) {
