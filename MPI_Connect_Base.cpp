@@ -165,9 +165,9 @@ bool MPI_Connect_Base::new_msg_come(ARGS *args) {
 
 MPI_Datatype MPI_Connect_Base::analyz_type(int tags) {
     if(tags == MPI_REGISTEY || tags == MPI_DISCONNECT)
-        return MPI_INT;
-    else
         return MPI_CHAR;
+    else
+        return MPI_INT;
 }
 
 void MPI_Connect_Base::set_recv_stop() {

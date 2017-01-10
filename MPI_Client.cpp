@@ -101,9 +101,9 @@ int MPI_Client::stop() {
     set_recv_stop();
     //send_flag = true;
     //TODO add disconnect send
-    int tmp = 0;
+    char* tmp = (char *) uuid_.data();
     //send(&tmp, 1, 0, MPI_INT, MPI_Tags::MPI_DISCONNECT, sc_comm_);
-    if(send_int(tmp, 1, 0, MPI_DISCONNECT) == MPI_ERR_CODE::SUCCESS)
+    if(send_string(tmp, 1, 0, MPI_DISCONNECT) == MPI_ERR_CODE::SUCCESS)
         cout <<"[Client]: send complete..." << endl;
     //pthread_cancel(send_t);
     //MPI_Barrier(sc_comm_);
