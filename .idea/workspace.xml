@@ -13,8 +13,8 @@
   <component name="ChangeListManager">
     <list default="true" id="6b800d41-e9d4-4b4a-99ba-de55217a667a" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MPI_Client.cpp" afterPath="$PROJECT_DIR$/MPI_Client.cpp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MPI_Server.cpp" afterPath="$PROJECT_DIR$/MPI_Server.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main.cpp" afterPath="$PROJECT_DIR$/main.cpp" />
     </list>
     <ignored path="MPI_Connect.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -49,16 +49,15 @@
       <file leaf-file-name="MPI_Server.cpp" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/MPI_Server.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="461">
-              <caret line="275" column="53" selection-start-line="275" selection-start-column="53" selection-end-line="275" selection-end-column="53" />
+            <state relative-caret-position="2">
+              <caret line="368" column="30" selection-start-line="368" selection-start-column="30" selection-end-line="368" selection-end-column="30" />
               <folding>
                 <element signature="e#614#2982#0" expanded="false" />
                 <element signature="e#2984#4349#0" expanded="false" />
                 <element signature="e#4351#4911#0" expanded="false" />
                 <element signature="e#4913#6049#0" expanded="false" />
                 <element signature="e#6051#7932#0" expanded="false" />
-                <element signature="e#11307#12589#0" expanded="false" />
-                <element signature="e#12591#13715#0" expanded="false" />
+                <element signature="e#11307#12595#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -87,16 +86,16 @@
       <file leaf-file-name="MPI_Client.cpp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/MPI_Client.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="479">
-              <caret line="52" column="56" selection-start-line="52" selection-start-column="56" selection-end-line="52" selection-end-column="56" />
+            <state relative-caret-position="361">
+              <caret line="183" column="5" selection-start-line="183" selection-start-column="5" selection-end-line="183" selection-end-column="5" />
               <folding>
                 <element signature="e#121#720#0" expanded="false" />
+                <element signature="e#829#2950#0" expanded="false" />
                 <element signature="e#2952#3978#0" expanded="false" />
                 <element signature="e#3980#4403#0" expanded="false" />
                 <element signature="e#4405#5208#0" expanded="false" />
-                <element signature="e#5567#6430#0" expanded="false" />
-                <element signature="e#7333#7412#0" expanded="false" />
-                <element signature="e#7414#8730#0" expanded="false" />
+                <element signature="e#7344#7423#0" expanded="false" />
+                <element signature="e#7425#8741#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -115,8 +114,8 @@
       <file leaf-file-name="MPI_Connect_Base.cpp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/MPI_Connect_Base.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="529">
-              <caret line="23" column="0" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
+            <state relative-caret-position="782">
+              <caret line="64" column="6" selection-start-line="64" selection-start-column="6" selection-end-line="64" selection-end-column="6" />
               <folding>
                 <element signature="e#43#72#0" expanded="true" />
                 <element signature="e#3530#5100#0" expanded="false" />
@@ -150,12 +149,12 @@
         <option value="$PROJECT_DIR$/MPI_Client.h" />
         <option value="$PROJECT_DIR$/MPI_Connect_Base.h" />
         <option value="$PROJECT_DIR$/Client_Module.cpp" />
-        <option value="$PROJECT_DIR$/MPI_Client.cpp" />
         <option value="$PROJECT_DIR$/IRecv_buffer.h" />
-        <option value="$PROJECT_DIR$/MPI_Connect_Base.cpp" />
         <option value="$PROJECT_DIR$/MPI_Server.h" />
-        <option value="$PROJECT_DIR$/MPI_Server.cpp" />
         <option value="$PROJECT_DIR$/main.cpp" />
+        <option value="$PROJECT_DIR$/MPI_Connect_Base.cpp" />
+        <option value="$PROJECT_DIR$/MPI_Client.cpp" />
+        <option value="$PROJECT_DIR$/MPI_Server.cpp" />
       </list>
     </option>
   </component>
@@ -167,10 +166,10 @@
   </component>
   <component name="OCFindUsagesOptions" text="true" ivars="false" properties="true" derivedClasses="false" />
   <component name="ProjectFrameBounds">
-    <option name="x" value="-9" />
+    <option name="x" value="1911" />
     <option name="y" value="-9" />
-    <option name="width" value="1938" />
-    <option name="height" value="1050" />
+    <option name="width" value="1458" />
+    <option name="height" value="918" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
@@ -438,14 +437,7 @@
       <workItem from="1484015148807" duration="5570000" />
       <workItem from="1484190851046" duration="1062000" />
       <workItem from="1484530615694" duration="2912000" />
-      <workItem from="1488175604215" duration="1868000" />
-    </task>
-    <task id="LOCAL-00018" summary="fix bug">
-      <created>1481702243419</created>
-      <option name="number" value="00018" />
-      <option name="presentableId" value="LOCAL-00018" />
-      <option name="project" value="LOCAL" />
-      <updated>1481702243419</updated>
+      <workItem from="1488175604215" duration="3066000" />
     </task>
     <task id="LOCAL-00019" summary="fix bug">
       <created>1481702483265</created>
@@ -783,17 +775,24 @@
       <option name="project" value="LOCAL" />
       <updated>1484027383669</updated>
     </task>
-    <option name="localTasksCounter" value="67" />
+    <task id="LOCAL-00067" summary="modify char* to string">
+      <created>1488181620053</created>
+      <option name="number" value="00067" />
+      <option name="presentableId" value="LOCAL-00067" />
+      <option name="project" value="LOCAL" />
+      <updated>1488181620055</updated>
+    </task>
+    <option name="localTasksCounter" value="68" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="139566000" />
+    <option name="totallyTimeSpent" value="140764000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-9" y="-9" width="1938" height="1050" extended-state="6" />
+    <frame x="1911" y="-9" width="1458" height="918" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21670191" sideWeight="0.4960541" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13314448" sideWeight="0.4960541" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.38669673" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="CMake" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32919955" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -864,7 +863,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="fix send_action error" />
     <MESSAGE value="add c++2py interface" />
     <MESSAGE value="update c++2py for compile&#10;" />
     <MESSAGE value="fix error&#10;" />
@@ -889,7 +887,8 @@
     <MESSAGE value="fix error" />
     <MESSAGE value="sync for mpi_util" />
     <MESSAGE value="update" />
-    <option name="LAST_COMMIT_MESSAGE" value="update" />
+    <MESSAGE value="modify char* to string" />
+    <option name="LAST_COMMIT_MESSAGE" value="modify char* to string" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -960,12 +959,12 @@
           <caret line="75" column="57" selection-start-line="75" selection-start-column="57" selection-end-line="75" selection-end-column="57" />
           <folding>
             <element signature="e#121#720#0" expanded="false" />
+            <element signature="e#829#2950#0" expanded="false" />
             <element signature="e#2952#3978#0" expanded="false" />
             <element signature="e#3980#4403#0" expanded="false" />
             <element signature="e#4405#5208#0" expanded="false" />
-            <element signature="e#5567#6430#0" expanded="false" />
-            <element signature="e#7333#7412#0" expanded="false" />
-            <element signature="e#7414#8730#0" expanded="false" />
+            <element signature="e#7344#7423#0" expanded="false" />
+            <element signature="e#7425#8741#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1017,12 +1016,12 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#121#720#0" expanded="false" />
+            <element signature="e#829#2950#0" expanded="false" />
             <element signature="e#2952#3978#0" expanded="false" />
             <element signature="e#3980#4403#0" expanded="false" />
             <element signature="e#4405#5208#0" expanded="false" />
-            <element signature="e#5567#6430#0" expanded="false" />
-            <element signature="e#7333#7412#0" expanded="false" />
-            <element signature="e#7414#8730#0" expanded="false" />
+            <element signature="e#7344#7423#0" expanded="false" />
+            <element signature="e#7425#8741#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1096,12 +1095,12 @@
           <caret line="174" column="17" selection-start-line="174" selection-start-column="17" selection-end-line="174" selection-end-column="17" />
           <folding>
             <element signature="e#121#720#0" expanded="false" />
+            <element signature="e#829#2950#0" expanded="false" />
             <element signature="e#2952#3978#0" expanded="false" />
             <element signature="e#3980#4403#0" expanded="false" />
             <element signature="e#4405#5208#0" expanded="false" />
-            <element signature="e#5567#6430#0" expanded="false" />
-            <element signature="e#7333#7412#0" expanded="false" />
-            <element signature="e#7414#8730#0" expanded="false" />
+            <element signature="e#7344#7423#0" expanded="false" />
+            <element signature="e#7425#8741#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1248,22 +1247,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/MPI_Client.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="479">
-          <caret line="52" column="56" selection-start-line="52" selection-start-column="56" selection-end-line="52" selection-end-column="56" />
-          <folding>
-            <element signature="e#121#720#0" expanded="false" />
-            <element signature="e#2952#3978#0" expanded="false" />
-            <element signature="e#3980#4403#0" expanded="false" />
-            <element signature="e#4405#5208#0" expanded="false" />
-            <element signature="e#5567#6430#0" expanded="false" />
-            <element signature="e#7333#7412#0" expanded="false" />
-            <element signature="e#7414#8730#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Server_Module.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="391">
@@ -1298,18 +1281,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/MPI_Connect_Base.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="529">
-          <caret line="23" column="0" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
-          <folding>
-            <element signature="e#43#72#0" expanded="true" />
-            <element signature="e#3530#5100#0" expanded="false" />
-            <element signature="e#5102#5500#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/main.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="230">
@@ -1318,18 +1289,45 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/MPI_Connect_Base.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="782">
+          <caret line="64" column="6" selection-start-line="64" selection-start-column="6" selection-end-line="64" selection-end-column="6" />
+          <folding>
+            <element signature="e#43#72#0" expanded="true" />
+            <element signature="e#3530#5100#0" expanded="false" />
+            <element signature="e#5102#5500#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MPI_Client.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="361">
+          <caret line="183" column="5" selection-start-line="183" selection-start-column="5" selection-end-line="183" selection-end-column="5" />
+          <folding>
+            <element signature="e#121#720#0" expanded="false" />
+            <element signature="e#829#2950#0" expanded="false" />
+            <element signature="e#2952#3978#0" expanded="false" />
+            <element signature="e#3980#4403#0" expanded="false" />
+            <element signature="e#4405#5208#0" expanded="false" />
+            <element signature="e#7344#7423#0" expanded="false" />
+            <element signature="e#7425#8741#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/MPI_Server.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="461">
-          <caret line="275" column="53" selection-start-line="275" selection-start-column="53" selection-end-line="275" selection-end-column="53" />
+        <state relative-caret-position="2">
+          <caret line="368" column="30" selection-start-line="368" selection-start-column="30" selection-end-line="368" selection-end-column="30" />
           <folding>
             <element signature="e#614#2982#0" expanded="false" />
             <element signature="e#2984#4349#0" expanded="false" />
             <element signature="e#4351#4911#0" expanded="false" />
             <element signature="e#4913#6049#0" expanded="false" />
             <element signature="e#6051#7932#0" expanded="false" />
-            <element signature="e#11307#12589#0" expanded="false" />
-            <element signature="e#12591#13715#0" expanded="false" />
+            <element signature="e#11307#12595#0" expanded="false" />
           </folding>
         </state>
       </provider>

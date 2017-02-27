@@ -173,7 +173,7 @@ int MPI_Client::send_int(int buf, int msgsize, int dest, int tag) {
         cout << "[Client]: send message...<" << buf <<","<<dest <<"," <<tag  << ">"<< endl;
 #endif
     int merr = 0;
-    int msglen = 0;
+    int msglen = msgsize;
     char errmsg[MPI_MAX_ERROR_STRING];
 
     merr = MPI_Send(&buf, msgsize, MPI_INT, 0,  tag, sc_comm_);
@@ -202,9 +202,8 @@ int MPI_Client::send_string(char* buf, int msgsize, int dest, int tag){
     cout << "[Client]: send message...<" << buf <<","<<dest <<"," <<tag  << ">"<< endl;
 #endif
     int merr = 0;
-    int msglen = 0;
+    int msglen = msgsize;
     char errmsg[MPI_MAX_ERROR_STRING];
-
     merr = MPI_Send(buf, msgsize, MPI_CHAR, 0,  tag, sc_comm_);
     if(merr){
         MPI_Error_string(merr, errmsg, &msglen);

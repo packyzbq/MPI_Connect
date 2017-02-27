@@ -324,7 +324,7 @@ int MPI_Server::send_string(char *buf, int msgsize, string dest_uuid, int tag) {
     cout << "[Server]: send message...<" << buf <<","<<dest_uuid <<"," <<tag  << ">"<< endl;
 #endif
     int merr = 0;
-    int msglen = 0;
+    int msglen = msgsize;
     char errmsg[MPI_MAX_ERROR_STRING];
     MPI_Comm send_comm = NULL;
     list<List_Entry>::iterator iter;
@@ -364,7 +364,7 @@ int MPI_Server::send_int(int buf, int msgsize, string dest_uuid, int tag){
     cout << "[Server]: send message...<" << buf <<","<<dest_uuid <<"," <<tag  << ">"<< endl;
 #endif
     int merr = 0;
-    int msglen = 0;
+    int msglen = msgsize;
     char errmsg[MPI_MAX_ERROR_STRING];
     MPI_Comm send_comm = NULL;
     list<List_Entry>::iterator iter;
