@@ -321,7 +321,7 @@ void MPI_Server::recv_handle(int tag, void *buf, MPI_Datatype type,MPI_Comm comm
 
 int MPI_Server::send_string(char *buf, int msgsize, string dest_uuid, int tag) {
 #ifdef DEBUG
-    cout << "[Server]: send message...<" << buf <<","<<dest_uuid <<"," <<tag  << ">"<< endl;
+    cout << "[Client]: send message...<" << buf << ",msgsize="<< msgsize <<",dest="<<dest_uuid <<",tag=" <<tag  << ">"<< endl;
 #endif
     int merr = 0;
     int msglen = msgsize;
@@ -361,7 +361,7 @@ int MPI_Server::send_string(char *buf, int msgsize, string dest_uuid, int tag) {
 
 int MPI_Server::send_int(int buf, int msgsize, string dest_uuid, int tag){
 #ifdef DEBUG
-    cout << "[Server]: send message...<" << buf <<","<<dest_uuid <<"," <<tag  << ">"<< endl;
+    cout << "[Client]: send message...<" << buf << ",msgsize="<< msgsize <<",dest="<<dest_uuid <<",tag=" <<tag  << ">"<< endl;
 #endif
     int merr = 0;
     int msglen = msgsize;

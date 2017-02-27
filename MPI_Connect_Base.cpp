@@ -56,7 +56,7 @@ void* MPI_Connect_Base::recv_thread(void *ptr) {
                 //TODO error handle return code
             }
 #ifdef DEBUG
-            cout << "<recv thread>: receive a message <-- <" << rb << ">" << endl;
+            cout << "<recv thread>: receive a message <-- <" << (char*)rb << "msgsize=" << msgsz<< ">" << endl;
             cout << "<recv thread>: start recv Barrier" << endl;
 #endif
             merr = MPI_Barrier(args->newcomm);

@@ -103,7 +103,7 @@ int MPI_Client::stop() {
     //TODO add disconnect send
     char* tmp = (char *) uuid_.data();
     //send(&tmp, 1, 0, MPI_INT, MPI_Tags::MPI_DISCONNECT, sc_comm_);
-    if(send_string(tmp, 1, 0, MPI_DISCONNECT) == MPI_ERR_CODE::SUCCESS)
+    if(send_string(tmp, strlen(tmp), 0, MPI_DISCONNECT) == MPI_ERR_CODE::SUCCESS)
         cout <<"[Client]: send complete..." << endl;
     //pthread_cancel(send_t);
     //MPI_Barrier(sc_comm_);
@@ -170,7 +170,7 @@ bool MPI_Client::new_msg_come(ARGS *args) {
 
 int MPI_Client::send_int(int buf, int msgsize, int dest, int tag) {
 #ifdef DEBUG
-        cout << "[Client]: send message...<" << buf <<","<<dest <<"," <<tag  << ">"<< endl;
+    cout << "[Client]: send message...<" << buf << ",msgsize="<< msgsize <<",dest="<<dest <<",tag=" <<tag  << ">"<< endl;
 #endif
     int merr = 0;
     int msglen = msgsize;
@@ -199,7 +199,7 @@ int MPI_Client::send_int(int buf, int msgsize, int dest, int tag) {
 
 int MPI_Client::send_string(char* buf, int msgsize, int dest, int tag){
 #ifdef DEBUG
-    cout << "[Client]: send message...<" << buf <<","<<dest <<"," <<tag  << ">"<< endl;
+    cout << "[Client]: send message...<" << buf << ",msgsize="<< msgsize <<",dest="<<dest <<",tag=" <<tag  << ">"<< endl;
 #endif
     int merr = 0;
     int msglen = msgsize;
