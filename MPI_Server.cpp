@@ -229,12 +229,13 @@ void* MPI_Server::accept_conn_thread(void *ptr) {
 void MPI_Server::recv_handle(int tag, void *buf, MPI_Datatype type,MPI_Comm comm) {
     //TODO set different conditions
     int merr, msglen;
+    string msg = (char *)buf;
     char errmsg[MPI_MAX_ERROR_STRING];
 
     switch(tag){
         case MPI_REGISTEY: {
 #ifdef DEBUG
-            cout << "get a registery from worker:" << (char *)buf << endl;
+            cout << "get a registery from worker:" << msg << endl;
 #endif
             if(comm_list.size() == 0)
                 cout << "[Server-Error]: comm_list has no MPI_Comm" << endl;
@@ -244,9 +245,9 @@ void MPI_Server::recv_handle(int tag, void *buf, MPI_Datatype type,MPI_Comm comm
             pthread_mutex_lock(&comm_list_mutex);
             for (iter = comm_list.begin(); iter != comm_list.end(); iter++, size++) {
                 if (iter->comm == comm) {
-                    iter->uuid = (char *)buf;
+                    iter->uuid = msg;
 #ifdef DEBUG
-                    cout << "[Server]: register worker " << (char*)buf << "success" << endl;
+                    cout << "[Server]: register worker " << msg << " success" << endl;
 #endif
                 }
             }
@@ -258,13 +259,13 @@ void MPI_Server::recv_handle(int tag, void *buf, MPI_Datatype type,MPI_Comm comm
         }
             break;
         case MPI_DISCONNECT:{
-            cout << "[Server] worker :" << (char *)buf<< " require disconnect" << endl;
+            cout << "[Server] worker :" << msg<< " require disconnect" << endl;
             //pack = new Recv_Pack((*(int *) buf), NULL);
             bool found = false;
             list<List_Entry>::iterator iter;
             pthread_mutex_lock(&comm_list_mutex);
             for(iter = comm_list.begin(); iter != comm_list.end(); iter++){
-                if(iter->comm == comm && iter->uuid == (char *)buf){
+                if(iter->comm == comm && iter->uuid == msg){
                     found = true;
                     merr = MPI_Comm_disconnect(&(iter->comm));
                     if(merr){
