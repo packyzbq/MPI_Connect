@@ -9,19 +9,6 @@
 #define DEBUG
 
 MPI_Client::MPI_Client(IRecv_buffer* mh, char* svc_name, char* uuid):MPI_Connect_Base(mh){
-/*    if((svc_name == NULL && port != NULL) ) {
-        strcpy(portname, port);
-        svc_name_ = "";
-    }
-    else if((svc_name != NULL && port == NULL) || (svc_name != NULL && port != NULL)) {
-        svc_name_= svc_name;
-        strcpy(portname, "");
-    }
-    else {
-        cout << "[Client-Error]: client construct error, no service name either portname" << endl;
-        //TODO add error handle
-    }
-*/
     svc_name_ = svc_name;
     uuid_ = uuid;
     recv_flag_mutex = PTHREAD_MUTEX_INITIALIZER;
@@ -49,16 +36,16 @@ int MPI_Client::initialize() {
     //while(send_flag);
     //cout << "[Client]: send thread start...." << endl;
 
-    if(strlen(portname) == 0) {
-        cout << "[Client]: finding service name <" << svc_name_ << "> ..." <<endl;
-        merr = MPI_Lookup_name(svc_name_, MPI_INFO_NULL, portname);
-        if(merr){
-            MPI_Error_string(merr, errmsg, &msglen);
-            cout << "[Client-error]: Lookup service name error, msg: "<< errmsg << endl;
-            return MPI_ERR_CODE::LOOKUP_SVC_ERR;
-            //TODO Add error handle
-        }
+
+    cout << "[Client]: finding service name <" << svc_name_ << "> ..." <<endl;
+    merr = MPI_Lookup_name(svc_name_, MPI_INFO_NULL, portname);
+    if(merr){
+        MPI_Error_string(merr, errmsg, &msglen);
+        cout << "[Client-error]: Lookup service name error, msg: "<< errmsg << endl;
+        return MPI_ERR_CODE::LOOKUP_SVC_ERR;
+        //TODO Add error handle
     }
+
     cout << "[Client]: service found on port:<" << portname << ">" << endl;
 
     //while(recv_flag || send_flag);
