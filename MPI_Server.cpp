@@ -173,7 +173,8 @@ bool MPI_Server::new_msg_come(ARGS *args) {
             //args = new ARGS();
             args->newcomm = (iter->comm);
             args->arg_stat = *stat;
-            args->datatype = analyz_type(stat->MPI_TAG);
+            //args->datatype = analyz_type(stat->MPI_TAG);
+            args->datatype = MPI_CHAR;
             args->source_rank = stat->MPI_SOURCE;
             args->print();
             delete(stat);

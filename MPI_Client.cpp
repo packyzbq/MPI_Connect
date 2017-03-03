@@ -137,7 +137,7 @@ bool MPI_Client::new_msg_come(ARGS *args) {
     if (flag) {
         args = new ARGS();
         args->arg_stat = *stat;
-        args->datatype = analyz_type(stat->MPI_TAG);
+        args->datatype = MPI_CHAR;
         args->source_rank = stat->MPI_SOURCE;
         args->newcomm = sc_comm_;
         flag = 0;
