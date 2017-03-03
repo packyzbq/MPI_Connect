@@ -36,7 +36,11 @@ void* MPI_Connect_Base::recv_thread(void *ptr) {
             //cout <<"<recv thread>: detect a new message" << endl;
             //args->print();
 #endif
-            MPI_Get_count(&(args->arg_stat), args->datatype, &msgsz);
+            //MPI_Get_count(&(args->arg_stat), args->datatype, &msgsz);
+            msgsz = args->arg_stat.count;
+#ifdef DEBUG
+            cout << "<recv thread>: detect message length=" << msgsz << endl;
+#endif
             switch (args->datatype)
             {
                 case MPI_INT:
