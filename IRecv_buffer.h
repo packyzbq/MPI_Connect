@@ -5,11 +5,13 @@
 #ifndef MPI_CONNECT_IRECV_BUFFER_H
 #define MPI_CONNECT_IRECV_BUFFER_H
 
+#define DEBUG
 
 #include <string>
 #include <pthread.h>
 #include <queue>
 #include <cstdlib>
+#include <iostream>
 using namespace std;
 
 struct Pack{
@@ -30,6 +32,9 @@ struct IRecv_buffer{
         pthread_mutex_lock(&mutex);
         buffer.push(p);
         pthread_mutex_unlock(&mutex);
+#ifdef DEBUG
+        std::cout << "<IRecv_buffer> Put pack into buffer"
+#endif
     };
 
     Pack get(){

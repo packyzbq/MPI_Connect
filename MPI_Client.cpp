@@ -135,7 +135,10 @@ bool MPI_Client::new_msg_come(ARGS *args) {
         return false;
     }
     if (flag) {
-        args = new ARGS();
+#ifdef DEBUG
+        cout << "[Client]: dectect a new msg <source=" << stat->MPI_SOURCE << ";tag=" << stat->MPI_TAG << ">" <<endl;
+#endif
+        //args = new ARGS();
         args->arg_stat = *stat;
         args->datatype = MPI_CHAR;
         args->source_rank = stat->MPI_SOURCE;

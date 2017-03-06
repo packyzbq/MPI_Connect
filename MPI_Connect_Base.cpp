@@ -27,7 +27,7 @@ void* MPI_Connect_Base::recv_thread(void *ptr) {
     bool recv_f_dup = ((MPI_Connect_Base*)ptr)->recv_flag;
     pthread_mutex_unlock(&(((MPI_Connect_Base*)ptr)->recv_flag_mutex));
 #ifdef DEBUG
-    cout<<"<recv thread>: Proc: "<< ((MPI_Connect_Base*)ptr)->myrank << ", Pid: " << pid << ", receive thread start...  "<<endl;
+    cout <<"<recv thread>: Proc: "<< ((MPI_Connect_Base*)ptr)->myrank << ", Pid: " << pid << ", receive thread start...  "<<endl;
 #endif
     // TODO add exception handler -> OR add return code
     while(!recv_f_dup){

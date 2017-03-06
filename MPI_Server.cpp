@@ -177,6 +177,7 @@ bool MPI_Server::new_msg_come(ARGS *args) {
             args->datatype = MPI_CHAR;
             args->source_rank = stat->MPI_SOURCE;
             args->print();
+            flag = 0;
             delete(stat);
             return true;
         }
@@ -322,7 +323,7 @@ void MPI_Server::recv_handle(int tag, void *buf, MPI_Datatype type,MPI_Comm comm
 
 int MPI_Server::send_string(char *buf, int msgsize, string dest_uuid, int tag) {
 #ifdef DEBUG
-    cout << "[Client]: send message...<" << buf << ",msgsize="<< msgsize <<",dest="<<dest_uuid <<",tag=" <<tag  << ">"<< endl;
+    cout << "[Server]: send message...<" << buf << ",msgsize="<< msgsize <<",dest="<<dest_uuid <<",tag=" <<tag  << ">"<< endl;
 #endif
     int merr = 0;
     int msglen = msgsize;
@@ -355,7 +356,7 @@ int MPI_Server::send_string(char *buf, int msgsize, string dest_uuid, int tag) {
         return MPI_ERR_CODE::BARRIER_FAIL;
     }
 #ifdef DEBUG
-    cout << "[Server]: start barrier..." << endl;
+    cout << "[Server]: end barrier..." << endl;
 #endif
     return MPI_ERR_CODE::SUCCESS;
 }
