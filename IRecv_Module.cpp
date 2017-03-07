@@ -27,6 +27,7 @@ BOOST_PYTHON_MODULE(IRecv_Module){
         .def_readonly("tag", &Pack::tag)
         .def_readonly("ibuf", &Pack::ibuf)
         .def_readonly("sbuf", &Pack::sbuf)
+        .def_readonly("size", &Pack::size)
     ;
 
     class_<IRecv_buffer>("IRecv_buffer")

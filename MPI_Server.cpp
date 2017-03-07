@@ -31,6 +31,7 @@ int MPI_Server::initialize() {
 
     int provided;
     MPI_Init_thread(0,0,MPI_THREAD_MULTIPLE, &provided);
+    cout << "[Server]: support thread level= " << provided << endl;
     MPI_Comm_rank(MPI_COMM_WORLD, &myrank);
     MPI_Get_processor_name(hostname, &msglen);
     MPI_Comm_set_errhandler(MPI_COMM_WORLD, MPI_ERRORS_RETURN);

@@ -18,6 +18,7 @@ struct Pack{
     int tag;
     int ibuf=0;
     string sbuf="";
+    int size = 0;
 };
 
 struct IRecv_buffer{
@@ -33,7 +34,7 @@ struct IRecv_buffer{
         buffer.push(p);
         pthread_mutex_unlock(&mutex);
 #ifdef DEBUG
-        std::cout << "<IRecv_buffer> Put pack into buffer"
+        std::cout << "<IRecv_buffer> Put pack into buffer" << std::endl;
 #endif
     };
 

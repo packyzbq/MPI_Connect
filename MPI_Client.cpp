@@ -29,6 +29,7 @@ int MPI_Client::initialize() {
 
     int provide;
     MPI_Init_thread(0,0, MPI_THREAD_MULTIPLE, &provide);
+    cout << "[Client]: support thread level= " << provide << endl;
     MPI_Comm_set_errhandler(MPI_COMM_WORLD, MPI_ERRORS_RETURN);
 
     //recv_thread(this);
@@ -132,6 +133,7 @@ bool MPI_Client::new_msg_come(ARGS *args) {
     if (merr) {
         MPI_Error_string(merr, errmsg, &msglen);
         cout << "[Client-Error]: Iprobe message error :" << errmsg << endl;
+        delete(stat);
         return false;
     }
     if (flag) {

@@ -78,16 +78,17 @@ void* MPI_Connect_Base::recv_thread(void *ptr) {
             ((MPI_Connect_Base*)ptr)->recv_handle(args->arg_stat.MPI_TAG, rb, args->datatype,args->newcomm);
             Pack p = Pack();
             p.tag = args->arg_stat.MPI_TAG;
+            p.size = args->arg_stat.count;
             if(args->datatype == MPI_INT){
                 p.ibuf = (*(int*)rb);
 #ifdef DEBUG
                 cout << "pack creat, ibuf = " << p.ibuf << endl;
 #endif
             }
-            if(args->datatype == MPI_CHAR){
-                p.sbuf = (char*)rb;
+            if(args->datatype == MPI_CHAR) {
+                p.sbuf = (char *) rb;
 #ifdef DEBUG
-                cout << "pack creat, sbuf = " << p.sbuf << endl;
+                cout << "pack creat, sbuf = " << p.sbuf <<" size = " << p.size<< endl;
 #endif
             }
             ((MPI_Connect_Base*)ptr)->rv_buf->put(p);
