@@ -37,7 +37,7 @@ public:
     int finalize();
 
     bool new_msg_come(ARGS *args);
-    void recv_handle(int tag, void* buf, MPI_Datatype type,MPI_Comm comm);
+    void recv_handle(int tag, void* buf, int length, MPI_Datatype type,MPI_Comm comm);
 
 //    void send(void *buf, int msgsize, int dest, MPI_Datatype datatype, int tag, MPI_Comm comm);
     int send_string(char *buf, int msgsize, string dest_uuid, int tag);

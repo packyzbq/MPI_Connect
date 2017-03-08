@@ -229,10 +229,11 @@ void* MPI_Server::accept_conn_thread(void *ptr) {
     return 0;
 }
 
-void MPI_Server::recv_handle(int tag, void *buf, MPI_Datatype type,MPI_Comm comm) {
+void MPI_Server::recv_handle(int tag, void *buf, int length, MPI_Datatype type,MPI_Comm comm) {
     //TODO set different conditions
     int merr, msglen;
-    string msg = (char *)buf;
+    string msg_tmp = (char *)buf;
+    string msg = msg_tmp.substr(0,length);
     char errmsg[MPI_MAX_ERROR_STRING];
 
     switch(tag){
@@ -262,6 +263,7 @@ void MPI_Server::recv_handle(int tag, void *buf, MPI_Datatype type,MPI_Comm comm
         }
             break;
         case MPI_DISCONNECT:{
+
             cout << "[Server] worker :" << msg<< " require disconnect" << endl;
             //pack = new Recv_Pack((*(int *) buf), NULL);
             bool found = false;

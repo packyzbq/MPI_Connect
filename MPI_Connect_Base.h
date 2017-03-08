@@ -108,7 +108,7 @@ public:
     void set_recv_stop();
     void set_send_stop();
 
-    virtual void recv_handle(int tag, void* buf, MPI_Datatype type,MPI_Comm comm){cout << "[Error] father recv handler" << endl;}; //
+    virtual void recv_handle(int tag, void* buf, int length, MPI_Datatype type,MPI_Comm comm){cout << "[Error] father recv handler" << endl;}; //
 
 
 };

@@ -75,7 +75,7 @@ void* MPI_Connect_Base::recv_thread(void *ptr) {
 #ifdef DEBUG
             cout << "<recv thread>: handled by recv_handler" << endl;
 #endif
-            ((MPI_Connect_Base*)ptr)->recv_handle(args->arg_stat.MPI_TAG, rb, args->datatype,args->newcomm);
+            ((MPI_Connect_Base*)ptr)->recv_handle(args->arg_stat.MPI_TAG, rb, args->arg_stat.count ,args->datatype,args->newcomm);
             Pack p = Pack();
             p.tag = args->arg_stat.MPI_TAG;
             p.size = args->arg_stat.count;

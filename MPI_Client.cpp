@@ -222,7 +222,7 @@ void MPI_Client::run() {
     initialize();
 }
 
-void MPI_Client::recv_handle(int tag, void *buf, MPI_Datatype type,MPI_Comm comm) {
+void MPI_Client::recv_handle(int tag, void *buf, int length, MPI_Datatype type,MPI_Comm comm) {
     // TODO add conditions
     int merr, msglen;
     char errmsg[MPI_MAX_ERROR_STRING];
