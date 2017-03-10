@@ -39,7 +39,7 @@ void* MPI_Connect_Base::recv_thread(void *ptr) {
             //MPI_Get_count(&(args->arg_stat), args->datatype, &msgsz);
             msgsz = args->arg_stat.count;
 #ifdef DEBUG
-            cout << "<recv thread>: detect message length=" << msgsz << endl;
+            cout << "<Rank "<<((MPI_Connect_Base*)ptr)->myrank <<" recv thread >: detect message length=" << msgsz << endl;
 #endif
             switch (args->datatype)
             {
@@ -56,24 +56,24 @@ void* MPI_Connect_Base::recv_thread(void *ptr) {
             merr = MPI_Recv(rb, msgsz, args->datatype, args->arg_stat.MPI_SOURCE, args->arg_stat.MPI_TAG, args->newcomm, &recv_st);
             if(merr){
                 MPI_Error_string(merr, errmsg, &msglen);
-                cout << "<recv thread>: receive error: " << errmsg << endl;
+                cout << "<Rank "<<((MPI_Connect_Base*)ptr)->myrank <<"recv thread>: receive error: " << errmsg << endl;
                 //TODO error handle return code
             }
 #ifdef DEBUG
-            cout << "<recv thread>: receive a message <-- <" << (char*)rb << ", msgsize=" << msgsz<< ">" << endl;
-            cout << "<recv thread>: start recv Barrier" << endl;
+            cout << "<Rank "<<((MPI_Connect_Base*)ptr)->myrank <<"recv thread>: receive a message <-- <" << (char*)rb << ", msgsize=" << msgsz<< ">" << endl;
+            cout << "<Rank "<<((MPI_Connect_Base*)ptr)->myrank <<"recv thread>: start recv Barrier" << endl;
 #endif
             merr = MPI_Barrier(args->newcomm);
 #ifdef DEBUG
-            cout << "<recv thread>: end recv Barrier" << endl;
+            cout << "<Rank "<<((MPI_Connect_Base*)ptr)->myrank <<"recv thread>: end recv Barrier" << endl;
 #endif
             if(merr){
                 MPI_Error_string(merr, errmsg, &msglen);
-                cout << "<recv thread>: barrier fail...error: " << errmsg << endl;
+                cout << "<Rank "<<((MPI_Connect_Base*)ptr)->myrank <<"recv thread>: barrier fail...error: " << errmsg << endl;
                 //TODO Add error handle
             }
 #ifdef DEBUG
-            cout << "<recv thread>: handled by recv_handler" << endl;
+            cout << "<Rank "<<((MPI_Connect_Base*)ptr)->myrank <<"recv thread>: handled by recv_handler" << endl;
 #endif
             ((MPI_Connect_Base*)ptr)->recv_handle(args->arg_stat.MPI_TAG, rb, args->arg_stat.count ,args->datatype,args->newcomm);
             Pack p = Pack();

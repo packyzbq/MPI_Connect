@@ -22,14 +22,14 @@ MPI_Client::~MPI_Client() {
 
 int MPI_Client::initialize() {
     cout << "--------------------Client init start--------------------" << endl;
-    cout << "[Client]: client initail..." << endl;
+    cout << "[Client_"<< myrank <<"]: client initail..." << endl;
     int merr= 0;
     int msglen = 0;
     char errmsg[MPI_MAX_ERROR_STRING];
 
     int provide;
     MPI_Init_thread(0,0, MPI_THREAD_MULTIPLE, &provide);
-    cout << "[Client]: support thread level= " << provide << endl;
+    cout << "[Client_"<< myrank <<"]: support thread level= " << provide << endl;
     MPI_Comm_set_errhandler(MPI_COMM_WORLD, MPI_ERRORS_RETURN);
 
     //recv_thread(this);
@@ -38,26 +38,26 @@ int MPI_Client::initialize() {
     //cout << "[Client]: send thread start...." << endl;
 
 
-    cout << "[Client]: finding service name <" << svc_name_ << "> ..." <<endl;
+    cout << "[Client_"<< myrank <<"]: finding service name <" << svc_name_ << "> ..." <<endl;
     merr = MPI_Lookup_name(svc_name_, MPI_INFO_NULL, portname);
     if(merr){
         MPI_Error_string(merr, errmsg, &msglen);
-        cout << "[Client-error]: Lookup service name error, msg: "<< errmsg << endl;
+        cout << "[Client-"<<myrank<<"-error]: Lookup service name error, msg: "<< errmsg << endl;
         return MPI_ERR_CODE::LOOKUP_SVC_ERR;
         //TODO Add error handle
     }
 
-    cout << "[Client]: service found on port:<" << portname << ">" << endl;
+    cout << "[Client_"<< myrank <<"]: service found on port:<" << portname << ">" << endl;
 
     //while(recv_flag || send_flag);
     merr = MPI_Comm_connect(portname, MPI_INFO_NULL,0, MPI_COMM_SELF, &sc_comm_);
     if(merr){
         MPI_Error_string(merr, errmsg, &msglen);
-        cout << "[Client-error]: Connect to Server error, msg: " << errmsg << endl;
+        cout << "[Client-"<<myrank<<"-error]: Connect to Server error, msg: " << errmsg << endl;
         return MPI_ERR_CODE::CONNECT_ERR;
         //TODO Add error handle
     }
-    cout << "[Client]: client connect to server, comm = " << sc_comm_ << endl;
+    cout << "[Client_"<< myrank <<"]: client connect to server, comm = " << sc_comm_ << endl;
     MPI_Barrier(sc_comm_);
 
     pthread_create(&recv_t, NULL, MPI_Connect_Base::recv_thread, this);
@@ -69,7 +69,7 @@ int MPI_Client::initialize() {
         }
         pthread_mutex_unlock(&recv_flag_mutex);
     }
-    cout << "[Client]: recv thread start...." << endl;
+    cout << "[Client_"<< myrank <<"]: recv thread start...." << endl;
 
     //int rank;
     //MPI_Comm_rank(sc_comm_,&rank);
@@ -81,7 +81,7 @@ int MPI_Client::initialize() {
 
 int MPI_Client::stop() {
     cout << "--------------------stop Client--------------------" << endl;
-    //cout << "[Client]: stop Client..." << endl;
+    //cout << "[Client_"<< myrank <<"]: stop Client..." << endl;
     int merr= 0;
     int msglen = 0;
     char errmsg[MPI_MAX_ERROR_STRING];
@@ -92,16 +92,16 @@ int MPI_Client::stop() {
     char* tmp = (char *) uuid_.data();
     //send(&tmp, 1, 0, MPI_INT, MPI_Tags::MPI_DISCONNECT, sc_comm_);
     if(send_string(tmp, strlen(tmp), 0, MPI_DISCONNECT) == MPI_ERR_CODE::SUCCESS)
-        cout <<"[Client]: send complete..." << endl;
+        cout <<"[Client_"<< myrank <<"]: send complete..." << endl;
     //pthread_cancel(send_t);
     //MPI_Barrier(sc_comm_);
     merr = MPI_Comm_disconnect(&sc_comm_);
     if(merr){
         MPI_Error_string(merr, errmsg, &msglen);
-        cout << "[Client-Error]: disconnect error :" << errmsg << endl;
+        cout << "[Client-"<<myrank<<"-Error]: disconnect error :" << errmsg << endl;
         return MPI_ERR_CODE::DISCONN_ERR;
     }
-    cout << "[Client]: disconnected..." << endl;
+    cout << "[Client_"<< myrank <<"]: disconnected..." << endl;
     finalize();
     cout << "--------------------Client stop finish--------------------" << endl;
     return MPI_ERR_CODE::SUCCESS;
@@ -112,7 +112,7 @@ int MPI_Client::finalize() {
 //    ret = pthread_join(send_t, NULL);
 //    cout <<"[Client]: send thread stop, exit code=" << ret << endl;
     ret = pthread_join(recv_t, NULL);
-    cout <<"[Client]: recv thread stop, exit code=" << ret << endl;
+    cout <<"[Client_"<< myrank <<"]: recv thread stop, exit code=" << ret << endl;
 //    pthread_mutex_destroy(&send_mtx);
 //    pthread_mutex_destroy(&sendmsg_mtx);
 //    pthread_cond_destroy(&send_thread_cond);
@@ -138,7 +138,7 @@ bool MPI_Client::new_msg_come(ARGS *args) {
     }
     if (flag) {
 #ifdef DEBUG
-        cout << "[Client]: dectect a new msg <source=" << stat->MPI_SOURCE << ";tag=" << stat->MPI_TAG << ">" <<endl;
+        cout << "[Client_"<< myrank <<"]: dectect a new msg <source=" << stat->MPI_SOURCE << ";tag=" << stat->MPI_TAG << ">" <<endl;
 #endif
         //args = new ARGS();
         args->arg_stat = *stat;
@@ -162,7 +162,7 @@ bool MPI_Client::new_msg_come(ARGS *args) {
 
 int MPI_Client::send_int(int buf, int msgsize, int dest, int tag) {
 #ifdef DEBUG
-    cout << "[Client]: send message...<" << buf << ",msgsize="<< msgsize <<",dest="<<dest <<",tag=" <<tag  << ">"<< endl;
+    cout << "[Client_"<< myrank <<"]: send message...<" << buf << ",msgsize="<< msgsize <<",dest="<<dest <<",tag=" <<tag  << ">"<< endl;
 #endif
     int merr = 0;
     int msglen = msgsize;
@@ -175,7 +175,7 @@ int MPI_Client::send_int(int buf, int msgsize, int dest, int tag) {
         return MPI_ERR_CODE::SEND_FAIL;
     }
 
-    cout << "[Client]: start barrier..." << endl;
+    cout << "[Client_"<< myrank <<"]: start barrier..." << endl;
 
     merr = MPI_Barrier(sc_comm_);
     if(merr){
@@ -184,14 +184,14 @@ int MPI_Client::send_int(int buf, int msgsize, int dest, int tag) {
         return MPI_ERR_CODE::BARRIER_FAIL;
     }
 
-    cout << "[Client]: end barrier..." << endl;
+    cout << "[Client_"<< myrank <<"]: end barrier..." << endl;
 
     return MPI_ERR_CODE::SUCCESS;
 }
 
 int MPI_Client::send_string(char* buf, int msgsize, int dest, int tag){
 #ifdef DEBUG
-    cout << "[Client]: send message...<" << buf << ",msgsize="<< msgsize <<",dest="<<dest <<",tag=" <<tag  << ">"<< endl;
+    cout << "[Client_"<< myrank <<"]: send message...<" << buf << ",msgsize="<< msgsize <<",dest="<<dest <<",tag=" <<tag  << ">"<< endl;
 #endif
     int merr = 0;
     int msglen = msgsize;
@@ -203,7 +203,7 @@ int MPI_Client::send_string(char* buf, int msgsize, int dest, int tag){
         return MPI_ERR_CODE::SEND_FAIL;
     }
 #ifdef DEBUG
-    cout << "[Client]: start barrier..." << endl;
+    cout << "[Client_"<< myrank <<"]: start barrier..." << endl;
 #endif
     merr = MPI_Barrier(sc_comm_);
     if(merr){
@@ -212,7 +212,7 @@ int MPI_Client::send_string(char* buf, int msgsize, int dest, int tag){
         return MPI_ERR_CODE::BARRIER_FAIL;
     }
 #ifdef DEBUG
-    cout << "[Client]: end barrier..." << endl;
+    cout << "[Client_"<< myrank <<"]: end barrier..." << endl;
 #endif
     return MPI_ERR_CODE::SUCCESS;
 }
@@ -231,14 +231,14 @@ void MPI_Client::recv_handle(int tag, void *buf, int length, MPI_Datatype type,M
             //MPI_Barrier(comm);
             if(comm != sc_comm_) {
 #ifdef DEBUG
-                cout << "[Client-Error]: disconnect error: MPI_Comm is not matching" << endl;
+                cout << "[Client-"<<myrank<<"-Error]: disconnect error: MPI_Comm is not matching" << endl;
 #endif
                 //TODO error handle
             }
             merr = MPI_Comm_disconnect(&sc_comm_);
             if(merr){
                 MPI_Error_string(merr, errmsg, &msglen);
-                cout << "[Client-Error]: disconnect error: " << errmsg << endl;
+                cout << "[Client-"<<myrank<<"-Error]: disconnect error: " << errmsg << endl;
                 //TODO Add error handle
             }
         }
