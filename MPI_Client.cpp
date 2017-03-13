@@ -21,7 +21,7 @@ MPI_Client::~MPI_Client() {
 }
 
 int MPI_Client::initialize() {
-    cout << "--------------------Client init start--------------------" << endl;
+    cout << "--------------------Client "<< myrank << " init start--------------------" << endl;
     cout << "[Client_"<< myrank <<"]: client initail..." << endl;
     int merr= 0;
     int msglen = 0;
@@ -73,14 +73,14 @@ int MPI_Client::initialize() {
 
     //int rank;
     //MPI_Comm_rank(sc_comm_,&rank);
-    cout << "--------------------Client init finish--------------------" << endl;
+    cout << "--------------------Client "<< myrank <<" finish--------------------" << endl;
     //send_action(&wid_, 1, MPI_INT, 0, MPI_REGISTEY, sc_comm_);
 
     return MPI_ERR_CODE::SUCCESS;
 }
 
 int MPI_Client::stop() {
-    cout << "--------------------stop Client--------------------" << endl;
+    cout << "--------------------stop Client "<< myrank<<"--------------------" << endl;
     //cout << "[Client_"<< myrank <<"]: stop Client..." << endl;
     int merr= 0;
     int msglen = 0;
@@ -103,7 +103,7 @@ int MPI_Client::stop() {
     }
     cout << "[Client_"<< myrank <<"]: disconnected..." << endl;
     finalize();
-    cout << "--------------------Client stop finish--------------------" << endl;
+    cout << "--------------------Client "<< myrank <<" stop finish--------------------" << endl;
     return MPI_ERR_CODE::SUCCESS;
 }
 
