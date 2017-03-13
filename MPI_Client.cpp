@@ -21,8 +21,8 @@ MPI_Client::~MPI_Client() {
 }
 
 int MPI_Client::initialize() {
-    cout << "--------------------Client "<< myrank << " init start--------------------" << endl;
-    cout << "[Client_"<< myrank <<"]: client initail..." << endl;
+    cout << "--------------------Client init start--------------------" << endl;
+    cout << "[Client]: client initail..." << endl;
     int merr= 0;
     int msglen = 0;
     char errmsg[MPI_MAX_ERROR_STRING];

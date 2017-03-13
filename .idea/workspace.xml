@@ -11,7 +11,7 @@
     </ADDITIONAL_GENERATION_ENVIRONMENT>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6b800d41-e9d4-4b4a-99ba-de55217a667a" name="Default" comment="add client rank signature">
+    <list default="true" id="6b800d41-e9d4-4b4a-99ba-de55217a667a" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MPI_Client.cpp" afterPath="$PROJECT_DIR$/MPI_Client.cpp" />
     </list>
@@ -58,8 +58,8 @@
       <file leaf-file-name="MPI_Client.cpp" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/MPI_Client.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="644">
-              <caret line="75" column="54" selection-start-line="75" selection-start-column="54" selection-end-line="75" selection-end-column="54" />
+            <state relative-caret-position="552">
+              <caret line="26" column="19" selection-start-line="26" selection-start-column="19" selection-end-line="26" selection-end-column="19" />
               <folding />
             </state>
           </provider>
@@ -459,14 +459,7 @@
       <workItem from="1488974433744" duration="658000" />
       <workItem from="1488975629115" duration="624000" />
       <workItem from="1489136127693" duration="1162000" />
-      <workItem from="1489373077126" duration="170000" />
-    </task>
-    <task id="LOCAL-00029" summary="fix error&#10;">
-      <created>1482236278948</created>
-      <option name="number" value="00029" />
-      <option name="presentableId" value="LOCAL-00029" />
-      <option name="project" value="LOCAL" />
-      <updated>1482236278948</updated>
+      <workItem from="1489373077126" duration="1831000" />
     </task>
     <task id="LOCAL-00030" summary="fix error&#10;">
       <created>1482237088366</created>
@@ -804,11 +797,18 @@
       <option name="project" value="LOCAL" />
       <updated>1489136681105</updated>
     </task>
-    <option name="localTasksCounter" value="78" />
+    <task id="LOCAL-00078" summary="add client rank signature">
+      <created>1489373253808</created>
+      <option name="number" value="00078" />
+      <option name="presentableId" value="LOCAL-00078" />
+      <option name="project" value="LOCAL" />
+      <updated>1489373253808</updated>
+    </task>
+    <option name="localTasksCounter" value="79" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="167226000" />
+    <option name="totallyTimeSpent" value="168887000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1050" extended-state="0" />
@@ -1305,8 +1305,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/MPI_Client.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="644">
-          <caret line="75" column="54" selection-start-line="75" selection-start-column="54" selection-end-line="75" selection-end-column="54" />
+        <state relative-caret-position="552">
+          <caret line="26" column="19" selection-start-line="26" selection-start-column="19" selection-end-line="26" selection-end-column="19" />
           <folding />
         </state>
       </provider>
