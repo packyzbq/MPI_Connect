@@ -26,6 +26,8 @@ private:
     pthread_mutex_t accept_flag_mutex;
     bool accept_conn_flag = true;
 
+    bool allowstop = false;
+
 public:
     MPI_Server(IRecv_buffer* rh, char* svc_name);
 
@@ -52,6 +54,12 @@ public:
         pthread_mutex_lock(&accept_flag_mutex);
         accept_conn_flag = true;
         pthread_mutex_unlock(&accept_flag_mutex);
+    };
+    int get_Commlist_size(){
+        return comm_list.size();
+    };
+    bool get_stop_permit(){
+        return allowstop;
     };
 };
 

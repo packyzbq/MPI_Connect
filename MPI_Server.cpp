@@ -212,6 +212,7 @@ void* MPI_Server::accept_conn_thread(void *ptr) {
         tmp_item.comm = newcomm;
         pthread_mutex_lock(&(((MPI_Server*)ptr)->comm_list_mutex));
         ((MPI_Server*)ptr)->comm_list.push_back(tmp_item);
+        ((MPI_Server*)ptr)->allowstop = true;
         pthread_mutex_unlock(&(((MPI_Server*)ptr)->comm_list_mutex));
         //TODO receive worker MPI_REGISTEY tags and add to master, in recv_thread() function or ABC recv_commit() function
 #ifdef DEBUG
