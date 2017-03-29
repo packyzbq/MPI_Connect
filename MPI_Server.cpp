@@ -8,13 +8,13 @@
 
 #define DEBUG
 
-MPI_Server::MPI_Server(IRecv_buffer* rh, char *svc_name) : MPI_Connect_Base(rh) {
+MPI_Server::MPI_Server(IRecv_buffer* rh, char *svc_name, int excepted_worker_no) : MPI_Connect_Base(rh) {
     svc_name_ = svc_name;
+    ept_worker_no = excepted_worker_no;
+
     recv_flag_mutex = PTHREAD_MUTEX_INITIALIZER;
-    //send_flag_mutex = PTHREAD_MUTEX_INITIALIZER;
     accept_flag_mutex = PTHREAD_MUTEX_INITIALIZER;
     comm_list_mutex = PTHREAD_MUTEX_INITIALIZER;
-    //cout << "Irecv_handler ptr= " << Irecv_handler << endl;
 };
 
 MPI_Server::~MPI_Server() {
@@ -67,12 +67,6 @@ int MPI_Server::initialize() {
         pthread_mutex_unlock(&recv_flag_mutex);
     }
     cout << "[Server]: receive thread start..." << endl;
-    //recv_thread(this);
-
-    //start send thread
-    //pthread_create(&send_t, NULL, MPI_Connect_Base::send_thread, this);
-    //while(send_flag);
-    //cout << "[Server]: send thread start..." << endl;
 
     //start accept thread
     pthread_create(&pth_accept, NULL, MPI_Server::accept_conn_thread, this);
@@ -110,21 +104,12 @@ int MPI_Server::stop() {
     }
     // TODO Add force stop
     //stop threads
-    set_accept_t_stop();
+    // set_accept_t_stop(); replaced by control of worker_no
     set_recv_stop();
-    //set_send_stop();
 
-    int ret;
-    ret = pthread_cancel(pth_accept);
-    cout <<"[Server]: cancel accept thread, exit code=" << ret << endl;
-
-    //ret = pthread_cancel(send_t);
+    //int ret;
+    //ret = pthread_cancel(pth_accept);
     //cout <<"[Server]: cancel accept thread, exit code=" << ret << endl;
-
-    //map<int ,MPI_Comm>::iterator iter;
-    //for(iter = client_comm_list.begin(); iter != client_comm_list.end(); iter++){
-    //    MPI_Comm_disconnect(&(iter->second));
-    //}
 
     finalize();
     cout << "--------------------Server stop finish--------------------"  << endl;
@@ -144,7 +129,6 @@ int MPI_Server::finalize() {
     //pthread_mutex_destroy(&send_mtx);
     //pthread_mutex_destroy(&sendmsg_mtx);
     //pthread_cond_destroy(&send_thread_cond);
-
     MPI_Finalize();
     return MPI_ERR_CODE::SUCCESS;
 }
@@ -192,15 +176,15 @@ void* MPI_Server::accept_conn_thread(void *ptr) {
     //pthread_t mypid = pthread_self();
     int merr= 0;
     int msglen = 0;
+    int worker_num = ((MPI_Server*)ptr)->ept_worker_no;
     char errmsg[MPI_MAX_ERROR_STRING];
     pthread_mutex_lock(&(((MPI_Server*)ptr)->accept_flag_mutex));
     ((MPI_Server*)ptr)->accept_conn_flag = false;
-    bool acc_flag = ((MPI_Server*)ptr)->accept_conn_flag;
+    //bool acc_flag = ((MPI_Server*)ptr)->accept_conn_flag;
     pthread_mutex_unlock(&(((MPI_Server*)ptr)->accept_flag_mutex));
     cout << "[Server] host: "<< ((MPI_Server*)ptr)->hostname <<", accept connection thread start..." << endl;
 
-    while(!acc_flag) {
-        merr = 0;
+    while(worker_num-- > 0) {
         MPI_Comm newcomm;
         merr = MPI_Comm_accept(((MPI_Server*)ptr)->port, MPI_INFO_NULL, 0, MPI_COMM_SELF, &newcomm);
         if(merr){
@@ -223,7 +207,7 @@ void* MPI_Server::accept_conn_thread(void *ptr) {
         //free(&newcomm);
 
         pthread_mutex_lock(&(((MPI_Server*)ptr)->accept_flag_mutex));
-        acc_flag = ((MPI_Server*)ptr)->accept_conn_flag;
+        //acc_flag = ((MPI_Server*)ptr)->accept_conn_flag;
         pthread_mutex_unlock(&(((MPI_Server*)ptr)->accept_flag_mutex));
     }
     cout << "[Server] host: "<< ((MPI_Server*)ptr)->hostname << ", accept connection thread stop..." << endl;
@@ -289,6 +273,12 @@ void MPI_Server::recv_handle(int tag, void *buf, int length, MPI_Datatype type,M
             if(!found) {
 #ifdef DEBUG
                 cout << "[Server-Error]: can't find correspond MPI_Comm and wid" << endl;
+                cout << "Here is the comm list" << endl;
+                pthread_mutex_lock(&comm_list_mutex);
+                for(iter = comm_list.begin(); iter != comm_list.end(); iter++){
+                    cout << iter->uuid <<" :: " << iter->comm << endl;
+                }
+                pthread_mutex_unlock(&comm_list_mutex);
 #endif
             }
         }

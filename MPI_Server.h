@@ -18,6 +18,7 @@ struct List_Entry{
 class MPI_Server : public  MPI_Connect_Base{
 private:
     char* svc_name_;
+    int ept_worker_no;
     list<List_Entry> comm_list;
     pthread_mutex_t comm_list_mutex;
     char port[MPI_MAX_PORT_NAME];
@@ -29,7 +30,7 @@ private:
     bool allowstop = false;
 
 public:
-    MPI_Server(IRecv_buffer* rh, char* svc_name);
+    MPI_Server(IRecv_buffer* rh, char* svc_name, int excepted_worker_no);
 
     ~MPI_Server();
 
@@ -46,7 +47,6 @@ public:
     int send_int(int buf, int msgsize, string dest_uuid, int tag);
     static void* accept_conn_thread(void* ptr);
 
-    bool gen_client();
     bool disconnect_client(int w_uuid);
     void bcast(void *buf, int msgsz, MPI_Datatype datatype, int tags);
 
@@ -60,6 +60,14 @@ public:
     };
     bool get_stop_permit(){
         return allowstop;
+    };
+    void print_Commlist(){
+        list<List_Entry>::iterator iter;
+        pthread_mutex_lock(&comm_list_mutex);
+        for(iter = comm_list.begin(); iter != comm_list.end(); iter++){
+            cout << iter->uuid <<" :: " << iter->comm << endl;
+        }
+        pthread_mutex_unlock(&comm_list_mutex);
     };
 };
 

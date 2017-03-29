@@ -20,6 +20,9 @@ BOOST_PYTHON_MODULE(Server_Module)
         .def("send_string", &MPI_Server::send_string)
         .def("disconnect_client", &MPI_Server::disconnect_client)
         .def("bcast", &MPI_Server::bcast)
+        .def("get_Commlist_size", &MPI_Server::get_Commlist_size)
+        .def("get_stop_permit",&MPI_Server::get_stop_permit)
+        .def("print_Commlist", &MPI_Server::print_Commlist)
         ;
 
 }
